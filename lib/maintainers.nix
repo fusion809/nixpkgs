@@ -145,6 +145,7 @@
   DamienCassou = "Damien Cassou <damien@cassou.me>";
   danbst = "Danylo Hlynskyi <abcz2.uprola@gmail.com>";
   dancek = "Hannu Hartikainen <hannu.hartikainen@gmail.com>";
+  danharaj = "Dan Haraj <dan@obsidian.systems>";
   danielfullmer = "Daniel Fullmer <danielrf12@gmail.com>";
   dasuxullebt = "Christoph-Simon Senjak <christoph.senjak@googlemail.com>";
   david50407 = "David Kuo <me@davy.tw>";
@@ -283,6 +284,7 @@
   infinisil = "Silvan Mosberger <infinisil@icloud.com>";
   ironpinguin = "Michele Catalano <michele@catalano.de>";
   ivan-tkatchev = "Ivan Tkatchev <tkatchev@gmail.com>";
+  ixmatus = "Parnell Springmeyer <parnell@digitalmentat.com>";
   j-keck = "Jürgen Keck <jhyphenkeck@gmail.com>";
   jagajaga = "Arseniy Seroka <ars.seroka@gmail.com>";
   jammerful = "jammerful <jammerful@gmail.com>";
@@ -326,6 +328,7 @@
   kaiha = "Kai Harries <kai.harries@gmail.com>";
   kamilchm = "Kamil Chmielewski <kamil.chm@gmail.com>";
   kampfschlaefer = "Arnold Krille <arnold@arnoldarts.de>";
+  karolchmist = "karolchmist <info+nix@chmist.com>";
   kentjames = "James Kent <jameschristopherkent@gmail.com";
   kevincox = "Kevin Cox <kevincox@kevincox.ca>";
   khumba = "Bryan Gardiner <bog@khumba.net>";
