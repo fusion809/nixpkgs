@@ -2,7 +2,7 @@
   makeWrapper, libXScrnSaver, libxkbfile, libsecret }:
 
 let
-  version = "1.18.0";
+  version = "1.18.1";
   channel = "stable";
 
   plat = {
@@ -13,7 +13,7 @@ let
 
   sha256 = {
     "i686-linux" = "0xwfnw15792lxr5npc71yyw5yyaqi3nifqgv6vpi8ibl6c8zs97d";
-    "x86_64-linux" = "0qzj2qrzbdk27mggh0f9fs3s99bffvnrnbsparbzdag5jjmry2py";
+    "x86_64-linux" = "0h7nfyrn4ybm9p1czjb48p3cd3970hpyn6pj8l4ir1hqygcq6dwi";
     "x86_64-darwin" = "1g5rf6g9q9hh4gzg6nb37pyq9dpjj0wapivv5dsvmn0j3cp69cv4";
   }.${stdenv.system};
 
