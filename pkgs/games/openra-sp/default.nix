@@ -166,7 +166,7 @@ in stdenv.mkDerivation rec {
   meta = {
     description = "Re-imaginging of the original Command & Conquer Tiberian Sun game";
     homepage = https://github.com/ABrandau/OpenRAModSDK;
-    maintainers = with maintainers; [ ];
+    maintainers = with maintainers; [ fusion809 ];
     license = licenses.gpl3;
     platforms = platforms.linux;
   };
