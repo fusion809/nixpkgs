@@ -166,7 +166,7 @@ in stdenv.mkDerivation rec {
   meta = {
     description = "Re-imaginging of the original Command & Conquer Red Alert game";
     homepage = http://redalertunplugged.com;
-    maintainers = with maintainers; [ msteen ];
+    maintainers = with maintainers; [ fusion809 ];
     license = licenses.gpl3;
     platforms = platforms.linux;
   };
