@@ -20618,6 +20618,8 @@ in
 
   openra-ura = callPackage ../games/openra-ura { lua = lua5_1; };
 
+  openra-sp = callPackage ../games/openra-sp { lua = lua5_1; };
+
   openra-raclassic = callPackage ../games/openra-raclassic { lua = lua5_1; };
 
   openrw = callPackage ../games/openrw { };

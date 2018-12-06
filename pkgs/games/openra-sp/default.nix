@@ -1,5 +1,5 @@
 # Based on: pkgs/games/openra/default.nix
-# Based on: https://build.opensuse.org/package/show/home:fusion809/openra-raclassic
+# Based on: https://build.opensuse.org/package/show/home:fusion809/openra-sp
 { stdenv, fetchFromGitHub, dos2unix, pkgconfig, makeWrapper
 , lua, mono, dotnetPackages, python
 , libGL, openal, SDL2
@@ -9,9 +9,9 @@
 with stdenv.lib;
 
 let
-  pname = "openra-raclassic";
-  version = "157";
-  engine-version = "release-20180923";
+  pname = "openra-sp";
+  version = "147";
+  engine-version = "NAs-Test-Build";
   path = makeBinPath ([ mono python ] ++ optional (zenity != null) zenity);
   rpath = makeLibraryPath [ lua openal SDL2 ];
 
@@ -20,17 +20,17 @@ in stdenv.mkDerivation rec {
 
   srcs = [
     (fetchFromGitHub {
-      owner = "OpenRA";
-      repo = "raclassic";
-      rev = "e9040e4cfe1e087d0acc95aace091cfd8b24dd4b";
-      sha256 = "0g6fhdgm9nz06zyqpcx2crayzzw8gg923gsln5c0kyi0sisigfiy";
-      name = "raclassic";
+      owner = "ABrandau";
+      repo = "OpenRAModSDK";
+      rev = "0f5b9ce38ece7784128f11869473f7ec2ab68109";
+      sha256 = "066zi98xsphi0b11kpzb3z366mwnpcz97ah6b6b0q3lljwhzxmk3";
+      name = "SP";
     })
     (fetchFromGitHub {
-      owner = "OpenRA";
+      owner = "ABrandau";
       repo = "OpenRA" ;
       rev = engine-version;
-      sha256 = "1pgi3zaq9fwwdq6yh19bwxscslqgabjxkvl9bcn1a5agy4bfbqk5";
+      sha256 = "1nl3brvx1bikxm5rmpc7xmd32n722jiyjh86pnar6b6idr1zj2ws";
       name = "engine";
 
       extraPostFetch = ''
@@ -70,8 +70,8 @@ in stdenv.mkDerivation rec {
   ];
 
   postUnpack = ''
-    mv engine raclassic
-    cd raclassic
+    mv engine SP
+    cd SP
   '';
 
   patches = [ ./Makefile.patch ];
@@ -97,24 +97,24 @@ in stdenv.mkDerivation rec {
 
   makeFlags = "PREFIX=$(out)";
 
-  doCheck = true;
+  doCheck = false;
   checkTarget = "check test";
 
   installPhase = ''
-    mkdir -p $out/lib/openra-raclassic
-    substitute ${./launch-game.sh} $out/lib/openra-raclassic/launch-game.sh --subst-var out
-    chmod +x $out/lib/openra-raclassic/launch-game.sh
+    mkdir -p $out/lib/openra-sp
+    substitute ${./launch-game.sh} $out/lib/openra-sp/launch-game.sh --subst-var out
+    chmod +x $out/lib/openra-sp/launch-game.sh
 
     # Setting TERM=xterm fixes an issue with terminfo in mono: System.Exception: Magic number is wrong: 542
     # https://github.com/mono/mono/issues/6752#issuecomment-365212655
-    wrapProgram $out/lib/openra-raclassic/launch-game.sh \
+    wrapProgram $out/lib/openra-sp/launch-game.sh \
       --prefix PATH : "${path}" \
       --prefix LD_LIBRARY_PATH : "${rpath}" \
       --set TERM xterm
 
     mkdir -p $out/bin
-    makeWrapper $out/lib/openra-raclassic/launch-game.sh $out/bin/openra-raclassic \
-      --run "cd $out/lib/openra-raclassic"
+    makeWrapper $out/lib/openra-sp/launch-game.sh $out/bin/openra-sp \
+      --run "cd $out/lib/openra-sp"
 
     cp -r engine/{${concatStringsSep "," [
       "glsl"
@@ -139,33 +139,33 @@ in stdenv.mkDerivation rec {
       "SharpFont.dll"
       "SharpFont.dll.config"
       "VERSION"
-    ]}} $out/lib/openra-raclassic
+    ]}} $out/lib/openra-sp
 
-    mkdir $out/lib/openra-raclassic/mods
-    cp -r engine/mods/{common,modcontent} $out/lib/openra-raclassic/mods
-    cp -r mods/raclassic $out/lib/openra-raclassic/mods
+    mkdir $out/lib/openra-sp/mods
+    cp -r engine/mods/{as,ts,common,modcontent} $out/lib/openra-sp/mods
+    cp -r mods/sp $out/lib/openra-sp/mods
 
     mkdir -p $out/share/applications
-    cp ${./openra-raclassic.desktop} $out/share/applications/openra-raclassic.desktop
+    cp ${./openra-sp.desktop} $out/share/applications/openra-sp.desktop
 
-    mkdir -p $out/share/doc/packages/openra-raclassic
-    cp -r README.md $out/share/doc/packages/openra-raclassic/README.md
+    mkdir -p $out/share/doc/packages/openra-sp
+    cp -r README.md $out/share/doc/packages/openra-sp/README.md
 
     mkdir -p $out/share/pixmaps
-    cp -r mods/raclassic/icon.png $out/share/pixmaps/openra-raclassic.png
+    cp -r packaging/linux/mod_256x256.png $out/share/pixmaps/openra-sp.png
 
     mkdir -p $out/share/icons/hicolor/{16x16,32x32,48x48,64x64,128x128,256x256}/apps
     for size in 16 32 48 64 128 256; do
       size=''${size}x''${size}
-      cp packaging/linux/mod_''${size}.png "$out/share/icons/hicolor/''${size}/apps/openra-raclassic.png"
+      cp packaging/linux/mod_''${size}.png "$out/share/icons/hicolor/''${size}/apps/openra-sp.png"
     done
   '';
 
   dontStrip = true;
 
   meta = {
-    description = "Re-imaginging of the original Command & Conquer Red Alert game";
-    homepage = https://github.com/OpenRA/raclassic;
+    description = "Re-imaginging of the original Command & Conquer Tiberian Sun game";
+    homepage = https://github.com/ABrandau/OpenRAModSDK;
     maintainers = with maintainers; [ ];
     license = licenses.gpl3;
     platforms = platforms.linux;

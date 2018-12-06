@@ -10,7 +10,7 @@ with stdenv.lib;
 
 let
   pname = "openra-ura";
-  version = "410";
+  version = "412";
   engine-version = "unplugged-cd82382";
   path = makeBinPath ([ mono python ] ++ optional (zenity != null) zenity);
   rpath = makeLibraryPath [ lua openal SDL2 ];
