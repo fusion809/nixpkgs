@@ -6,10 +6,23 @@
  * Hint: ### starts category names.
  */
 { lib, noSysDirs, config}:
-self: pkgs:
+res: pkgs: super:
 
 with pkgs;
 
+let
+  self =
+    builtins.trace ''
+        It seems that you are using a patched Nixpkgs that references the self
+        variable in pkgs/top-level/all-packages.nix. This variable was incorrectly
+        named, so its usage needs attention. Please use pkgs for packages or super
+        for functions.
+      ''
+      res; # Do *NOT* use res in your fork. It will be removed.
+
+  # TODO: turn self into an error
+
+in
 {
 
   # Allow callPackage to fill in the pkgs argument
@@ -815,7 +828,7 @@ with pkgs;
 
   androidsdk = androidenv.androidsdk_8_0;
 
-  androidsdk_extras = self.androidenv.androidsdk_8_0_extras;
+  androidsdk_extras = res.androidenv.androidsdk_8_0_extras;
 
   webos = recurseIntoAttrs {
     cmake-modules = callPackage ../development/mobile/webos/cmake-modules.nix { };
@@ -3299,6 +3312,8 @@ with pkgs;
 
   hiera-eyaml = callPackage ../tools/system/hiera-eyaml { };
 
+  hivemind = callPackage ../applications/misc/hivemind { };
+
   hfsprogs = callPackage ../tools/filesystems/hfsprogs { };
 
   highlight = callPackage ../tools/text/highlight ({
@@ -3475,9 +3490,7 @@ with pkgs;
     buildGoPackage = buildGo110Package;
   };
 
-  ipmitool = callPackage ../tools/system/ipmitool {
-    static = false;
-  };
+  ipmitool = callPackage ../tools/system/ipmitool { };
 
   ipmiutil = callPackage ../tools/system/ipmiutil {};
 
@@ -3531,7 +3544,7 @@ with pkgs;
 
   jid = callPackage ../development/tools/jid { };
 
-  jing = self.jing-trang;
+  jing = res.jing-trang;
   jing-trang = callPackage ../tools/text/xml/jing-trang { };
 
   jira-cli = callPackage ../development/tools/jira_cli { };
@@ -3969,8 +3982,6 @@ with pkgs;
   libmpack = callPackage ../development/libraries/libmpack { };
 
   libiberty = callPackage ../development/libraries/libiberty { };
-
-  libiberty_static = libiberty.override { staticBuild = true; };
 
   libxc = callPackage ../development/libraries/libxc { };
 
@@ -4828,23 +4839,23 @@ with pkgs;
     libcap = if stdenv.isDarwin then null else libcap;
   };
 
-  pinentry_ncurses = self.pinentry.override {
+  pinentry_ncurses = res.pinentry.override {
     gtk2 = null;
   };
 
-  pinentry_emacs = self.pinentry.override {
+  pinentry_emacs = res.pinentry.override {
     enableEmacs = true;
   };
 
-  pinentry_gnome = self.pinentry.override {
+  pinentry_gnome = res.pinentry.override {
     gcr = gnome3.gcr;
   };
 
-  pinentry_qt4 = self.pinentry.override {
+  pinentry_qt4 = res.pinentry.override {
     qt = qt4;
   };
 
-  pinentry_qt5 = self.pinentry.override {
+  pinentry_qt5 = res.pinentry.override {
     qt = qt5.qtbase;
   };
 
@@ -4889,7 +4900,9 @@ with pkgs;
   plowshare = callPackage ../tools/misc/plowshare { };
 
   pngcheck = callPackage ../tools/graphics/pngcheck {
-    zlib = zlibStatic;
+    zlib = zlib.override {
+      static = true;
+    };
   };
 
   pngcrush = callPackage ../tools/graphics/pngcrush { };
@@ -5007,6 +5020,8 @@ with pkgs;
   pywal = callPackage ../tools/graphics/pywal {};
 
   remarshal = callPackage ../development/tools/remarshal { };
+
+  rig = callPackage ../tools/misc/rig { };
 
   rocket = libsForQt5.callPackage ../tools/graphics/rocket { };
 
@@ -5197,7 +5212,7 @@ with pkgs;
   routino = callPackage ../tools/misc/routino { };
 
   rq = callPackage ../development/tools/rq {
-    v8 = v8_static;
+    v8 = v8.override { static = true; };
   };
 
   rsnapshot = callPackage ../tools/backup/rsnapshot { };
@@ -8015,7 +8030,9 @@ with pkgs;
   tcl-8_5 = callPackage ../development/interpreters/tcl/8.5.nix { };
   tcl-8_6 = callPackage ../development/interpreters/tcl/8.6.nix { };
 
-  proglodyte-wasm = callPackage ../development/interpreters/proglodyte-wasm { };
+  proglodyte-wasm = callPackage ../development/interpreters/proglodyte-wasm {
+    v8_static = v8.override { static = true; };
+  };
 
   wasm-gc = callPackage ../development/interpreters/wasm-gc { };
 
@@ -8157,13 +8174,14 @@ with pkgs;
   apacheAnt_1_9 = callPackage ../development/tools/build-managers/apache-ant/1.9.nix { };
   ant = apacheAnt;
 
-  apacheKafka = apacheKafka_2_0;
+  apacheKafka = apacheKafka_2_1;
   apacheKafka_0_9 = callPackage ../servers/apache-kafka { majorVersion = "0.9"; };
   apacheKafka_0_10 = callPackage ../servers/apache-kafka { majorVersion = "0.10"; };
   apacheKafka_0_11 = callPackage ../servers/apache-kafka { majorVersion = "0.11"; };
   apacheKafka_1_0 = callPackage ../servers/apache-kafka { majorVersion = "1.0"; };
   apacheKafka_1_1 = callPackage ../servers/apache-kafka { majorVersion = "1.1"; };
   apacheKafka_2_0 = callPackage ../servers/apache-kafka { majorVersion = "2.0"; };
+  apacheKafka_2_1 = callPackage ../servers/apache-kafka { majorVersion = "2.1"; };
 
   kt = callPackage ../tools/misc/kt {};
 
@@ -8436,7 +8454,9 @@ with pkgs;
 
   lattice-diamond = callPackage ../development/tools/lattice-diamond { };
 
-  distcc = callPackage ../development/tools/misc/distcc { };
+  distcc = callPackage ../development/tools/misc/distcc {
+    libiberty_static = libiberty.override { staticBuild = true; };
+  };
 
   # distccWrapper: wrapper that works as gcc or g++
   # It can be used by setting in nixpkgs config like this, for example:
@@ -8538,6 +8558,8 @@ with pkgs;
 
   jdepend = callPackage ../development/tools/analysis/jdepend { };
 
+  fedpkg = pythonPackages.callPackage ../development/tools/fedpkg { };
+
   flex_2_5_35 = callPackage ../development/tools/parsing/flex/2.5.35.nix { };
   flex = callPackage ../development/tools/parsing/flex { };
 
@@ -8578,11 +8600,11 @@ with pkgs;
   gputils = callPackage ../development/tools/misc/gputils { };
 
   gradleGen = callPackage ../development/tools/build-managers/gradle { };
-  gradle = self.gradleGen.gradle_latest;
-  gradle_2_14 = self.gradleGen.gradle_2_14;
-  gradle_2_5 = self.gradleGen.gradle_2_5;
-  gradle_3_5 = self.gradleGen.gradle_3_5;
-  gradle_4_10 = self.gradleGen.gradle_4_10;
+  gradle = res.gradleGen.gradle_latest;
+  gradle_2_14 = res.gradleGen.gradle_2_14;
+  gradle_2_5 = res.gradleGen.gradle_2_5;
+  gradle_3_5 = res.gradleGen.gradle_3_5;
+  gradle_4_10 = res.gradleGen.gradle_4_10;
 
   gperf = callPackage ../development/tools/misc/gperf { };
   # 3.1 changed some parameters from int to size_t, leading to mismatches.
@@ -8643,8 +8665,6 @@ with pkgs;
   insomnia = callPackage ../development/web/insomnia { };
 
   iozone = callPackage ../development/tools/misc/iozone { };
-
-  ired = callPackage ../development/tools/analysis/radare/ired.nix { };
 
   itstool = callPackage ../development/tools/misc/itstool { };
 
@@ -8797,7 +8817,9 @@ with pkgs;
 
   openocd = callPackage ../development/tools/misc/openocd { };
 
-  oprofile = callPackage ../development/tools/profiling/oprofile { };
+  oprofile = callPackage ../development/tools/profiling/oprofile {
+    libiberty_static = libiberty.override { staticBuild = true; };
+  };
 
   pahole = callPackage ../development/tools/misc/pahole {};
 
@@ -8855,20 +8877,13 @@ with pkgs;
 
   puppet-lint = callPackage ../development/tools/puppet/puppet-lint { };
 
+  pyflame = callPackage ../development/tools/profiling/pyflame { };
+
   pyrseas = callPackage ../development/tools/database/pyrseas { };
 
   qtcreator = libsForQt5.callPackage ../development/tools/qtcreator { };
 
   r10k = callPackage ../tools/system/r10k { };
-
-  radare = callPackage ../development/tools/analysis/radare {
-    inherit (gnome2) vte;
-    lua = lua5;
-    useX11 = config.radare.useX11 or false;
-    pythonBindings = config.radare.pythonBindings or false;
-    rubyBindings = config.radare.rubyBindings or false;
-    luaBindings = config.radare.luaBindings or false;
-  };
 
   inherit (callPackages ../development/tools/analysis/radare2 {
     inherit (gnome2) vte;
@@ -9065,7 +9080,7 @@ with pkgs;
   valgrind = callPackage ../development/tools/analysis/valgrind {
     inherit (darwin) xnu bootstrap_cmds cctools;
   };
-  valgrind-light = self.valgrind.override { gdb = null; };
+  valgrind-light = res.valgrind.override { gdb = null; };
 
   valkyrie = callPackage ../development/tools/analysis/valkyrie { };
 
@@ -9650,7 +9665,7 @@ with pkgs;
     inherit (darwin) cf-private;
     inherit (darwin.apple_sdk.frameworks) Cocoa AGL GLUT;
   };
-  fltk = self.fltk13;
+  fltk = res.fltk13;
 
   flyway = callPackage ../development/tools/flyway { };
 
@@ -9663,7 +9678,7 @@ with pkgs;
 
   freetts = callPackage ../development/libraries/freetts { };
 
-  frog = self.languageMachines.frog;
+  frog = res.languageMachines.frog;
 
   fstrcmp = callPackage ../development/libraries/fstrcmp { };
 
@@ -9731,11 +9746,11 @@ with pkgs;
   };
 
   gegl_0_3 = callPackage ../development/libraries/gegl/3.0.nix {
-    gtk = self.gtk2;
+    gtk = res.gtk2;
   };
 
   gegl_0_4 = callPackage ../development/libraries/gegl/4.0.nix {
-    gtk = self.gtk2;
+    gtk = res.gtk2;
   };
 
   geoclue2 = callPackage ../development/libraries/geoclue {};
@@ -10133,7 +10148,7 @@ with pkgs;
   gumbo = callPackage ../development/libraries/gumbo { };
 
   gvfs = callPackage ../development/libraries/gvfs {
-    gnome = self.gnome3;
+    gnome = res.gnome3;
   };
 
   gwenhywfar = callPackage ../development/libraries/aqbanking/gwenhywfar.nix { };
@@ -10783,6 +10798,8 @@ with pkgs;
 
   libgphoto2 = callPackage ../development/libraries/libgphoto2 { };
 
+  libgpiod = callPackage ../development/libraries/libgpiod { };
+
   libgpod = callPackage ../development/libraries/libgpod {
     inherit (pkgs.pythonPackages) mutagen;
     monoSupport = false;
@@ -11362,7 +11379,7 @@ with pkgs;
   libxml2 = callPackage ../development/libraries/libxml2 { };
 
   libxml2Python = pkgs.buildEnv { # slightly hacky
-    name = "libxml2+py-${self.libxml2.version}";
+    name = "libxml2+py-${res.libxml2.version}";
     paths = with libxml2; [ dev bin py ];
     inherit (libxml2) passthru;
     # the hook to find catalogs is hidden by buildEnv
@@ -11802,9 +11819,9 @@ with pkgs;
   };
 
   pcre = callPackage ../development/libraries/pcre { };
-  pcre16 = self.pcre.override { variant = "pcre16"; };
+  pcre16 = res.pcre.override { variant = "pcre16"; };
   # pcre32 seems unused
-  pcre-cpp = self.pcre.override { variant = "cpp"; };
+  pcre-cpp = res.pcre.override { variant = "cpp"; };
 
   pcre2 = callPackage ../development/libraries/pcre2 { };
 
@@ -12705,8 +12722,6 @@ with pkgs;
     stdenv = overrideCC stdenv gcc6;
   });
 
-  v8_static = lowPrio (self.v8.override { static = true; });
-
   vaapiIntel = callPackage ../development/libraries/vaapi-intel { };
 
   vaapi-intel-hybrid = callPackage ../development/libraries/vaapi-intel-hybrid { };
@@ -12940,10 +12955,6 @@ with pkgs;
   libdynd = callPackage ../development/libraries/libdynd { };
 
   zlog = callPackage ../development/libraries/zlog { };
-
-  zlibStatic = lowPrio (appendToName "static" (zlib.override {
-    static = true;
-  }));
 
   zeromq3 = callPackage ../development/libraries/zeromq/3.x.nix {};
   zeromq4 = callPackage ../development/libraries/zeromq/4.x.nix {};
@@ -14600,7 +14611,9 @@ with pkgs;
   linuxPackages_4_9 = recurseIntoAttrs (linuxPackagesFor pkgs.linux_4_9);
   linuxPackages_4_14 = recurseIntoAttrs (linuxPackagesFor pkgs.linux_4_14);
   linuxPackages_4_19 = recurseIntoAttrs (linuxPackagesFor pkgs.linux_4_19);
-  # Don't forget to update linuxPackages_latest!
+  # When adding to this list:
+  # - Update linuxPackages_latest to the latest version
+  # - Update the rev in ../os-specific/linux/kernel/linux-libre.nix to the latest one.
 
   # Intentionally lacks recurseIntoAttrs, as -rc kernels will quite likely break out-of-tree modules and cause failed Hydra builds.
   linuxPackages_testing = linuxPackagesFor pkgs.linux_testing;
@@ -15436,6 +15449,8 @@ with pkgs;
 
   man-pages = callPackage ../data/documentation/man-pages { };
 
+  materia-theme = callPackage ../data/themes/materia-theme { };
+
   material-icons = callPackage ../data/fonts/material-icons { };
 
   meslo-lg = callPackage ../data/fonts/meslo-lg {};
@@ -15476,6 +15491,8 @@ with pkgs;
 
   nafees = callPackage ../data/fonts/nafees { };
 
+  nordic-polar = callPackage ../data/themes/nordic-polar { };
+
   inherit (callPackages ../data/fonts/noto-fonts {})
     noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra;
 
@@ -15497,7 +15514,7 @@ with pkgs;
 
   open-dyslexic = callPackage ../data/fonts/open-dyslexic { };
 
-  opensans-ttf = callPackage ../data/fonts/opensans-ttf { };
+  open-sans = callPackage ../data/fonts/open-sans { };
 
   orbitron = callPackage ../data/fonts/orbitron { };
 
@@ -15639,7 +15656,7 @@ with pkgs;
   inherit (callPackages ../data/fonts/tai-languages { }) tai-ahom;
 
   tango-icon-theme = callPackage ../data/icons/tango-icon-theme {
-    gtk = self.gtk2;
+    gtk = res.gtk2;
   };
 
   themes = name: callPackage (../data/misc/themes + ("/" + name + ".nix")) {};
@@ -15881,16 +15898,16 @@ with pkgs;
   libbitcoin-explorer = callPackage ../tools/misc/libbitcoin/libbitcoin-explorer.nix { };
 
 
-  go-ethereum = self.altcoins.go-ethereum;
-  ethabi = self.altcoins.ethabi;
+  go-ethereum = res.altcoins.go-ethereum;
+  ethabi = res.altcoins.ethabi;
 
-  parity = self.altcoins.parity;
-  parity-beta = self.altcoins.parity-beta;
-  parity-ui = self.altcoins.parity-ui;
+  parity = res.altcoins.parity;
+  parity-beta = res.altcoins.parity-beta;
+  parity-ui = res.altcoins.parity-ui;
 
-  stellar-core = self.altcoins.stellar-core;
+  stellar-core = res.altcoins.stellar-core;
 
-  particl-core = self.altcoins.particl-core;
+  particl-core = res.altcoins.particl-core;
 
   aumix = callPackage ../applications/audio/aumix {
     gtkGUI = false;
@@ -15985,7 +16002,7 @@ with pkgs;
   };
   bitwig-studio2 =  callPackage ../applications/audio/bitwig-studio/bitwig-studio2.nix {
     inherit (gnome3) zenity;
-    inherit (self) bitwig-studio1;
+    inherit (res) bitwig-studio1;
   };
   bitwig-studio = bitwig-studio2;
 
@@ -16665,7 +16682,7 @@ with pkgs;
   espeak-classic = callPackage ../applications/audio/espeak { };
 
   espeak-ng = callPackage ../applications/audio/espeak-ng { };
-  espeak = self.espeak-ng;
+  espeak = res.espeak-ng;
 
   espeakedit = callPackage ../applications/audio/espeak/edit.nix { };
 
@@ -16958,7 +16975,7 @@ with pkgs;
     inherit (pkgs.gnome3) defaultIconTheme;
   };
 
-  firefox-beta-bin = self.wrapFirefox firefox-beta-bin-unwrapped {
+  firefox-beta-bin = res.wrapFirefox firefox-beta-bin-unwrapped {
     browserName = "firefox";
     name = "firefox-beta-bin-" +
       (builtins.parseDrvName firefox-beta-bin-unwrapped.name).version;
@@ -16973,7 +16990,7 @@ with pkgs;
     inherit (pkgs.gnome3) defaultIconTheme;
   };
 
-  firefox-devedition-bin = self.wrapFirefox firefox-devedition-bin-unwrapped {
+  firefox-devedition-bin = res.wrapFirefox firefox-devedition-bin-unwrapped {
     browserName = "firefox";
     nameSuffix = "-devedition";
     name = "firefox-devedition-bin-" +
@@ -17060,6 +17077,7 @@ with pkgs;
     lcms = lcms2;
     inherit (gnome3) gexiv2;
     inherit (darwin.apple_sdk.frameworks) AppKit Cocoa;
+    inherit (darwin) cf-private;
   };
 
   gimp-with-plugins = callPackage ../applications/graphics/gimp/wrapper.nix {
@@ -17352,7 +17370,7 @@ with pkgs;
   jackline = callPackage ../applications/networking/instant-messengers/jackline { };
 
   slack = callPackage ../applications/networking/instant-messengers/slack { };
-  slack-dark = self.slack.override { darkMode = true; };
+  slack-dark = pkgs.slack.override { darkMode = true; };
 
   slack-cli = callPackage ../tools/networking/slack-cli { };
 
@@ -19721,11 +19739,15 @@ with pkgs;
 
   webtorrent_desktop = callPackage ../applications/video/webtorrent_desktop {};
 
-  weechat = callPackage ../applications/networking/irc/weechat {
+  wrapWeechat = callPackage ../applications/networking/irc/weechat/wrapper.nix { };
+
+  weechat-unwrapped = callPackage ../applications/networking/irc/weechat {
     inherit (darwin) libobjc;
     inherit (darwin) libresolv;
     guile = guile_2_0;
   };
+
+  weechat = wrapWeechat weechat-unwrapped { };
 
   weechatScripts = callPackage ../applications/networking/irc/weechat/scripts { };
 
@@ -19926,6 +19948,8 @@ with pkgs;
   kodi = wrapKodi {
     kodi = kodiPlain;
   };
+
+  kodi-cli = callPackage ../tools/misc/kodi-cli { };
 
   kodi-retroarch-advanced-launchers =
     callPackage ../misc/emulators/retroarch/kodi-advanced-launchers.nix {
@@ -20500,6 +20524,8 @@ with pkgs;
 
   kobodeluxe = callPackage ../games/kobodeluxe { };
 
+  leela-zero = libsForQt5.callPackage ../games/leela-zero { };
+
   lgogdownloader = callPackage ../games/lgogdownloader { };
 
   liberal-crime-squad = callPackage ../games/liberal-crime-squad { };
@@ -20599,7 +20625,9 @@ with pkgs;
   openspades = callPackage ../games/openspades { };
 
   openttd = callPackage ../games/openttd {
-    zlib = zlibStatic;
+    zlib = zlib.override {
+      static = true;
+    };
   };
 
   opentyrian = callPackage ../games/opentyrian { };
@@ -20871,7 +20899,7 @@ with pkgs;
 
   ut2004Packages = callPackage ../games/ut2004 { };
 
-  ut2004demo = self.ut2004Packages.ut2004 [ self.ut2004Packages.ut2004-demo ];
+  ut2004demo = res.ut2004Packages.ut2004 [ res.ut2004Packages.ut2004-demo ];
 
   vapor = callPackage ../games/vapor { love = love_0_8; };
 
@@ -21008,8 +21036,8 @@ with pkgs;
       # Included for backwards compatibility
       libsoup libwnck gtk-doc gnome-doc-utils;
 
-    gtk = self.gtk2;
-    gtkmm = self.gtkmm2;
+    gtk = res.gtk2;
+    gtkmm = res.gtkmm2;
   });
 
   gnome3 = recurseIntoAttrs (callPackage ../desktops/gnome-3 { });
@@ -22063,7 +22091,7 @@ with pkgs;
 
   fakenes = callPackage ../misc/emulators/fakenes { };
 
-  faust = self.faust2;
+  faust = res.faust2;
 
   faust1 = callPackage ../applications/audio/faust/faust1.nix { };
 
@@ -22189,6 +22217,8 @@ with pkgs;
 
   openlilylib-fonts = callPackage ../misc/lilypond/fonts.nix { };
 
+  loop = callPackage ../tools/misc/loop { };
+
   mailcore2 = callPackage ../development/libraries/mailcore2 {
     icu = icu58;
   };
@@ -22196,9 +22226,6 @@ with pkgs;
   martyr = callPackage ../development/libraries/martyr { };
 
   matcha = callPackage ../misc/themes/matcha { };
-
-  # previously known as flat-plat
-  materia-theme = callPackage ../misc/themes/materia-theme { };
 
   mess = callPackage ../misc/emulators/mess {
     inherit (pkgs.gnome2) GConf;
@@ -22286,7 +22313,7 @@ with pkgs;
      parameter set to the right value for your deployment target.
   */
   nixos = configuration:
-    (import (self.path + "/nixos/lib/eval-config.nix") {
+    (import (res.path + "/nixos/lib/eval-config.nix") {
       inherit (pkgs.stdenv.hostPlatform) system;
       modules = [(
                   { lib, ... }: {
@@ -22565,7 +22592,7 @@ with pkgs;
   samsung-unified-linux-driver_1_00_37 = callPackage ../misc/cups/drivers/samsung/1.00.37.nix { };
   samsung-unified-linux-driver_4_00_39 = callPackage ../misc/cups/drivers/samsung/4.00.39 { };
   samsung-unified-linux-driver_4_01_17 = callPackage ../misc/cups/drivers/samsung/4.01.17.nix { };
-  samsung-unified-linux-driver = self.samsung-unified-linux-driver_4_01_17;
+  samsung-unified-linux-driver = res.samsung-unified-linux-driver_4_01_17;
 
   sane-backends = callPackage ../applications/graphics/sane/backends {
     gt68xxFirmware = config.sane.gt68xxFirmware or null;
