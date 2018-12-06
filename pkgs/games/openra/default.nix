@@ -5,7 +5,8 @@
 
 stdenv.mkDerivation rec {
   name = "openra-${version}";
-  version = "20180923";
+  version = "25458";
+  commit = "6ac7f887c08eb7f5e9541ecf61f81dfc9430788e";
 
   meta = with stdenv.lib; {
     description = "Real Time Strategy game engine recreating the C&C titles";
@@ -18,8 +19,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "OpenRA";
     repo = "OpenRA";
-    rev = "release-${version}";
-    sha256 = "1pgi3zaq9fwwdq6yh19bwxscslqgabjxkvl9bcn1a5agy4bfbqk5";
+    rev = "${commit}";
+    sha256 = "1s5fd9mwzzi7x3a8hn9r6j5zwwn6s0rkxv0bg1wxni53vsdd45lq";
 
     extraPostFetch = ''
       sed -i 's,curl,curl --insecure,g' $out/thirdparty/{fetch-thirdparty-deps,noget}.sh
@@ -37,7 +38,7 @@ stdenv.mkDerivation rec {
   postPatch = ''
     mkdir Support
     sed -i \
-      -e 's/^VERSION.*/VERSION = release-${version}/g' \
+      -e 's/^VERSION.*/VERSION = ${version}/g' \
       -e '/GeoLite2-Country.mmdb.gz/d' \
       -e '/fetch-geoip-db.sh/d' \
       Makefile
@@ -69,5 +70,11 @@ stdenv.mkDerivation rec {
 
     mkdir -p $out/bin
     makeWrapper $out/lib/openra/launch-game.sh $out/bin/openra --run "cd $out/lib/openra"
+    printf "#!/bin/sh\nexec $out/bin/openra Game.Mod=ra" > $out/bin/openra-ra
+    chmod +x $out/bin/openra-ra
+    printf "#!/bin/sh\nexec $out/bin/openra Game.Mod=cnc" > $out/bin/openra-cnc
+    chmod +x $out/bin/openra-cnc
+    printf "#!/bin/sh\nexec $out/bin/openra Game.Mod=d2k" > $out/bin/openra-d2k
+    chmod +x $out/bin/openra-d2k
   '';
 }
