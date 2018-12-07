@@ -1,0 +1,67 @@
+As of 8 Dec 2018 this fails to build with the build output:
+
+installing 'openra-dr-237'
+these derivations will be built:
+  /nix/store/fddjxsddxns9nbc4x9ydnq17bib8cbn5-openra-dr-237.drv
+building '/nix/store/fddjxsddxns9nbc4x9ydnq17bib8cbn5-openra-dr-237.drv'...
+unpacking sources
+unpacking source archive /nix/store/pxwj8pf5ymhc2kv4sqwim7hjd5wkx4q5-DarkReign
+unpacking source archive /nix/store/aakm1xcv31ghhk8aqw85p4ny5hdm1xbh-engine
+source root is .
+patching sources
+applying patch /nix/store/d55561xlma8xc9kxfsrk8s283f60rldz-Makefile.patch
+patching file Makefile
+dos2unix: converting file CODE_OF_CONDUCT.md to Unix format...
+dos2unix: converting file CONTRIBUTING.md to Unix format...
+dos2unix: converting file README.md to Unix format...
+configuring
+Version changed to 237.
+building
+build flags: SHELL=/nix/store/az8gqspcfqr3fdhkscz60qhjnxdh5ggs-bash-4.4-p23/bin/bash PREFIX=\$\(out\)
+make[1]: Entering directory '/build/DarkReign/engine'
+Detected Lua 5.1 library at /nix/store/20cswwdvph16v1gmpq69l5mr6y4yvhqy-lua-5.1.5/lib/liblua.so.5.1.5
+Eluant.dll.config has been created successfully.
+CSC fixheader.exe
+CSC OpenRA.Game.exe
+CSC OpenRA.Platforms.Default.dll
+CSC mods/common/OpenRA.Mods.Common.dll
+CSC mods/common/OpenRA.Mods.Cnc.dll
+CSC mods/d2k/OpenRA.Mods.D2k.dll
+CSC OpenRA.Utility.exe
+CSC OpenRA.Server.exe
+make[1]: Leaving directory '/build/DarkReign/engine'
+/build/DarkReign/OpenRA.Mods.Dr.sln:  warning : Don't know how to handle GlobalSection ExtensibilityGlobals, Ignoring.
+Traits/World/PaletteFromDrFile.cs(24,44): error CS0246: The type or namespace name 'IProvidesCursorPaletteInfo' could not be found (are you missing a using directive or an assembly reference?)
+Traits/World/PaletteFromDrFile.cs(47,16): error CS0246: The type or namespace name 'IProvidesCursorPaletteInfo' could not be found (are you missing a using directive or an assembly reference?)
+Traits/World/PaletteFromDrFile.cs(47,16): error CS0538: 'IProvidesCursorPaletteInfo' in explicit interface declaration is not an interface
+Traits/World/PaletteFromDrFile.cs(49,26): error CS0246: The type or namespace name 'IProvidesCursorPaletteInfo' could not be found (are you missing a using directive or an assembly reference?)
+Traits/World/PaletteFromDrFile.cs(49,26): error CS0538: 'IProvidesCursorPaletteInfo' in explicit interface declaration is not an interface
+running tests
+check flags: SHELL=/nix/store/az8gqspcfqr3fdhkscz60qhjnxdh5ggs-bash-4.4-p23/bin/bash PREFIX=\$\(out\) VERBOSE=y check test
+make[1]: Entering directory '/build/DarkReign/engine'
+CSC OpenRA.Platforms.Default.dll
+CSC mods/common/OpenRA.Mods.Common.dll
+CSC mods/common/OpenRA.Mods.Cnc.dll
+CSC mods/d2k/OpenRA.Mods.D2k.dll
+CSC OpenRA.Utility.exe
+CSC OpenRA.Server.exe
+make[1]: Leaving directory '/build/DarkReign/engine'
+make[1]: Entering directory '/build/DarkReign/engine'
+CSC OpenRA.StyleCheck.exe
+make[1]: Leaving directory '/build/DarkReign/engine'
+Checking for explicit interface violations...
+Fontconfig error: Cannot load default config file
+
+Unhandled Exception:
+System.IO.FileNotFoundException: Assembly `dr|OpenRA.Mods.Dr.dll` not found.
+  at OpenRA.ObjectCreator..ctor (OpenRA.Manifest manifest, OpenRA.InstalledMods mods) [0x00137] in /build/DarkReign/engine/OpenRA.Game/ObjectCreator.cs:63
+  at OpenRA.ModData..ctor (OpenRA.Manifest mod, OpenRA.InstalledMods mods, System.Boolean useLoadScreen) [0x0002c] in /build/DarkReign/engine/OpenRA.Game/ModData.cs:55
+  at OpenRA.Program.Main (System.String[] args) [0x000e9] in /build/DarkReign/engine/OpenRA.Utility/Program.cs:74
+[ERROR] FATAL UNHANDLED EXCEPTION: System.IO.FileNotFoundException: Assembly `dr|OpenRA.Mods.Dr.dll` not found.
+  at OpenRA.ObjectCreator..ctor (OpenRA.Manifest manifest, OpenRA.InstalledMods mods) [0x00137] in /build/DarkReign/engine/OpenRA.Game/ObjectCreator.cs:63
+  at OpenRA.ModData..ctor (OpenRA.Manifest mod, OpenRA.InstalledMods mods, System.Boolean useLoadScreen) [0x0002c] in /build/DarkReign/engine/OpenRA.Game/ModData.cs:55
+  at OpenRA.Program.Main (System.String[] args) [0x000e9] in /build/DarkReign/engine/OpenRA.Utility/Program.cs:74
+make: *** [Makefile:137: check] Error 1
+builder for '/nix/store/fddjxsddxns9nbc4x9ydnq17bib8cbn5-openra-dr-237.drv' failed with exit code 2
+error: build of '/nix/store/fddjxsddxns9nbc4x9ydnq17bib8cbn5-openra-dr-237.drv' failed
+ 

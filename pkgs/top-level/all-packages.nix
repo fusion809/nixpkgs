@@ -20633,6 +20633,8 @@ in
   openra-ura = callPackage ../games/openra-ura { lua = lua5_1; };
 
   openra-d2 = callPackage ../games/openra-d2 { lua = lua5_1; };
+  
+  openra-dr = callPackage ../games/openra-dr { lua = lua5_1; };
 
   openra-yr = callPackage ../games/openra-yr { lua = lua5_1; };
 
