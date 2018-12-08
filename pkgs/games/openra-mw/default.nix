@@ -153,12 +153,6 @@ in stdenv.mkDerivation rec {
 
     mkdir -p $out/share/pixmaps
     cp -r mods/mw/icon.png $out/share/pixmaps/openra-mw.png
-
-    mkdir -p $out/share/icons/hicolor/{16x16,32x32,48x48,64x64,128x128,256x256}/apps
-    for size in 16 32 48 64 128 256; do
-      size=''${size}x''${size}
-      cp packaging/linux/mod_''${size}.png "$out/share/icons/hicolor/''${size}/apps/openra-mw.png"
-    done
   '';
 
   dontStrip = true;
