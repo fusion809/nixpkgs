@@ -1,0 +1,22 @@
+Presently this package is broken and fails to start with the error:
+
+java.lang.ExceptionInInitializerError
+        at com.jgoodies.looks.plastic.PlasticLookAndFeel.<clinit>(PlasticLookAndFeel.java:135)
+        at java.base/java.lang.Class.forName0(Native Method)
+        at java.base/java.lang.Class.forName(Unknown Source)
+        at chemaxon.marvin.util.Environment.installPlasticLookAndFeel(Environment.java:130)
+        at chemaxon.marvin.SketchApplication.<clinit>(SketchApplication.java:137)
+        at chemaxon.marvin.Sketch.main(Sketch.java:15)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+        at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+        at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+        at com.exe4j.runtime.LauncherEngine.launch(LauncherEngine.java:85)
+        at com.install4j.runtime.launcher.UnixLauncher.main(UnixLauncher.java:62)
+Caused by: java.awt.HeadlessException
+        at java.desktop/sun.awt.HeadlessToolkit.getScreenResolution(Unknown Source)
+        at com.jgoodies.looks.LookUtils.isLowResolution(LookUtils.java:480)
+        at com.jgoodies.looks.LookUtils.<clinit>(LookUtils.java:249)
+        ... 12 more
+
+I've tried setting DISPLAY to :0 and unsetting it (per this thread I referred to by ottidmes, http://protege-project.136.n4.nabble.com/Protege-ExceptionInInitializerError-td4484464.html), neither worked, or even changed the error.

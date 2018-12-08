@@ -20564,6 +20564,7 @@ in
 
   mars = callPackage ../games/mars { };
 
+  marvin = callPackage ../applications/science/chemistry/marvin { } ;
   megaglest = callPackage ../games/megaglest {};
 
   minecraft = callPackage ../games/minecraft { };
