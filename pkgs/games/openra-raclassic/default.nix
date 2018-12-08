@@ -10,7 +10,7 @@ with stdenv.lib;
 
 let
   pname = "openra-raclassic";
-  version = "160";
+  version = "164";
   engine-version = "release-20180923";
   path = makeBinPath ([ mono python ] ++ optional (zenity != null) zenity);
   rpath = makeLibraryPath [ lua openal SDL2 ];
@@ -22,8 +22,8 @@ in stdenv.mkDerivation rec {
     (fetchFromGitHub {
       owner = "OpenRA";
       repo = "raclassic";
-      rev = "959f34ab42fb0456ddd212b31f33b6179f6b0140";
-      sha256 = "09g0c05wvqgn0k5i00fvlf3glbi8s6dprk1ybwn7f9h62fmyhgp3";
+      rev = "016a2931959fe3ef43d1c3da0435b1a144e751da";
+      sha256 = "1bbmyh34zdfi0a2b4gav79hpqjj1ga98dfh7r5px7mqv3svyax86";
       name = "raclassic";
     })
     (fetchFromGitHub {
@@ -154,11 +154,11 @@ in stdenv.mkDerivation rec {
     mkdir -p $out/share/pixmaps
     cp -r mods/raclassic/icon.png $out/share/pixmaps/openra-raclassic.png
 
-    mkdir -p $out/share/icons/hicolor/{16x16,32x32,48x48,64x64,128x128,256x256}/apps
-    for size in 16 32 48 64 128 256; do
-      size=''${size}x''${size}
-      cp packaging/linux/mod_''${size}.png "$out/share/icons/hicolor/''${size}/apps/openra-raclassic.png"
-    done
+#    mkdir -p $out/share/icons/hicolor/{16x16,32x32,48x48,64x64,128x128,256x256}/apps
+#    for size in 16 32 48 64 128 256; do
+#      size=''${size}x''${size}
+#      cp packaging/linux/mod_''${size}.png "$out/share/icons/hicolor/''${size}/apps/openra-raclassic.png"
+#    done
   '';
 
   dontStrip = true;
