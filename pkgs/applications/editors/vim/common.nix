@@ -1,7 +1,6 @@
 { lib, fetchFromGitHub }:
 rec {
   version = "8.1.0569";
-
   src = fetchFromGitHub {
     owner = "vim";
     repo = "vim";
