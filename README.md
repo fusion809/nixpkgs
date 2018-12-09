@@ -13,8 +13,6 @@ This repository contains the upstream Nixpkgs packages, along with some of my ow
 
     - [openra-d2](pkgs/games/openra-d2): OpenRA [Dune II mod](https://github.com/OpenRA/d2). Recreates the [*Dune II*](https://en.wikipedia.org/wiki/Dune_II) game by Westwood Studios. 
 
-	- [openra-dr](pkgs/games/openra-dr): OpenRA [Dark Reign mod](https://github.com/drogoganor/DarkReign). Recreates [*Dark Reign: The Future of War*](https://en.wikipedia.org/wiki/Dark_Reign:_The_Future_of_War).
-
 	- [openra-gen](pkgs/games/openra-gen): OpenRA [Generals Alpha mod](https://github.com/MustaphaTR/Generals-Alpha). Recreates the [*Command & Conquer: Generals*](https://en.wikipedia.org/wiki/Command_&_Conquer:_Generals) game.
 
     - [openra-ra2](pkgs/games/openra-ra2): OpenRA [Red Alert 2 mod](https://github.com/OpenRA/ra2). It recreates the original [*Command & Conquer: Red Alert 2*](https://github.com/OpenRA/ra2).
@@ -27,7 +25,7 @@ This repository contains the upstream Nixpkgs packages, along with some of my ow
 
     - [openra-yr](pkgs/games/openra-yr): OpenRA [Yuri's Revenge mod](https://github.com/cookgreen/yr). It attempts to recreate the original [*Command & Conquer: Yuri's Revenge*](https://en.wikipedia.org/wiki/Command_%26_Conquer:_Yuri%27s_Revenge) game. Be fair warned this game is very experimental.
 
-I have also attempted to package the [Medieval Warfare mod](https://github.com/CombinE88/Medieval-Warfare), but sadly that failed with the error documented in [its directory](pkgs/games/openra-mw/broken).
+I have also attempted to package the [Dark Reign](https://github.com/drogoganor/DarkReign) and [Medieval Warfare](https://github.com/CombinE88/Medieval-Warfare) mods, but sadly that failed with the errors documented in their directories', [openra-dr](pkgs/games/openra-dr) and [openra-mw](pkgs/games/openra-mw), `broken` files.
 
 ## Installing packages
 
