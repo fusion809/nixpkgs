@@ -27,6 +27,8 @@ This repository contains the upstream Nixpkgs packages, along with some of my ow
 
 I have also attempted to package the [Dark Reign](https://github.com/drogoganor/DarkReign) and [Medieval Warfare](https://github.com/CombinE88/Medieval-Warfare) mods, but sadly that failed with the errors documented in their directories', [openra-dr](pkgs/games/openra-dr) and [openra-mw](pkgs/games/openra-mw), `broken` files.
 
+It is worthwhile noting that these mods do not work on non-NixOS systems, due to [OpenGL issues](https://gist.github.com/fusion809/34b68465463e9cdc58deed127420365d).
+
 ## Installing packages
 
 Building and installing packages in this repository should be as simple as running:
