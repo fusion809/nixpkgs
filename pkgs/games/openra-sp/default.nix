@@ -10,7 +10,7 @@ with stdenv.lib;
 
 let
   pname = "openra-sp";
-  version = "149";
+  version = "151";
   engine-version = "NAs-Test-Build";
   path = makeBinPath ([ mono python ] ++ optional (zenity != null) zenity);
   rpath = makeLibraryPath [ lua openal SDL2 ];
@@ -22,8 +22,8 @@ in stdenv.mkDerivation rec {
     (fetchFromGitHub {
       owner = "ABrandau";
       repo = "OpenRAModSDK";
-      rev = "4abfe63bc03ec2305d9e74c376e7189f9eb79446";
-      sha256 = "0haydwi6ws2lm944c2pv410gj4hzhfv5xna78yxq79ssr94xdcgh";
+      rev = "4a587327f40a5a97b8c3dbefc045e24c15183010";
+      sha256 = "08y1b29krapslxkh120q8ax5056as04nf6fxx4bn9m9jmd7fgdjk";
       name = "SP";
     })
     (fetchFromGitHub {
