@@ -69,6 +69,7 @@ stdenv.mkDerivation rec {
   # derivation, because someone may care
   postInstall = ''
     cp test/fntests.log $out/share/octave/${name}-fntests.log || true
+    cp ${./octave-cli.desktop} $out/share/applications/octave-cli.desktop
   '';
 
   passthru = {
