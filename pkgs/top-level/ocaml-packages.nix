@@ -138,6 +138,8 @@ let
 
     cairo2 = callPackage ../development/ocaml-modules/cairo2 { };
 
+    checkseum = callPackage ../development/ocaml-modules/checkseum { };
+
     cil = callPackage ../development/ocaml-modules/cil { };
 
     cmdliner = callPackage ../development/ocaml-modules/cmdliner { };
@@ -556,6 +558,8 @@ let
     opam-file-format = callPackage ../development/ocaml-modules/opam-file-format { };
 
     opti = callPackage ../development/ocaml-modules/opti { };
+
+    optint = callPackage ../development/ocaml-modules/optint { };
 
     otfm = callPackage ../development/ocaml-modules/otfm { };
 
