@@ -10,7 +10,7 @@ with stdenv.lib;
 
 let
   pname = "openra-ura";
-  version = "417";
+  version = "428";
   engine-version = "unplugged-cd82382";
   path = makeBinPath ([ mono python ] ++ optional (zenity != null) zenity);
   rpath = makeLibraryPath [ lua openal SDL2 ];
@@ -22,8 +22,8 @@ in stdenv.mkDerivation rec {
     (fetchFromGitHub {
       owner = "RAunplugged";
       repo = "uRA";
-      rev = "0b2be73ad8305889a8ee7dfa0264f6d61e400cfb";
-      sha256 = "0xy1dvvfcjfaiwf5cm4qxwcdna0g0hhjwy11mjn04nssglr6mrkm";
+      rev = "e8a9faa04ff39395754744eae90669a995a3227d";
+      sha256 = "03fp3xlvn8gbjbks43djdwhi29hp0d2ppjlmqb1w3067y5a3rizd";
       name = "uRA";
     })
     (fetchFromGitHub {
