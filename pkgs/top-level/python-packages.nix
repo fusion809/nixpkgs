@@ -2570,7 +2570,10 @@ in {
 
   google_resumable_media = callPackage ../development/python-modules/google_resumable_media { };
 
-  gpgme = toPythonModule (pkgs.gpgme.override { pythonSupport=true; });
+  gpgme = toPythonModule (pkgs.gpgme.override {
+    pythonSupport = true;
+    inherit python;
+  });
 
   gphoto2 = callPackage ../development/python-modules/gphoto2 {
     inherit (pkgs) pkgconfig;
@@ -2705,6 +2708,8 @@ in {
   jedi = callPackage ../development/python-modules/jedi { };
 
   jellyfish = callPackage ../development/python-modules/jellyfish { };
+
+  jeepney = callPackage ../development/python-modules/jeepney { };
 
   j2cli = callPackage ../development/python-modules/j2cli { };
 
@@ -4637,9 +4642,7 @@ in {
 
   trollius = callPackage ../development/python-modules/trollius {};
 
-  neovim = callPackage ../development/python-modules/neovim {};
-
-  neovim_gui = callPackage ../development/python-modules/neovim_gui { };
+  pynvim = callPackage ../development/python-modules/pynvim {};
 
   typogrify = callPackage ../development/python-modules/typogrify { };
 
