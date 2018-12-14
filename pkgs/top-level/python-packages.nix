@@ -422,6 +422,8 @@ in {
 
   mail-parser = callPackage ../development/python-modules/mail-parser { };
 
+  manhole = callPackage ../development/python-modules/manhole { };
+
   markerlib = callPackage ../development/python-modules/markerlib { };
 
   matchpy = callPackage ../development/python-modules/matchpy { };
@@ -713,6 +715,8 @@ in {
   slackclient = callPackage ../development/python-modules/slackclient { };
 
   slicerator = callPackage ../development/python-modules/slicerator { };
+
+  slither-analyzer = callPackage ../development/python-modules/slither-analyzer { };
 
   snapcast = callPackage ../development/python-modules/snapcast { };
 
@@ -1175,6 +1179,8 @@ in {
   cassandra-driver = callPackage ../development/python-modules/cassandra-driver { };
 
   cccolutils = callPackage ../development/python-modules/cccolutils {};
+
+  cchardet = callPackage ../development/python-modules/cchardet { };
 
   CDDB = callPackage ../development/python-modules/cddb { };
 
