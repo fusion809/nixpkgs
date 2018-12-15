@@ -1671,6 +1671,8 @@ in {
     then callPackage ../development/python-modules/faulthandler {}
     else throw "faulthandler is built into ${python.executable}";
 
+  fb-re2 = callPackage ../development/python-modules/fb-re2 { };
+
   flit = callPackage ../development/python-modules/flit { };
 
   flowlogs_reader = callPackage ../development/python-modules/flowlogs_reader { };
@@ -1871,6 +1873,8 @@ in {
   logilab_astng = callPackage ../development/python-modules/logilab_astng { };
 
   lpod = callPackage ../development/python-modules/lpod { };
+
+  ludios_wpull = callPackage ../development/python-modules/ludios_wpull { };
 
   luftdaten = callPackage ../development/python-modules/luftdaten { };
 
@@ -2607,6 +2611,8 @@ in {
 
   gspread = callPackage ../development/python-modules/gspread { };
 
+  gym = callPackage ../development/python-modules/gym { };
+
   gyp = callPackage ../development/python-modules/gyp { };
 
   guessit = callPackage ../development/python-modules/guessit { };
@@ -3075,6 +3081,8 @@ in {
   mysql-connector = callPackage ../development/python-modules/mysql-connector { };
 
   namebench = callPackage ../development/python-modules/namebench { };
+
+  namedlist = callPackage ../development/python-modules/namedlist { };
 
   nameparser = callPackage ../development/python-modules/nameparser { };
 
