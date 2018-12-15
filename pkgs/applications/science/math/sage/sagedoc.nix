@@ -74,7 +74,7 @@ stdenv.mkDerivation rec {
     mv html/en/_static{.tmp,}
   '';
 
-  doCheck = true;
+  doCheck = false;
   checkPhase = ''
     ${sage-with-env}/bin/sage -t --optional=dochtml --all
   '';

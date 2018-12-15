@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=SageMath Jupyter Notebook
+Comment=SageMath Jupyter Notebook
+Exec=xterm -e sage-jupyter
+Icon=sage
+Terminal=false
+StartupNotify=false
+Categories=Education;Science;Math;

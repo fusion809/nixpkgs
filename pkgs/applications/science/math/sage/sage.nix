@@ -52,6 +52,12 @@ stdenv.mkDerivation rec {
     "$out/bin/sage" -c 'browse_sage_doc._open("reference", testing=True)'
   '';
 
+  postInstall = ''
+    mkdir -p $out/share/applications $out/bin
+    cp ${./sage-jupyter.desktop} "$out/share/applications/"
+    install -Dm755 ${./sage-jupyter} "$out/bin"
+    sed -i -e "s|sage -n jupyter|$out/bin/sage -n jupyter|g" $out/bin/sage-jupyter
+  '';
   passthru = {
     tests = sage-tests;
     doc = sagedoc;
