@@ -10,7 +10,7 @@ with stdenv.lib;
 
 let
   pname = "openra-ca";
-  version = "157";
+  version = "93";
   engine-version = "b8a7dd5";
   path = makeBinPath ([ mono python ] ++ optional (zenity != null) zenity);
   rpath = makeLibraryPath [ lua openal SDL2 ];
