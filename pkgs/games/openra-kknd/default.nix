@@ -1,5 +1,5 @@
 # Based on: pkgs/games/openra/default.nix
-# Based on: https://build.opensuse.org/package/show/home:fusion809/openra-ra2
+# Based on: https://build.opensuse.org/package/show/home:fusion809/openra-kknd
 { stdenv, fetchFromGitHub, dos2unix, pkgconfig, makeWrapper
 , lua, mono, dotnetPackages, python
 , libGL, openal, SDL2
@@ -9,9 +9,9 @@
 with stdenv.lib;
 
 let
-  pname = "openra-ra2";
-  version = "859";
-  engine-version = "release-20180923";
+  pname = "openra-kknd";
+  version = "117";
+  engine-version = "98b80d44ebee9996ab6951407dc22f5e579d89d1";
   path = makeBinPath ([ mono python ] ++ optional (zenity != null) zenity);
   rpath = makeLibraryPath [ lua openal SDL2 ];
 
@@ -20,17 +20,17 @@ in stdenv.mkDerivation rec {
 
   srcs = [
     (fetchFromGitHub {
-      owner = "OpenRA";
-      repo = "ra2";
-      rev = "43e6657189652badc0cf5a7444c570d1c3c18f28";
-      sha256 = "06ibyi602qk23g254gisn7s1fvbsg6f7bmbhqaypxm1ldgvwmq88";
-      name = "ra2";
+      owner = "IceReaper";
+      repo = "KKnD";
+      rev = "ce270c5bd262575c6870c903b5741e73c3ca5261";
+      sha256 = "10b2y6rmgg62r9spr87qaxmqmfdw39ws7mkv9s3spgqi291jlyw7";
+      name = "KKnD";
     })
     (fetchFromGitHub {
       owner = "OpenRA";
       repo = "OpenRA" ;
       rev = engine-version;
-      sha256 = "1pgi3zaq9fwwdq6yh19bwxscslqgabjxkvl9bcn1a5agy4bfbqk5";
+      sha256 = "00x96p33kjv38fbs71v9w1pc002c4r916azrrik2vvfij190f2vb";
       name = "engine";
 
       extraPostFetch = ''
@@ -70,8 +70,8 @@ in stdenv.mkDerivation rec {
   ];
 
   postUnpack = ''
-    mv engine ra2
-    cd ra2
+    mv engine KKnD
+    cd KKnD
   '';
 
   patches = [ ./Makefile.patch ];
@@ -101,20 +101,20 @@ in stdenv.mkDerivation rec {
   checkTarget = "check test";
 
   installPhase = ''
-    mkdir -p $out/lib/openra-ra2
-    substitute ${./launch-game.sh} $out/lib/openra-ra2/launch-game.sh --subst-var out
-    chmod +x $out/lib/openra-ra2/launch-game.sh
+    mkdir -p $out/lib/openra-kknd
+    substitute ${./launch-game.sh} $out/lib/openra-kknd/launch-game.sh --subst-var out
+    chmod +x $out/lib/openra-kknd/launch-game.sh
 
     # Setting TERM=xterm fixes an issue with terminfo in mono: System.Exception: Magic number is wrong: 542
     # https://github.com/mono/mono/issues/6752#issuecomment-365212655
-    wrapProgram $out/lib/openra-ra2/launch-game.sh \
+    wrapProgram $out/lib/openra-kknd/launch-game.sh \
       --prefix PATH : "${path}" \
       --prefix LD_LIBRARY_PATH : "${rpath}" \
       --set TERM xterm
 
     mkdir -p $out/bin
-    makeWrapper $out/lib/openra-ra2/launch-game.sh $out/bin/openra-ra2 \
-      --run "cd $out/lib/openra-ra2"
+    makeWrapper $out/lib/openra-kknd/launch-game.sh $out/bin/openra-kknd \
+      --run "cd $out/lib/openra-kknd"
 
     cp -r engine/{${concatStringsSep "," [
       "glsl"
@@ -139,25 +139,25 @@ in stdenv.mkDerivation rec {
       "SharpFont.dll"
       "SharpFont.dll.config"
       "VERSION"
-    ]}} $out/lib/openra-ra2
+    ]}} $out/lib/openra-kknd
 
-    mkdir $out/lib/openra-ra2/mods
-    cp -r engine/mods/{common,modcontent} $out/lib/openra-ra2/mods
-    cp -r mods/ra2 $out/lib/openra-ra2/mods
+    mkdir $out/lib/openra-kknd/mods
+    cp -r engine/mods/{common,modcontent} $out/lib/openra-kknd/mods
+    cp -r mods/kknd $out/lib/openra-kknd/mods
 
     mkdir -p $out/share/applications
-    cp ${./openra-ra2.desktop} $out/share/applications/openra-ra2.desktop
+    cp ${./openra-kknd.desktop} $out/share/applications/openra-kknd.desktop
 
-    mkdir -p $out/share/doc/packages/openra-ra2
-    cp -r README.md $out/share/doc/packages/openra-ra2/README.md
+    mkdir -p $out/share/doc/packages/openra-kknd
+    cp -r README.md $out/share/doc/packages/openra-kknd/README.md
 
     mkdir -p $out/share/pixmaps
-    cp -r mods/ra2/logo.png $out/share/pixmaps/openra-ra2.png
+    cp -r packaging/linux/mod_256x256.png $out/share/pixmaps/openra-kknd.png
 
     mkdir -p $out/share/icons/hicolor/{16x16,32x32,48x48,64x64,128x128,256x256}/apps
     for size in 16 32 48 64 128 256; do
       size=''${size}x''${size}
-      cp packaging/linux/mod_''${size}.png "$out/share/icons/hicolor/''${size}/apps/openra-ra2.png"
+      cp packaging/linux/mod_''${size}.png "$out/share/icons/hicolor/''${size}/apps/openra-kknd.png"
     done
   '';
 
@@ -165,7 +165,7 @@ in stdenv.mkDerivation rec {
 
   meta = {
     description = "Re-imaginging of the original Command & Conquer Red Alert 2 game";
-    homepage = https://github.com/OpenRA/ra2;
+    homepage = https://github.com/IceReaper/KKnD;
     maintainers = with maintainers; [ fusion809 ];
     license = licenses.gpl3;
     platforms = platforms.linux;
