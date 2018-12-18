@@ -737,6 +737,8 @@ in
 
   git-fire = callPackage ../tools/misc/git-fire { };
 
+  github-changelog-generator = callPackage ../development/tools/github-changelog-generator { };
+
   gitless = callPackage ../applications/version-management/gitless { };
 
   gitter = callPackage  ../applications/networking/instant-messengers/gitter { };
@@ -4412,11 +4414,7 @@ in
 
   nextcloud = callPackage ../servers/nextcloud { };
 
-  nextcloud-client-unwrapped = libsForQt5.callPackage ../applications/networking/nextcloud-client { };
-
-  nextcloud-client = callPackage ../applications/networking/nextcloud-client/wrapper.nix {
-    nextcloud-client = nextcloud-client-unwrapped;
-  };
+  nextcloud-client = libsForQt5.callPackage ../applications/networking/nextcloud-client { };
 
   nextcloud-news-updater = callPackage ../servers/nextcloud/news-updater.nix { };
 
@@ -9369,6 +9367,7 @@ in
   boost166 = callPackage ../development/libraries/boost/1.66.nix { };
   boost167 = callPackage ../development/libraries/boost/1.67.nix { };
   boost168 = callPackage ../development/libraries/boost/1.68.nix { };
+  boost169 = callPackage ../development/libraries/boost/1.69.nix { };
   boost16x = boost167;
   boost = boost16x;
 
@@ -10221,6 +10220,8 @@ in
   gtksourceview3 = callPackage ../development/libraries/gtksourceview/3.x.nix { };
 
   gtksourceview4 = callPackage ../development/libraries/gtksourceview/4.x.nix { };
+
+  gtksourceviewmm = callPackage ../development/libraries/gtksourceviewmm { };
 
   gtkspell2 = callPackage ../development/libraries/gtkspell { };
 
@@ -11858,11 +11859,11 @@ in
   openvdb = callPackage ../development/libraries/openvdb {};
 
   inherit (callPackages ../development/libraries/libressl { })
-    libressl_2_6
     libressl_2_7
-    libressl_2_8;
+    libressl_2_8
+    libressl_2_9;
 
-  libressl = libressl_2_7;
+  libressl = libressl_2_8;
 
   boringssl = callPackage ../development/libraries/boringssl { };
 
@@ -13854,10 +13855,10 @@ in
 
   inherit (callPackage ../servers/monitoring/prometheus {
     buildGoPackage = buildGo110Package;
-  })
-      prometheus_1
-      prometheus_2
-      ;
+  }) prometheus_1;
+
+  inherit (callPackage ../servers/monitoring/prometheus { })
+    prometheus_2;
 
   prom2json = callPackage ../servers/monitoring/prometheus/prom2json.nix { };
   prometheus = prometheus_1;
@@ -15652,6 +15653,8 @@ in
   pari-seadata-small = callPackage ../data/misc/pari-seadata-small {};
 
   penna = callPackage ../data/fonts/penna { };
+
+  plata-theme = callPackage ../data/themes/plata {};
 
   poly = callPackage ../data/fonts/poly { };
 
