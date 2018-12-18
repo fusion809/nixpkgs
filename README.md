@@ -23,7 +23,7 @@ This repository contains the upstream Nixpkgs packages, along with some of my ow
 
     - [openra-ura](pkgs/games/openra-ura): OpenRA [Red Alert Unplugged mod](https://github.com/RAUnplugged/uRA). It expands on the Red Alert mod that comes bundled with the OpenRA game engine. Personally, this is my favourite mod.
 
-    - [openra-yr](pkgs/games/openra-yr): OpenRA [Yuri's Revenge mod](https://github.com/cookgreen/yr). It attempts to recreate the original [*Command & Conquer: Yuri's Revenge*](https://en.wikipedia.org/wiki/Command_%26_Conquer:_Yuri%27s_Revenge) game. Be fair warned this game is very experimental.
+    - [openra-yr](pkgs/games/openra-yr): OpenRA [Yuri's Revenge mod](https://github.com/cookgreen/yr). It attempts to recreate the original [*Command & Conquer: Yuri's Revenge*](https://en.wikipedia.org/wiki/Command_%26_Conquer:_Yuri%27s_Revenge) game. Be fair warned this game is very experimental, I frequently find bugs in it when I use it.
 
 I have also attempted to package the [Dark Reign](https://github.com/drogoganor/DarkReign) and [Medieval Warfare](https://github.com/CombinE88/Medieval-Warfare) mods, but sadly that failed with the errors documented in their directories', [openra-dr](pkgs/games/openra-dr) and [openra-mw](pkgs/games/openra-mw), `broken` files.
 
