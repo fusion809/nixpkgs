@@ -23,7 +23,7 @@
 , cmake, libssh2, openssl, mysql, darwin, git, perl, pcre, gecode_3, curl
 , msgpack, qt59, libsodium, snappy, libossp_uuid, lxc, libpcap, xorg, gtk2, buildRubyGem
 , cairo, re2, rake, gobject-introspection, gdk_pixbuf, zeromq, graphicsmagick, libcxx, file
-, libselinux ? null, libsepol ? null
+, libselinux ? null, libsepol ? null, libvirt
 }@args:
 
 let
@@ -270,13 +270,6 @@ in
     ] ++ lib.optional stdenv.isDarwin "--with-iconv-dir=${libiconv}";
   };
 
-  oxidized = attrs: {
-    postInstall = ''
-      cd "$(cat "$out/nix-support/gem-meta/install-path")"
-      patch -p1 < ${../../../tools/admin/oxidized/temporary-x-series.patch}
-    '';
-  };
-
   pango = attrs: {
     nativeBuildInputs = [ pkgconfig ];
     buildInputs = [ gtk2 xorg.libXdmcp pcre xorg.libpthreadstubs ];
@@ -319,6 +312,14 @@ in
   rmagick = attrs: {
     nativeBuildInputs = [ pkgconfig ];
     buildInputs = [ imagemagick which ];
+  };
+
+  ruby-libvirt = attrs: {
+    buildInputs = [ libvirt pkgconfig ];
+    buildFlags = [
+      "--with-libvirt-include=${libvirt}/include"
+      "--with-libvirt-lib=${libvirt}/lib"
+    ];
   };
 
   ruby-lxc = attrs: {
