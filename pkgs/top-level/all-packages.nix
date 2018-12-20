@@ -13549,9 +13549,9 @@ in
 
   hiawatha = callPackage ../servers/http/hiawatha {};
 
-  home-assistant = callPackage ../servers/home-assistant {
-    python = python36;
-  };
+  home-assistant = callPackage ../servers/home-assistant { };
+
+  home-assistant-cli = callPackage ../servers/home-assistant/cli.nix { };
 
   hydron = callPackage ../servers/hydron { };
 
@@ -15677,6 +15677,8 @@ in
   pari-seadata-small = callPackage ../data/misc/pari-seadata-small {};
 
   penna = callPackage ../data/fonts/penna { };
+
+  plano-theme = callPackage ../data/themes/plano { };
 
   plata-theme = callPackage ../data/themes/plata {};
 
@@ -22680,8 +22682,6 @@ in
   physlock = callPackage ../misc/screensavers/physlock { };
 
   pjsip = callPackage ../applications/networking/pjsip { };
-
-  plano-theme = callPackage ../data/themes/plano { };
 
   ppsspp = libsForQt5.callPackage ../misc/emulators/ppsspp { };
 
