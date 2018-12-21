@@ -12243,7 +12243,7 @@ in
     qmltermwidget = callPackage ../development/libraries/qmltermwidget {
       inherit (darwin.apple_sdk.libs) utmp;
     };
-    qmlbox2d = libsForQt59.callPackage ../development/libraries/qmlbox2d { };
+    qmlbox2d = libsForQt5.callPackage ../development/libraries/qmlbox2d { };
 
     qscintilla = callPackage ../development/libraries/qscintilla {
       withQt5 = true;
@@ -17525,6 +17525,8 @@ in
     extra-packages = [ csound ];
   };
 
+  hyperledger-fabric = callPackage ../tools/misc/hyperledger-fabric { };
+
   jackline = callPackage ../applications/networking/instant-messengers/jackline { };
 
   slack = callPackage ../applications/networking/instant-messengers/slack { };
@@ -19523,8 +19525,10 @@ in
 
   termtosvg = callPackage ../tools/misc/termtosvg { };
 
-  tesseract = callPackage ../applications/graphics/tesseract { };
-  tesseract_4 = lowPrio (callPackage ../applications/graphics/tesseract/4.x.nix { });
+  inherit (callPackage ../applications/graphics/tesseract {})
+    tesseract3
+    tesseract4;
+  tesseract = tesseract3;
 
   tetraproc = callPackage ../applications/audio/tetraproc { };
 
@@ -20613,7 +20617,7 @@ in
 
   gcs = callPackage ../games/gcs { };
 
-  gcompris = libsForQt59.callPackage ../games/gcompris { };
+  gcompris = libsForQt5.callPackage ../games/gcompris { };
 
   gemrb = callPackage ../games/gemrb { };
 
@@ -20799,7 +20803,9 @@ in
 
   openrw = callPackage ../games/openrw { };
 
-  openspades = callPackage ../games/openspades { };
+  openspades = callPackage ../games/openspades {
+    inherit (darwin.apple_sdk.frameworks) Cocoa;
+  };
 
   openttd = callPackage ../games/openttd {
     zlib = zlib.override {
