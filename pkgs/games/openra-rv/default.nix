@@ -1,5 +1,5 @@
 # Based on: pkgs/games/openra/default.nix
-# Based on: https://build.opensuse.org/package/show/home:fusion809/openra-yr
+# Based on: https://build.opensuse.org/package/show/home:fusion809/openra-rv
 { stdenv, fetchFromGitHub, dos2unix, pkgconfig, makeWrapper
 , lua, mono, dotnetPackages, python
 , libGL, openal, SDL2
@@ -9,9 +9,9 @@
 with stdenv.lib;
 
 let
-  pname = "openra-yr";
-  version = "113";
-  engine-version = "release-20180923";
+  pname = "openra-rv";
+  version = "1162";
+  engine-version = "95ddc6e";
   path = makeBinPath ([ mono python ] ++ optional (zenity != null) zenity);
   rpath = makeLibraryPath [ lua openal SDL2 ];
 
@@ -20,15 +20,15 @@ in stdenv.mkDerivation rec {
 
   srcs = [
     (fetchFromGitHub {
-      owner = "cookgreen";
-      repo = "yr";
-      rev = "bfcb7d9ccfb2947b5b7110de1baffe8104431d23";
-      sha256 = "1mb9yficmr7w50p1lv1rhga0ayhs8yd0hp0zdsibkn0l0pzr1yya";
-      name = "yr";
+      owner = "MustaphaTR";
+      repo = "Romanovs-Vengeance";
+      rev = "1801ed130f2e489982b76f6f70f35ff25f52ce79";
+      sha256 = "0j4ahh3pnaspikijxfg11hr0m4faxjdc1288p9mvxiccjlpr2mh8";
+      name = "Romanovs-Vengeance";
     })
     (fetchFromGitHub {
       owner = "OpenRA";
-      repo = "ra2" ;
+      repo = "ra2";
       rev = "afb963a027ef37a9497d45d049606afd9d019dc7";
       sha256 = "17byfkalh4msci5cyfp63hh2sb3b3p9c7i4nysnrx3j3j9pij61s";
       name = "ra2";
@@ -37,7 +37,7 @@ in stdenv.mkDerivation rec {
       owner = "OpenRA";
       repo = "OpenRA" ;
       rev = engine-version;
-      sha256 = "1pgi3zaq9fwwdq6yh19bwxscslqgabjxkvl9bcn1a5agy4bfbqk5";
+      sha256 = "1xy891nwx5km899gix9nba33q3njw9p1s0rxdklmypafnyb4fqig";
       name = "engine";
 
       extraPostFetch = ''
@@ -77,9 +77,9 @@ in stdenv.mkDerivation rec {
   ];
 
   postUnpack = ''
-    mv engine yr
-    mv ra2/mods/ra2 yr/mods
-    cd yr
+    mv engine Romanovs-Vengeance
+    mv ra2/mods/ra2 Romanovs-Vengeance/mods
+    cd Romanovs-Vengeance
   '';
 
   patches = [ ./Makefile.patch ];
@@ -109,20 +109,20 @@ in stdenv.mkDerivation rec {
   checkTarget = "check test";
 
   installPhase = ''
-    mkdir -p $out/lib/openra-yr
-    substitute ${./launch-game.sh} $out/lib/openra-yr/launch-game.sh --subst-var out
-    chmod +x $out/lib/openra-yr/launch-game.sh
+    mkdir -p $out/lib/openra-rv
+    substitute ${./launch-game.sh} $out/lib/openra-rv/launch-game.sh --subst-var out
+    chmod +x $out/lib/openra-rv/launch-game.sh
 
     # Setting TERM=xterm fixes an issue with terminfo in mono: System.Exception: Magic number is wrong: 542
     # https://github.com/mono/mono/issues/6752#issuecomment-365212655
-    wrapProgram $out/lib/openra-yr/launch-game.sh \
+    wrapProgram $out/lib/openra-rv/launch-game.sh \
       --prefix PATH : "${path}" \
       --prefix LD_LIBRARY_PATH : "${rpath}" \
       --set TERM xterm
 
     mkdir -p $out/bin
-    makeWrapper $out/lib/openra-yr/launch-game.sh $out/bin/openra-yr \
-      --run "cd $out/lib/openra-yr"
+    makeWrapper $out/lib/openra-rv/launch-game.sh $out/bin/openra-rv \
+      --run "cd $out/lib/openra-rv"
 
     cp -r engine/{${concatStringsSep "," [
       "glsl"
@@ -147,27 +147,33 @@ in stdenv.mkDerivation rec {
       "SharpFont.dll"
       "SharpFont.dll.config"
       "VERSION"
-    ]}} $out/lib/openra-yr
+    ]}} $out/lib/openra-rv
 
-    mkdir $out/lib/openra-yr/mods
-    cp -r engine/mods/{common,modcontent} $out/lib/openra-yr/mods
-    cp -r mods/yr $out/lib/openra-yr/mods
+    mkdir $out/lib/openra-rv/mods
+    cp -r engine/mods/{common,modcontent} $out/lib/openra-rv/mods
+    cp -r mods/{ra2,rv} $out/lib/openra-rv/mods
 
     mkdir -p $out/share/applications
-    cp ${./openra-yr.desktop} $out/share/applications/openra-yr.desktop
+    cp ${./openra-rv.desktop} $out/share/applications/openra-rv.desktop
 
-    mkdir -p $out/share/doc/packages/openra-yr
-    cp -r README.md $out/share/doc/packages/openra-yr/README.md
+    mkdir -p $out/share/doc/packages/openra-rv
+    cp -r README.md $out/share/doc/packages/openra-rv/README.md
 
     mkdir -p $out/share/pixmaps
-    cp -r mods/yr/logo.png $out/share/pixmaps/openra-yr.png
+    cp -r mods/rv/logo.png $out/share/pixmaps/openra-rv.png
+
+    mkdir -p $out/share/icons/hicolor/{16x16,32x32,48x48,64x64,128x128,256x256}/apps
+    for size in 16 32 48 64 128 256; do
+      size=''${size}x''${size}
+      cp packaging/linux/mod_''${size}.png "$out/share/icons/hicolor/''${size}/apps/openra-rv.png"
+    done
   '';
 
   dontStrip = true;
 
   meta = {
-    description = "Re-imaginging of the original Command & Conquer Yuri's Revenge game";
-    homepage = https://github.com/OpenRA/yr;
+    description = "Re-imaginging of the original Command & Conquer Red Alert 2 game";
+    homepage = https://github.com/MustaphaTR/Romanovs-Vengeance;
     maintainers = with maintainers; [ fusion809 ];
     license = licenses.gpl3;
     platforms = platforms.linux;

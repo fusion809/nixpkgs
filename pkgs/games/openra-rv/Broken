@@ -1,0 +1,36 @@
+/nix/store/x6231dmav0h598ns7236b1kjzf0i9kls-openra-rv-1162/lib/openra-rv/.launch-game.sh-wrapped: line 2: cd: /nix/store/x6231dmav0h598ns7236b1kjzf0i9kls-openra-rv-1162/lib/openra-ra2: No such file or directory
+Platform is Linux
+Engine version is 95ddc6e
+Using SDL 2 with OpenGL renderer
+Desktop resolution: 1920x1080
+No custom resolution provided, using desktop resolution
+Using resolution: 1920x1080
+Using window scale 1.00
+OpenGL version: 4.6.0 NVIDIA 390.87
+Using default sound device
+Internal mods:
+libpng warning: iCCP: known incorrect sRGB profile
+External mods:
+        ca-b8a7dd5: Combined Arms (b8a7dd5)
+        d2-release-20180307: d2 mod (release-20180307)
+        dr-237: Dark Reign (237)
+        dr-{DEV_VERSION}: Dark Reign ({DEV_VERSION})
+        mw-232: Medieval Warfare (232)
+        ra-{DEV_VERSION}: Red Alert ({DEV_VERSION})
+        ra2-866: Red Alert 2 (866)
+        raclassic-170: Red Alert Classic (170)
+        ts-25493: Tiberian Sun (25493)
+        ura-Master version: Red Alert: Unplugged (Master version)
+        yr-release-20180307: Red Alert 2 Yuri's Revenge (release-20180307)
+Exception of type `System.InvalidOperationException`: Unknown or invalid mod 'ra2'.
+  at OpenRA.Game.InitializeMod (System.String mod, OpenRA.Arguments args) [0x0015c] in <09db8b6eef494d4a91df7e3550724975>:0 
+  at OpenRA.Game.Initialize (OpenRA.Arguments args) [0x004d8] in <09db8b6eef494d4a91df7e3550724975>:0 
+  at OpenRA.Game.InitializeAndRun (System.String[] args) [0x00007] in <09db8b6eef494d4a91df7e3550724975>:0 
+  at OpenRA.Program.Main (System.String[] args) [0x0004e] in <09db8b6eef494d4a91df7e3550724975>:0 
+
+OpenRA Red Alert 2 has encountered a fatal error.
+Please refer to the crash logs for more information.
+
+Log files are located in ~/.openra/Logs
+
+
