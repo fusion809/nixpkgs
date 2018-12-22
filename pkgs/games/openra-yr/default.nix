@@ -99,7 +99,7 @@ in stdenv.mkDerivation rec {
   '';
 
   configurePhase = ''
-    make version
+    make version VERSION=${version}
     ( cd engine; make version )
   '';
 

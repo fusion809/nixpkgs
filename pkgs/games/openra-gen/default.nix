@@ -91,7 +91,7 @@ in stdenv.mkDerivation rec {
   '';
 
   configurePhase = ''
-    make version
+    make version VERSION=${version}
     ( cd generals-alpha-engine; make version )
   '';
 

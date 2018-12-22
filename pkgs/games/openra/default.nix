@@ -47,7 +47,7 @@ stdenv.mkDerivation rec {
 
   preConfigure = ''
     makeFlags="prefix=$out"
-    make version
+    make version VERSION=${version}
   '';
 
   buildFlags = [ "DEBUG=false" "default" "man-page" ];
