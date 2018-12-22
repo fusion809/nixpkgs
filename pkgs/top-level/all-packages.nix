@@ -1400,6 +1400,8 @@ in
 
   fileshelter = callPackage ../servers/web-apps/fileshelter { };
 
+  firecracker = callPackage ../applications/virtualization/firecracker { };
+
   fsmon = callPackage ../tools/misc/fsmon { };
 
   fsql = callPackage ../tools/misc/fsql { };
@@ -2358,6 +2360,8 @@ in
   drone-cli = callPackage ../development/tools/continuous-integration/drone-cli { };
 
   dropbear = callPackage ../tools/networking/dropbear { };
+
+  dsview = libsForQt5.callPackage ../applications/science/electronics/dsview { };
 
   dtach = callPackage ../tools/misc/dtach { };
 
@@ -8532,6 +8536,10 @@ in
 
   libsigrokdecode = callPackage ../development/tools/libsigrokdecode { };
 
+  # special forks used for dsview
+  libsigrok4dsl = callPackage ../applications/science/electronics/dsview/libsigrok4dsl.nix { };
+  libsigrokdecode4dsl = callPackage ../applications/science/electronics/dsview/libsigrokdecode4dsl.nix { };
+
   dcadec = callPackage ../development/tools/dcadec { };
 
   dejagnu = callPackage ../development/tools/misc/dejagnu { };
@@ -10333,6 +10341,11 @@ in
     }));
   icu60 = callPackage ../development/libraries/icu/60.nix ({
     nativeBuildRoot = buildPackages.icu60.override { buildRootOnly = true; };
+  } // (stdenv.lib.optionalAttrs (stdenv.cc.isGNU && stdenv.hostPlatform.isi686) {
+      stdenv = overrideCC stdenv gcc6; # with gcc-7: undefined reference to `__divmoddi4'
+    }));
+  icu63 = callPackage ../development/libraries/icu/63.nix ({
+    nativeBuildRoot = buildPackages.icu63.override { buildRootOnly = true; };
   } // (stdenv.lib.optionalAttrs (stdenv.cc.isGNU && stdenv.hostPlatform.isi686) {
       stdenv = overrideCC stdenv gcc6; # with gcc-7: undefined reference to `__divmoddi4'
     }));
