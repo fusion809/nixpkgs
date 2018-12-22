@@ -5,8 +5,8 @@
 
 stdenv.mkDerivation rec {
   name = "openra-${version}";
-  version = "25493";
-  commit = "9914848356308428df809d2352b0ee65822a903b";
+  version = "25494";
+  commit = "d10d48c25f8964351e6afbe3111fc284f50c09f6";
 
   meta = with stdenv.lib; {
     description = "Real Time Strategy game engine recreating the C&C titles";
@@ -20,7 +20,7 @@ stdenv.mkDerivation rec {
     owner = "OpenRA";
     repo = "OpenRA";
     rev = "${commit}";
-    sha256 = "0caxpq815gbg015qhi7b2xppc6savjfgp5m0bjw8ncbl4laaxm4y";
+    sha256 = "176mya9lzn62falcci62p6vk9zv189afl7icaz4yjxqvadwcjfn6";
 
     extraPostFetch = ''
       sed -i 's,curl,curl --insecure,g' $out/thirdparty/{fetch-thirdparty-deps,noget}.sh
