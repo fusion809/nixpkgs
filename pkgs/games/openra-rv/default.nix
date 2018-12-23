@@ -23,7 +23,7 @@ in stdenv.mkDerivation rec {
       owner = "MustaphaTR";
       repo = "Romanovs-Vengeance";
       rev = "733557ce565b8c106b5e56e5ddc425c3ee0906a1";
-      sha256 = "06ibyi602qk23g254gisn7s1fvbsg6f7bmbhqaypxm1ldgvwmq88";
+      sha256 = "0rcap7s7yylg216hd3d2yk9j6m5147xbnq5wxv7hr3a5d1zlmaap";
       name = "Romanovs-Vengeance";
     })
     (fetchFromGitHub {
@@ -37,7 +37,7 @@ in stdenv.mkDerivation rec {
       owner = "GraionDilach";
       repo = "OpenRA" ;
       rev = engine-version;
-      sha256 = "06ibyi602qk23g254gisn7s1fvbsg6f7bmbhqaypxm1ldgvwmq88";
+      sha256 = "0d1j8fdgdingi03nkhxrs1cj4n91an3gw1sk0dxlak4jk39vd5dv";
       name = "engine";
 
       extraPostFetch = ''
