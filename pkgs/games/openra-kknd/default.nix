@@ -10,8 +10,8 @@ with stdenv.lib;
 
 let
   pname = "openra-kknd";
-  version = "133";
-  engine-version = "fd15fc2e7fead61e29125d17505cd759950e5bec";
+  version = "134";
+  engine-version = "84936abee6d5d287104f40b7cfcb43b8d7f8b52b";
   path = makeBinPath ([ mono python ] ++ optional (zenity != null) zenity);
   rpath = makeLibraryPath [ lua openal SDL2 ];
 
@@ -22,15 +22,15 @@ in stdenv.mkDerivation rec {
     (fetchFromGitHub {
       owner = "IceReaper";
       repo = "KKnD";
-      rev = "e981e457c97deab36b8e739bfecbaaabe99c2be0";
-      sha256 = "06rlb9x8l4gb0f664siibx2nisbicm95by6hfzbssw0q5hi6srfb";
+      rev = "82505807c9fffd993bb2cb4ecbb1e292e4ca0b18";
+      sha256 = "0wh7j8k1rkjyqfnligd80r0abf88x5wp5qfw9zn26jrlxmypyzl8";
       name = "KKnD";
     })
     (fetchFromGitHub {
       owner = "OpenRA";
       repo = "OpenRA" ;
       rev = engine-version;
-      sha256 = "1y4amcn7b2n1zip2lziykcv4b8chw79h76r6kicr3bsvmvk924gf";
+      sha256 = "1lr8aindnx91ywgz1sapb448k7kgjisz94l31q87s1bf59h3xw4d";
       name = "engine";
 
       extraPostFetch = ''
