@@ -6,7 +6,7 @@ rec {
     owner = "vim";
     repo = "vim";
     rev = "v${version}";
-    sha256 = "06g39wr6qcymmpxdhla6whs8qxgbrfc5z0zij89ql1yvgfkdpd19";
+    sha256 = "07m7v4avkgbpx1b0da02skpjbks301fggmwzk4dp3pbifs9c596h";
   };
 
   enableParallelBuilding = true;
