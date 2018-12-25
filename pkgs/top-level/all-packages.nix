@@ -1693,9 +1693,7 @@ in
 
   mongodb-tools = callPackage ../tools/misc/mongodb-tools { };
 
-  mozlz4a = callPackage ../tools/compression/mozlz4a {
-    pylz4 = python3Packages.lz4;
-  };
+  mozlz4a = callPackage ../tools/compression/mozlz4a { };
 
   msr-tools = callPackage ../os-specific/linux/msr-tools { };
 
@@ -10699,6 +10697,8 @@ in
   };
 
   libde265 = callPackage ../development/libraries/libde265 {};
+
+  libdeflate = callPackage ../development/libraries/libdeflate { };
 
   libdevil = callPackage ../development/libraries/libdevil {
     inherit (darwin.apple_sdk.frameworks) OpenGL;
