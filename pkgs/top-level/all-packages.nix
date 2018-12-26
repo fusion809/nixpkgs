@@ -5017,7 +5017,7 @@ in
 
   pytrainer = callPackage ../applications/misc/pytrainer { };
 
-  pywal = callPackage ../tools/graphics/pywal {};
+  pywal = with python3Packages; toPythonApplication pywal;
 
   remarshal = callPackage ../development/tools/remarshal { };
 
@@ -7006,7 +7006,7 @@ in
 
   haskell = callPackage ./haskell-packages.nix { };
 
-  haskellPackages = haskell.packages.ghc844.override {
+  haskellPackages = haskell.packages.ghc863.override {
     overrides = config.haskellPackageOverrides or haskell.packageOverrides;
   };
 
@@ -14747,7 +14747,7 @@ in
   });
 
   # The current default kernel / kernel modules.
-  linuxPackages = linuxPackages_4_14;
+  linuxPackages = linuxPackages_4_19;
   linux = linuxPackages.kernel;
 
   # Update this when adding the newest kernel major version!
