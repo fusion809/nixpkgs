@@ -3160,7 +3160,8 @@ in
 
   gt5 = callPackage ../tools/system/gt5 { };
 
-  gtest = callPackage ../development/libraries/gtest {};
+  gtest = callPackage ../development/libraries/gtest { };
+  gtest_static = callPackage ../development/libraries/gtest { static = true; };
   gmock = gtest; # TODO: move to aliases.nix
 
   gbenchmark = callPackage ../development/libraries/gbenchmark {};
@@ -3415,6 +3416,7 @@ in
   iftop = callPackage ../tools/networking/iftop { };
 
   ifuse = callPackage ../tools/filesystems/ifuse { };
+  ideviceinstaller = callPackage ../tools/misc/ideviceinstaller { };
 
   inherit (callPackages ../tools/filesystems/irods rec {
             stdenv = llvmPackages_38.libcxxStdenv;
@@ -4708,6 +4710,13 @@ in
     postInstall = ''
       mkdir -p $out/share/man/man1
       cp man/pandoc.1 $out/share/man/man1/
+    '';
+    # Newer tasty version works
+    # https://github.com/jgm/pandoc/commit/3bf398b15ff28a39133a8ce27ba3d2728d255b17#diff-d37211f38c72504621b9d03eef12ffd7
+    # Note the patch doesn't apply because we fetch the cabal file from elsewhere
+    # This should be removed with pandoc 2.6.
+    postPatch = ''
+      substituteInPlace pandoc.cabal --replace "tasty >= 0.11 && < 1.2" "tasty >= 0.11 && < 1.3"
     '';
   });
 
@@ -7464,7 +7473,9 @@ in
 
   cargo-download = callPackage ../tools/package-management/cargo-download { };
   cargo-edit = callPackage ../tools/package-management/cargo-edit { };
-  cargo-release = callPackage ../tools/package-management/cargo-release { };
+  cargo-release = callPackage ../tools/package-management/cargo-release {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
   cargo-tree = callPackage ../tools/package-management/cargo-tree { };
   cargo-update = callPackage ../tools/package-management/cargo-update { };
 
@@ -8073,7 +8084,8 @@ in
   })
     ruby_2_3
     ruby_2_4
-    ruby_2_5;
+    ruby_2_5
+    ruby_2_6;
 
   ruby = ruby_2_5;
 
@@ -14556,20 +14568,16 @@ in
   linux_4_19 = callPackage ../os-specific/linux/kernel/linux-4.19.nix {
     kernelPatches =
       [ kernelPatches.bridge_stp_helper
-        # See pkgs/os-specific/linux/kernel/cpu-cgroup-v2-patches/README.md
-        # when adding a new linux version
-        # kernelPatches.cpu-cgroup-v2."4.11"
         kernelPatches.modinst_arg_list_too_long
+        kernelPatches.revert-vfs-dont-open-real
       ];
   };
 
   linux_4_20 = callPackage ../os-specific/linux/kernel/linux-4.20.nix {
     kernelPatches =
       [ kernelPatches.bridge_stp_helper
-        # See pkgs/os-specific/linux/kernel/cpu-cgroup-v2-patches/README.md
-        # when adding a new linux version
-        # kernelPatches.cpu-cgroup-v2."4.11"
         kernelPatches.modinst_arg_list_too_long
+        kernelPatches.revert-vfs-dont-open-real
       ];
   };
 
@@ -14661,6 +14669,7 @@ in
 
     nvidia_x11_legacy304 = nvidiaPackages.legacy_304;
     nvidia_x11_legacy340 = nvidiaPackages.legacy_340;
+    nvidia_x11_legacy390 = nvidiaPackages.legacy_390;
     nvidia_x11_beta      = nvidiaPackages.beta;
     nvidia_x11           = nvidiaPackages.stable;
 
@@ -15601,6 +15610,8 @@ in
   marathi-cursive = callPackage ../data/fonts/marathi-cursive { };
 
   man-pages = callPackage ../data/documentation/man-pages { };
+
+  matcha = callPackage ../data/themes/matcha { };
 
   materia-theme = callPackage ../data/themes/materia-theme { };
 
@@ -17783,6 +17794,7 @@ in
   k3d = callPackage ../applications/graphics/k3d {
     inherit (pkgs.gnome2) gtkglext;
     stdenv = overrideCC stdenv gcc6;
+    boost = boost166.override { enablePython = true; };
   };
 
   k9copy = libsForQt5.callPackage ../applications/video/k9copy {};
@@ -22430,8 +22442,6 @@ in
   };
 
   martyr = callPackage ../development/libraries/martyr { };
-
-  matcha = callPackage ../misc/themes/matcha { };
 
   mess = callPackage ../misc/emulators/mess {
     inherit (pkgs.gnome2) GConf;
