@@ -10,7 +10,7 @@ with stdenv.lib;
 
 let
   pname = "openra-rv";
-  version = "1203";
+  version = "1205";
   engine-version = "d2d841f";
   path = makeBinPath ([ mono python ] ++ optional (zenity != null) zenity);
   rpath = makeLibraryPath [ lua openal SDL2 ];
@@ -71,7 +71,6 @@ in stdenv.mkDerivation rec {
 
   postUnpack = ''
     mv engine Romanovs-Vengeance
-    mv ra2/mods/ra2 Romanovs-Vengeance/mods
     cd Romanovs-Vengeance
   '';
 
@@ -144,7 +143,7 @@ in stdenv.mkDerivation rec {
 
     mkdir $out/lib/openra-rv/mods
     cp -r engine/mods/{common,modcontent} $out/lib/openra-rv/mods
-    cp -r mods/{ra2,rv} $out/lib/openra-rv/mods
+    cp -r mods/rv $out/lib/openra-rv/mods
 
     mkdir -p $out/share/applications
     cp ${./openra-rv.desktop} $out/share/applications/openra-rv.desktop
