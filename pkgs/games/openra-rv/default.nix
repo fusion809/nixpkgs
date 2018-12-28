@@ -23,15 +23,8 @@ in stdenv.mkDerivation rec {
       owner = "MustaphaTR";
       repo = "Romanovs-Vengeance";
       rev = "9ffa847e550f26b08adf420f83ee44efb1f69d04";
-      sha256 = "1maaz752d1r5cb710xv9n8y1c88qdv91j5jlxpypk2qs9i5cijsw";
+      sha256 = "1b0r5sbnvnyna27f9gf7vcpsvvnf6qb0jb7z87mhkyivi1hma9ll";
       name = "Romanovs-Vengeance";
-    })
-    (fetchFromGitHub {
-      owner = "OpenRA";
-      repo = "ra2";
-      rev = "afb963a027ef37a9497d45d049606afd9d019dc7";
-      sha256 = "17byfkalh4msci5cyfp63hh2sb3b3p9c7i4nysnrx3j3j9pij61s";
-      name = "ra2";
     })
     (fetchFromGitHub {
       owner = "GraionDilach";
