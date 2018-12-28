@@ -10,8 +10,8 @@ with stdenv.lib;
 
 let
   pname = "openra-mw";
-  version = "232";
-  engine-version = "e6668bbb59440b9829b7bf2dbc687c50138bb0e4";
+  version = "234";
+  engine-version = "{DEV_VERSION}";
   path = makeBinPath ([ mono python ] ++ optional (zenity != null) zenity);
   rpath = makeLibraryPath [ lua openal SDL2 ];
 
@@ -22,15 +22,15 @@ in stdenv.mkDerivation rec {
     (fetchFromGitHub {
       owner = "CombinE88";
       repo = "Medieval-Warfare";
-      rev = "b91c7bb9f0c1286759eff92c6d4059686d53efc6";
-      sha256 = "11cjkqppgnkrmdnhinyzfppbd7i9k2z3b97dw87jp6m3ka8k8z4x";
+      rev = "f0fdfb8df3bdfe34cbc56207bf1561cc1493268d";
+      sha256 = "074j91qijsmb6iydij457fd4wdczrvkpziq890bq0ancp5j3z7n8";
       name = "Medieval-Warfare";
     })
     (fetchFromGitHub {
       owner = "OpenRA";
       repo = "OpenRA" ;
       rev = engine-version;
-      sha256 = "1na4nafbkiwx598b7hihdpmailpq5asrcywfqy6hays5zhqqi9hv";
+      sha256 = "error: unable to download 'https://github.com/OpenRA/OpenRA/archive/{DEV_VERSION}.tar.gz': HTTP error 404";
       name = "engine";
 
       extraPostFetch = ''
