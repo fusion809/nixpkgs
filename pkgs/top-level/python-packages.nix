@@ -4060,6 +4060,8 @@ in {
 
   update_checker = callPackage ../development/python-modules/update_checker {};
 
+  update-copyright = callPackage ../development/python-modules/update-copyright {};
+
   uritemplate = callPackage ../development/python-modules/uritemplate { };
 
   uproot = callPackage ../development/python-modules/uproot {};
@@ -4381,6 +4383,8 @@ in {
   umalqurra = callPackage ../development/python-modules/umalqurra { };
 
   unicodecsv = callPackage ../development/python-modules/unicodecsv { };
+
+  unidiff = callPackage ../development/python-modules/unidiff { };
 
   unittest2 = callPackage ../development/python-modules/unittest2 { };
 

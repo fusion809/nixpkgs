@@ -700,6 +700,8 @@ in
 
   deskew = callPackage ../applications/graphics/deskew { };
 
+  detect-secrets = python3Packages.callPackage ../development/tools/detect-secrets { };
+
   diskus = callPackage ../tools/misc/diskus {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -15728,6 +15730,8 @@ in
   profont = callPackage ../data/fonts/profont { };
 
   proggyfonts = callPackage ../data/fonts/proggyfonts { };
+
+  qogir-theme = callPackage ../data/themes/qogir { };
 
   route159 = callPackage ../data/fonts/route159 { };
 
