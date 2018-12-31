@@ -11,7 +11,7 @@ with stdenv.lib;
 let
   pname = "openra-d2";
   version = "123";
-  engine-version = "release-20181235";
+  engine-version = "release-20181215";
   path = makeBinPath ([ mono python ] ++ optional (zenity != null) zenity);
   rpath = makeLibraryPath [ lua openal SDL2 ];
 
