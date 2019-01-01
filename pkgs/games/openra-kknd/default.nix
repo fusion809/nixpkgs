@@ -164,7 +164,7 @@ in stdenv.mkDerivation rec {
   dontStrip = true;
 
   meta = {
-    description = "Re-imaginging of the original Command & Conquer Red Alert 2 game";
+    description = "Re-imaginging of the original Krush, Kill n' Destroy game";
     homepage = https://kknd-game.com/;
     maintainers = with maintainers; [ fusion809 ];
     license = licenses.gpl3;
