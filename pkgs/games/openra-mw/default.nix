@@ -23,14 +23,14 @@ in stdenv.mkDerivation rec {
       owner = "CombinE88";
       repo = "Medieval-Warfare";
       rev = "1e4fc7ea24d0806c5a7cd753490e967d804a3567";
-      sha256 = "023nc88i9smj342rsak0gm27n7kkg2alsfpg74axm3hw6w2zs74x";
+      sha256 = "0swa66mzb6wr8vf1yivrss54dl98jzzwh9b8qrjfwmfrq2i356iq";
       name = "Medieval-Warfare";
     })
     (fetchFromGitHub {
       owner = "OpenRA";
       repo = "OpenRA" ;
       rev = engine-version;
-      sha256 = "1yyhglma54mrc52iw8nbym79wiipwbbi8sy8mw3aad0hl5g5k2pp";
+      sha256 = "0g1ig7i1lmmvrgy5rmc4dc4whdxxgzhabrcixym8w4a1m42jssqq";
       name = "engine";
 
       extraPostFetch = ''

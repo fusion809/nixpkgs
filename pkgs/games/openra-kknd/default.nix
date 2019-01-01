@@ -165,7 +165,7 @@ in stdenv.mkDerivation rec {
 
   meta = {
     description = "Re-imaginging of the original Command & Conquer Red Alert 2 game";
-    homepage = https://github.com/IceReaper/KKnD;
+    homepage = https://kknd-game.com/;
     maintainers = with maintainers; [ fusion809 ];
     license = licenses.gpl3;
     platforms = platforms.linux;

@@ -1,3 +1,32 @@
-As of commit 232, 8 Dec 2018, it fails to build with the error:
+As of commit 235, 2 Jan 2019, it manages to build, but with the error:
 
-CSC: error CS2001: Source file '/build/Medieval-Warfare/engine/OpenRA.Mods.Common/UpdateRules/Rules/20180923/DefineL
+CSC OpenRA.Server.exe
+make[1]: Leaving directory '/tmp/nix-build-openra-mw-235.drv-0/Medieval-Warfare/engine'
+MWAI/UndeadAIHAndler.cs(4,26): error CS0234: The type or namespace name 'AI' does not exist in the namespace 'OpenRA.Mods.Common' (are you missing an assembly reference?)
+MWAI/DummyAI.cs(32,32): error CS0535: 'DummyAI' does not implement interface member 'IBot.QueueOrder(Order)'
+MWAI/DummyAI.cs(32,32): error CS0535: 'DummyAI' does not implement interface member 'IBot.Player'
+Traits/Undead Faction/WithUndeadBuilderOverlay.cs(81,36): error CS0246: The type or namespace name 'INotifyBuildComplete' could not be found (are you missing a using directive or an assembly reference?)
+Traits/Undead Faction/WithUndeadBuilderOverlay.cs(114,14): error CS0246: The type or namespace name 'INotifyBuildComplete' could not be found (are you missing a using directive or an assembly reference?)
+Traits/Undead Faction/WithUndeadBuilderOverlay.cs(114,14): error CS0538: 'INotifyBuildComplete' in explicit interface declaration is not an interface
+Traits/Render/RenderActorArc.cs(125,94): error CS0246: The type or namespace name 'INotifyBuildComplete' could not be found (are you missing a using directive or an assembly reference?)
+Traits/Undead Faction/BuildUpSound.cs(25,117): error CS0246: The type or namespace name 'INotifyBuildComplete' could not be found (are you missing a using directive or an assembly reference?)
+Traits/Undead Faction/BuildUpSound.cs(110,14): error CS0246: The type or namespace name 'INotifyBuildComplete' could not be found (are you missing a using directive or an assembly reference?)
+Traits/Undead Faction/BuildUpSound.cs(110,14): error CS0538: 'INotifyBuildComplete' in explicit interface declaration is not an interface
+Traits/Render/RenderActorArc.cs(204,14): error CS0246: The type or namespace name 'INotifyBuildComplete' could not be found (are you missing a using directive or an assembly reference?)
+Traits/Undead Faction/Skiptransforms.cs(97,33): error CS0539: 'SkipTransforms.IssueDeployOrder(Actor)' in explicit interface declaration is not a member of interface
+Traits/Undead Faction/Skiptransforms.cs(62,76): error CS0535: 'SkipTransforms' does not implement interface member 'IIssueDeployOrder.IssueDeployOrder(Actor, bool)'
+Traits/Render/RenderActorArc.cs(204,14): error CS0538: 'INotifyBuildComplete' in explicit interface declaration is not an interface
+Traits/WithFreeSpawnableActor.cs(63,112): error CS0246: The type or namespace name 'INotifyBuildComplete' could not be found (are you missing a using directive or an assembly reference?)
+Traits/WithFreeSpawnableActor.cs(213,14): error CS0246: The type or namespace name 'INotifyBuildComplete' could not be found (are you missing a using directive or an assembly reference?)
+Traits/WithFreeSpawnableActor.cs(213,14): error CS0538: 'INotifyBuildComplete' in explicit interface declaration is not an interface
+glibPreInstallPhase
+installing
+glibPreFixupPhase
+post-installation fixup
+shrinking RPATHs of ELF executables and libraries in /nix/store/6969df537i297r6f16ihypw704lskc1l-openra-mw-235
+patching script interpreter paths in /nix/store/6969df537i297r6f16ihypw704lskc1l-openra-mw-235
+/nix/store/6969df537i297r6f16ihypw704lskc1l-openra-mw-235/lib/openra-mw/.launch-game.sh-wrapped: interpreter directive changed from "/bin/sh" to "/nix/store/can00lfiynqkbsdkkmgp6qg8p8w92cxa-bash-4.4-p23/bin/sh"
+checking for references to /tmp/nix-build-openra-mw-235.drv-0/ in /nix/store/6969df537i297r6f16ihypw704lskc1l-openra-mw-235...
+building '/nix/store/pilpxraw21w37i9x868vf1232i2xsi4c-user-environment.drv'...
+created 173 symlinks in user environment
+
