@@ -10,7 +10,7 @@ with stdenv.lib;
 
 let
   pname = "openra-d2";
-  version = "123";
+  version = "124";
   engine-version = "release-20181215";
   path = makeBinPath ([ mono python ] ++ optional (zenity != null) zenity);
   rpath = makeLibraryPath [ lua openal SDL2 ];
@@ -22,8 +22,8 @@ in stdenv.mkDerivation rec {
     (fetchFromGitHub {
       owner = "OpenRA";
       repo = "d2";
-      rev = "5d357ab2877ae5f0afe0906c9c581ab82a6990fc";
-      sha256 = "1wj7b9h0426m6fl9vj4i87r22mrmqr5bs2562hp7n1y4h2qx0ljf";
+      rev = "30ab6e1c2489594000639416fb8099995f4ec657";
+      sha256 = "06mjy8330fqkvfmdmj1mw0qd4mkg0zgi0f1nfb5qjj9a272v4vsb";
       name = "d2";
     })
     (fetchFromGitHub {
@@ -153,6 +153,12 @@ in stdenv.mkDerivation rec {
 
     mkdir -p $out/share/pixmaps
     cp -r mods/d2/icon.png $out/share/pixmaps/openra-d2.png
+
+    mkdir -p $out/share/icons/hicolor/{16x16,32x32,48x48,64x64,128x128,256x256}/apps
+    for size in 16 32 48 64 128 256; do
+      size=''${size}x''${size}
+      cp packaging/linux/mod_''${size}.png "$out/share/icons/hicolor/''${size}/apps/openra-d2.png"
+    done
   '';
 
   dontStrip = true;

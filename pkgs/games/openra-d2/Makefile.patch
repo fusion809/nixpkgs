@@ -23,24 +23,3 @@ index ea94401..a91dc32 100644
  	@cd $(ENGINE_DIRECTORY) && make core
  
  utility: engine
-diff --git a/mods/d2/mod.yaml b/mods/d2/mod.yaml
-index ff9c0c1..a10c9f2 100644
---- a/mods/d2/mod.yaml
-+++ b/mods/d2/mod.yaml
-@@ -1,6 +1,6 @@
- Metadata:
- 	Title: d2 mod
--	Version: release-20181215
-+	Version: 115
- 
- PackageFormats: PakFile, D2kSoundResources
- 
-@@ -33,7 +33,7 @@ Packages:
- 
- MapFolders:
- 	d2|maps: System
--	~^maps/d2/release-20180307: User
-+	~^maps/d2/115: User
- 
- Rules:
- 	d2|rules/misc.yaml
