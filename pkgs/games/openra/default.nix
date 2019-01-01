@@ -5,8 +5,8 @@
 
 stdenv.mkDerivation rec {
   pname = "openra";
-  version = "25547";
-  commit = "bb5e0eafbaee52d3056f5c0aaf0efafef5bd5c33";
+  version = "25548";
+  commit = "d7c54d74ad7a89f1c04bf6676cb67740bf3e104b";
 
   meta = with stdenv.lib; {
     description = "Real Time Strategy game engine recreating the C&C titles";
