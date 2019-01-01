@@ -11,7 +11,7 @@ with stdenv.lib;
 let
   pname = "openra-mw";
   version = "235";
-  engine-version = "{DEV_VERSION}";
+  engine-version = "bb5e0eafbaee52d3056f5c0aaf0efafef5bd5c33";
   path = makeBinPath ([ mono python ] ++ optional (zenity != null) zenity);
   rpath = makeLibraryPath [ lua openal SDL2 ];
 
@@ -30,7 +30,7 @@ in stdenv.mkDerivation rec {
       owner = "OpenRA";
       repo = "OpenRA" ;
       rev = engine-version;
-      sha256 = "error: unable to download 'https://github.com/OpenRA/OpenRA/archive/{DEV_VERSION}.tar.gz': HTTP error 404";
+      sha256 = "1yyhglma54mrc52iw8nbym79wiipwbbi8sy8mw3aad0hl5g5k2pp";
       name = "engine";
 
       extraPostFetch = ''
