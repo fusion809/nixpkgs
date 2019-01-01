@@ -166,7 +166,7 @@ in stdenv.mkDerivation rec {
   dontStrip = true;
 
   meta = {
-    description = "Re-imaginging of the original Command & Conquer Yuri's Revenge game";
+    description = "Re-imaginging of the original Command Command & Conquer  Conquer: Yuri's Revenge game";
     homepage = https://github.com/OpenRA/yr;
     maintainers = with maintainers; [ fusion809 ];
     license = licenses.gpl3;

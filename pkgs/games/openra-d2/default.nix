@@ -164,7 +164,7 @@ in stdenv.mkDerivation rec {
   dontStrip = true;
 
   meta = {
-    description = "Re-imaginging of the original Command & Conquer Red Alert 2 game";
+    description = "Re-imaginging of the original Command Command & Conquer  Conquer: Red Alert 2 game";
     homepage = https://github.com/OpenRA/d2;
     maintainers = with maintainers; [ fusion809 ];
     license = licenses.gpl3;

@@ -164,7 +164,7 @@ in stdenv.mkDerivation rec {
   dontStrip = true;
 
   meta = {
-    description = "Re-imaginging of the original Command & Conquer Command & Conquer: Generals game";
+    description = "Re-imaginging of the original Command & Conquer: Generals game";
     homepage = http://redalertunplugged.com;
     maintainers = with maintainers; [ msteen ];
     license = licenses.gpl3;

@@ -158,7 +158,7 @@ in stdenv.mkDerivation rec {
   dontStrip = true;
 
   meta = {
-    description = "Re-imaginging of the original Command & Conquer Medieval Warfare game";
+    description = "Re-imaginging of the original Command Command & Conquer  Conquer: Medieval Warfare game";
     homepage = https://github.com/OpenRA/mw;
     maintainers = with maintainers; [ fusion809 ];
     license = licenses.gpl3;

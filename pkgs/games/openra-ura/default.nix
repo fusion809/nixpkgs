@@ -164,7 +164,7 @@ in stdenv.mkDerivation rec {
   dontStrip = true;
 
   meta = {
-    description = "Re-imaginging of the original Command & Conquer Red Alert game";
+    description = "Re-imaginging of the original Command Command & Conquer  Conquer: Red Alert game";
     homepage = http://redalertunplugged.com;
     maintainers = with maintainers; [ msteen ];
     license = licenses.gpl3;
