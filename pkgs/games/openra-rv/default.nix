@@ -142,7 +142,7 @@ in stdenv.mkDerivation rec {
     ]}} $out/lib/openra-rv
 
     mkdir $out/lib/openra-rv/mods
-    cp -r engine/mods/{common,modcontent} $out/lib/openra-rv/mods
+    cp -r engine/mods/{as,common,modcontent} $out/lib/openra-rv/mods
     cp -r mods/rv $out/lib/openra-rv/mods
 
     mkdir -p $out/share/applications
