@@ -28,13 +28,6 @@ in stdenv.mkDerivation rec {
     })
     (fetchFromGitHub {
       owner = "OpenRA";
-      repo = "ra2" ;
-      rev = "afb963a027ef37a9497d45d049606afd9d019dc7";
-      sha256 = "17byfkalh4msci5cyfp63hh2sb3b3p9c7i4nysnrx3j3j9pij61s";
-      name = "ra2";
-    })
-    (fetchFromGitHub {
-      owner = "OpenRA";
       repo = "OpenRA" ;
       rev = engine-version;
       sha256 = "1pgi3zaq9fwwdq6yh19bwxscslqgabjxkvl9bcn1a5agy4bfbqk5";
@@ -78,7 +71,6 @@ in stdenv.mkDerivation rec {
 
   postUnpack = ''
     mv engine yr
-    mv ra2/mods/ra2 yr/mods
     cd yr
   '';
 
