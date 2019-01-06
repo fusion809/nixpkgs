@@ -13,13 +13,19 @@ This repository contains the upstream Nixpkgs packages, along with some of my ow
 
     - [openra-d2](pkgs/games/openra-d2): OpenRA [Dune II mod](https://github.com/OpenRA/d2). Recreates the [*Dune II*](https://en.wikipedia.org/wiki/Dune_II) game by Westwood Studios. 
 
-	- [openra-gen](pkgs/games/openra-gen): OpenRA [Generals Alpha mod](https://github.com/MustaphaTR/Generals-Alpha). Recreates the [*Command & Conquer: Generals*](https://en.wikipedia.org/wiki/Command_&_Conquer:_Generals) game.
+    - [openra-gen](pkgs/games/openra-gen): OpenRA [Generals Alpha mod](https://github.com/MustaphaTR/Generals-Alpha). Recreates the [*Command & Conquer: Generals*](https://en.wikipedia.org/wiki/Command_&_Conquer:_Generals) game.
 
-    - [openra-ra2](pkgs/games/openra-ra2): OpenRA [Red Alert 2 mod](https://github.com/OpenRA/ra2). It recreates the original [*Command & Conquer: Red Alert 2*](https://github.com/OpenRA/ra2).
+    - [openra-kknd](pkgs/games/openra-kknd): OpenRA [Krush Kill n' Destroy mod](https://github.com/IceReaper/KKnD). Recreates the original [*Krush Kill n' Destroy*](http://kknd.wikia.com/wiki/Krush_Kill_%27n%27_Destroy) game by Beam Software. This mod even has its own official website: https://kknd-game.com. 
 
-    - [openra-raclassic](pkgs/games/openra-raclassic): OpenRA [Red Alert Classic mod](https://github.com/OpenRA/ra2). It recreates the original [*Command & Conquer: Red Alert*](https://github.com/OpenRA/raclassic) more accurately than the official RA mod.
+    - [openra-ra2](pkgs/games/openra-ra2): OpenRA [Red Alert 2 mod](https://github.com/OpenRA/ra2). It recreates the original [*Command & Conquer: Red Alert 2*](https://en.wikipedia.org/wiki/Command_&_Conquer:_Red_Alert_2).
+
+    - [openra-raclassic](pkgs/games/openra-raclassic): OpenRA [Red Alert Classic mod](https://github.com/OpenRA/raclassic). It recreates the original [*Command & Conquer: Red Alert*](https://github.com/OpenRA/raclassic) more accurately than the official RA mod.
+
+    - [openra-rv](pkgs/games/openra-rv): OpenRA [Romanov's Vengeance mod](https://github.com/MustaphaTR/Romanovs-Vengeance). It recreates and expands on the [*Command & Conquer: Red Alert 2*](https://en.wikipedia.org/wiki/Command_&_Conquer:_Red_Alert_2) game, much like openra-ra2. 
 
     - [openra-sp](pkgs/games/openra-sp): OpenRA [Shattered Paradise mod](https://github.com/ABrandau/OpenRAModSDK). It expands on the experimental Tiberian Sun mod that comes bundled with the OpenRA game engine.
+
+    - [openra-ss](pkgs/games/openra-ss): OpenRA [Sole Survivor mod](https://github.com/MustaphaTR/sole-survivor). It recreates the [*Command_&_Conquer: Sole_Survivor*](https://en.wikipedia.org/wiki/Command_&_Conquer:_Sole_Survivor) game.
 
     - [openra-ura](pkgs/games/openra-ura): OpenRA [Red Alert Unplugged mod](https://github.com/RAUnplugged/uRA). It expands on the Red Alert mod that comes bundled with the OpenRA game engine. Personally, this is my favourite mod.
 
