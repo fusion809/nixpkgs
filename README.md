@@ -5,7 +5,7 @@ This repository contains the upstream Nixpkgs packages, along with some of my ow
 
 * The version of Vim is kept at the latest version, with updates within a day of the upstream release.
 
-* The version of OpenRA is bleeding-edge, with me keeping it at the latest commit and updating within a day of the upstream release. I also added the experimental Tiberian Sun mod to it and implement upstream [PR #51404](https://github.com/NixOS/nixpkgs/pull/51404).
+* The version of OpenRA is bleeding-edge, with me keeping it at the latest commit and updating within a day of the upstream release. I also added the experimental Tiberian Sun mod to it.
 
 * Adding unofficial mods at bleeding-edge (built from latest commit) versions such as:
 
@@ -27,7 +27,7 @@ This repository contains the upstream Nixpkgs packages, along with some of my ow
 
     - [openra-ss](pkgs/games/openra-ss): OpenRA [Sole Survivor mod](https://github.com/MustaphaTR/sole-survivor). It recreates the [*Command_&_Conquer: Sole_Survivor*](https://en.wikipedia.org/wiki/Command_&_Conquer:_Sole_Survivor) game.
 
-    - [openra-ura](pkgs/games/openra-ura): OpenRA [Red Alert Unplugged mod](https://github.com/RAUnplugged/uRA). It expands on the Red Alert mod that comes bundled with the OpenRA game engine. Personally, this is my favourite mod.
+    - [openra-ura](pkgs/games/openra-ura): OpenRA [Red Alert Unplugged mod](https://github.com/RAUnplugged/uRA). It expands on the Red Alert mod that comes bundled with the OpenRA game engine. Personally, this is my favourite mod. I got the code for this, which I used to create these other mod packages (with a bit of tweaking, but relatively easy after I had the openra-ura package), from https://github.com/NixOS/nixpkgs/pull/51530.
 
     - [openra-yr](pkgs/games/openra-yr): OpenRA [Yuri's Revenge mod](https://github.com/cookgreen/yr). It attempts to recreate the original [*Command & Conquer: Yuri's Revenge*](https://en.wikipedia.org/wiki/Command_%26_Conquer:_Yuri%27s_Revenge) game. Be fair warned this game is very experimental, I frequently find bugs in it when I use it.
 
