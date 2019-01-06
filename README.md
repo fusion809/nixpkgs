@@ -35,6 +35,8 @@ I have also attempted to package the [Dark Reign](https://github.com/drogoganor/
 
 It is worthwhile noting that these mods do not work on non-NixOS systems, due to [OpenGL issues](https://gist.github.com/fusion809/34b68465463e9cdc58deed127420365d).
 
+There is a pull request upstream that will soon make all packages I have added to this repo redundant, it is [#53300](https://github.com/NixOS/nixpkgs/pull/53300).
+
 ## Installing packages
 
 Building and installing packages in this repository should be as simple as running:
