@@ -11,7 +11,7 @@ with stdenv.lib;
 let
   pname = "openra-mw";
   version = "235";
-  engine-version = "bb5e0eafbaee52d3056f5c0aaf0efafef5bd5c33";
+  engine-version = "MedievalWarfareEngine";
   path = makeBinPath ([ mono python ] ++ optional (zenity != null) zenity);
   rpath = makeLibraryPath [ lua openal SDL2 ];
 
@@ -27,10 +27,10 @@ in stdenv.mkDerivation rec {
       name = "Medieval-Warfare";
     })
     (fetchFromGitHub {
-      owner = "OpenRA";
+      owner = "CombinE88";
       repo = "OpenRA" ;
       rev = engine-version;
-      sha256 = "0g1ig7i1lmmvrgy5rmc4dc4whdxxgzhabrcixym8w4a1m42jssqq";
+      sha256 = "1s3jzpni0wqsjqwjgga0mql0lrfbl0470s80h1vn8mx8dmdb768d";
       name = "engine";
 
       extraPostFetch = ''

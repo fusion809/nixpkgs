@@ -1,0 +1,51 @@
+Commit 244 (e21db398f4d995c91b9e1a0f31ffaa7d54f43742):
+
+CSC mods/d2k/OpenRA.Mods.D2k.dll
+CSC OpenRA.Utility.exe
+CSC OpenRA.Server.exe
+make[1]: Leaving directory '/tmp/nix-build-openra-dr-244.drv-0/DarkReign/engine'
+make[1]: Entering directory '/tmp/nix-build-openra-dr-244.drv-0/DarkReign/engine'
+CSC OpenRA.StyleCheck.exe
+make[1]: Leaving directory '/tmp/nix-build-openra-dr-244.drv-0/DarkReign/engine'
+Checking for explicit interface violations...
+Fontconfig warning: "/etc/fonts/fonts.conf", line 5: unknown element "its:rules"
+Fontconfig warning: "/etc/fonts/fonts.conf", line 6: unknown element "its:translateRule"
+Fontconfig error: "/etc/fonts/fonts.conf", line 6: invalid attribute 'translate'
+Fontconfig error: "/etc/fonts/fonts.conf", line 6: invalid attribute 'selector'
+Fontconfig error: "/etc/fonts/fonts.conf", line 7: invalid attribute 'xmlns:its'
+Fontconfig error: "/etc/fonts/fonts.conf", line 7: invalid attribute 'version'
+Fontconfig warning: "/etc/fonts/fonts.conf", line 9: unknown element "description"
+Fontconfig error: Cannot load config file from /etc/fonts/fonts.conf
+Checking for code style violations in ./OpenRA.Mods.Dr...
+
+Unhandled Exception:
+System.NullReferenceException: Object reference not set to an instance of an object
+  at OpenRA.StyleCheck.StyleCheck+<Main>c__AnonStorey0.<>m__0 (System.Object sender, StyleCop.ViolationEventArgs e) [0x00015] in /tmp/nix-build-openra-dr-244.drv-0/DarkReign/engine/OpenRA.StyleCheck/Program.cs:35 
+  at StyleCop.StyleCopRunner.OnViolationEncountered (StyleCop.ViolationEventArgs e) [0x00015] in <75b301edc454415e91f62cc93797c423>:0 
+  at StyleCop.StyleCopRunner.CoreViolationEncountered (System.Object sender, StyleCop.ViolationEventArgs e) [0x00329] in <75b301edc454415e91f62cc93797c423>:0 
+  at StyleCop.StyleCopCore.OnViolationEncountered (StyleCop.ViolationEventArgs e) [0x0000a] in <75b301edc454415e91f62cc93797c423>:0 
+  at StyleCop.StyleCopCore.AddViolation (StyleCop.SourceCode sourceCode, StyleCop.Violation violation) [0x0001a] in <75b301edc454415e91f62cc93797c423>:0 
+  at StyleCop.StyleCopCore.AddViolation (StyleCop.SourceCode sourceCode, StyleCop.Rule type, System.Int32 line, System.Object[] values) [0x00029] in <75b301edc454415e91f62cc93797c423>:0 
+  at StyleCop.SourceParser.AddViolation (StyleCop.SourceCode sourceCode, System.Int32 line, System.String ruleName, System.Object[] values) [0x00037] in <75b301edc454415e91f62cc93797c423>:0 
+  at StyleCop.SourceParser.AddViolation (StyleCop.SourceCode sourceCode, System.Int32 line, System.Enum ruleName, System.Object[] values) [0x00014] in <75b301edc454415e91f62cc93797c423>:0 
+  at StyleCop.StyleCopCore.Analyze (System.Collections.Generic.IList`1[T] projects, System.Boolean ignoreCache, System.String settingsPath) [0x00210] in <75b301edc454415e91f62cc93797c423>:0 
+  at StyleCop.StyleCopCore.FullAnalyze (System.Collections.Generic.IList`1[T] projects) [0x0001c] in <75b301edc454415e91f62cc93797c423>:0 
+  at StyleCop.StyleCopConsole.Start (System.Collections.Generic.IList`1[T] projects, System.Boolean fullAnalyze) [0x00064] in <75b301edc454415e91f62cc93797c423>:0 
+  at OpenRA.StyleCheck.StyleCheck.Main (System.String[] args) [0x000b5] in /tmp/nix-build-openra-dr-244.drv-0/DarkReign/engine/OpenRA.StyleCheck/Program.cs:39                                                                               
+[ERROR] FATAL UNHANDLED EXCEPTION: System.NullReferenceException: Object reference not set to an instance of an object                                                                                                                       
+  at OpenRA.StyleCheck.StyleCheck+<Main>c__AnonStorey0.<>m__0 (System.Object sender, StyleCop.ViolationEventArgs e) [0x00015] in /tmp/nix-build-openra-dr-244.drv-0/DarkReign/engine/OpenRA.StyleCheck/Program.cs:35 
+  at StyleCop.StyleCopRunner.OnViolationEncountered (StyleCop.ViolationEventArgs e) [0x00015] in <75b301edc454415e91f62cc93797c423>:0 
+  at StyleCop.StyleCopRunner.CoreViolationEncountered (System.Object sender, StyleCop.ViolationEventArgs e) [0x00329] in <75b301edc454415e91f62cc93797c423>:0 
+  at StyleCop.StyleCopCore.OnViolationEncountered (StyleCop.ViolationEventArgs e) [0x0000a] in <75b301edc454415e91f62cc93797c423>:0 
+  at StyleCop.StyleCopCore.AddViolation (StyleCop.SourceCode sourceCode, StyleCop.Violation violation) [0x0001a] in <75b301edc454415e91f62cc93797c423>:0 
+  at StyleCop.StyleCopCore.AddViolation (StyleCop.SourceCode sourceCode, StyleCop.Rule type, System.Int32 line, System.Object[] values) [0x00029] in <75b301edc454415e91f62cc93797c423>:0 
+  at StyleCop.SourceParser.AddViolation (StyleCop.SourceCode sourceCode, System.Int32 line, System.String ruleName, System.Object[] values) [0x00037] in <75b301edc454415e91f62cc93797c423>:0 
+  at StyleCop.SourceParser.AddViolation (StyleCop.SourceCode sourceCode, System.Int32 line, System.Enum ruleName, System.Object[] values) [0x00014] in <75b301edc454415e91f62cc93797c423>:0 
+  at StyleCop.StyleCopCore.Analyze (System.Collections.Generic.IList`1[T] projects, System.Boolean ignoreCache, System.String settingsPath) [0x00210] in <75b301edc454415e91f62cc93797c423>:0 
+  at StyleCop.StyleCopCore.FullAnalyze (System.Collections.Generic.IList`1[T] projects) [0x0001c] in <75b301edc454415e91f62cc93797c423>:0 
+  at StyleCop.StyleCopConsole.Start (System.Collections.Generic.IList`1[T] projects, System.Boolean fullAnalyze) [0x00064] in <75b301edc454415e91f62cc93797c423>:0 
+  at OpenRA.StyleCheck.StyleCheck.Main (System.String[] args) [0x000b5] in /tmp/nix-build-openra-dr-244.drv-0/DarkReign/engine/OpenRA.StyleCheck/Program.cs:39 
+make: *** [Makefile:138: check] Error 1
+builder for '/nix/store/3xc42iq3a29c70fc4958igz43kmy3c0j-openra-dr-244.drv' failed with exit code 2
+error: build of '/nix/store/3xc42iq3a29c70fc4958igz43kmy3c0j-openra-dr-244.drv' failed
+

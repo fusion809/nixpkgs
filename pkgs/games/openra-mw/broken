@@ -1,32 +1,34 @@
-As of commit 235, 2 Jan 2019, it manages to build, but with the error:
+Commit 244 fails to build, despite the correct engine being used, due to:
 
-CSC OpenRA.Server.exe
+installing 'openra-mw-235'
+these derivations will be built:
+  /nix/store/iv83zvs480kxsc59xjp3f5xzj5c8l9v2-openra-mw-235.drv
+building '/nix/store/iv83zvs480kxsc59xjp3f5xzj5c8l9v2-openra-mw-235.drv'...
+unpacking sources
+unpacking source archive /nix/store/2p0i06q3glirklmc07lwm8wag3fmhyic-Medieval-Warfare
+unpacking source archive /nix/store/ql00mkcrjkm7hslkbvd0pwyaacshmvxv-engine
+source root is .
+patching sources
+applying patch /nix/store/58d6ch72fd7k87z07kbn7s42p458jw0r-Makefile.patch
+patching file Makefile
+dos2unix: converting file CODE_OF_CONDUCT.md to Unix format...
+dos2unix: converting file CONTRIBUTING.md to Unix format...
+dos2unix: converting file README.md to Unix format...
+configuring
+Version changed to 235.
+building
+build flags: SHELL=/nix/store/can00lfiynqkbsdkkmgp6qg8p8w92cxa-bash-4.4-p23/bin/bash PREFIX=\$\(out\)
+make[1]: Entering directory '/tmp/nix-build-openra-mw-235.drv-0/Medieval-Warfare/engine'
+Detected Lua 5.1 library at /nix/store/k9w0r8npbkf1zsxzhnaccw9yxkbbilwf-lua-5.1.5/lib/liblua.so.5.1.5
+Eluant.dll.config has been created successfully.
+CSC fixheader.exe
+CSC OpenRA.Game.exe
+CSC OpenRA.Platforms.Default.dll
+CSC mods/common/OpenRA.Mods.Common.dll
+OpenRA.Mods.Common/Widgets/ScriptNodes/SingleNodes/UiNodes/SetCameraPositionNode.cs(42,17): error CS0472: Warning as Error: The result of comparing value type `OpenRA.CPos' with null is always `false'
+Compilation failed: 1 error(s), 0 warnings
+make[1]: *** [Makefile:278: mods/common/OpenRA.Mods.Common.dll] Error 1
 make[1]: Leaving directory '/tmp/nix-build-openra-mw-235.drv-0/Medieval-Warfare/engine'
-MWAI/UndeadAIHAndler.cs(4,26): error CS0234: The type or namespace name 'AI' does not exist in the namespace 'OpenRA.Mods.Common' (are you missing an assembly reference?)
-MWAI/DummyAI.cs(32,32): error CS0535: 'DummyAI' does not implement interface member 'IBot.QueueOrder(Order)'
-MWAI/DummyAI.cs(32,32): error CS0535: 'DummyAI' does not implement interface member 'IBot.Player'
-Traits/Undead Faction/WithUndeadBuilderOverlay.cs(81,36): error CS0246: The type or namespace name 'INotifyBuildComplete' could not be found (are you missing a using directive or an assembly reference?)
-Traits/Undead Faction/WithUndeadBuilderOverlay.cs(114,14): error CS0246: The type or namespace name 'INotifyBuildComplete' could not be found (are you missing a using directive or an assembly reference?)
-Traits/Undead Faction/WithUndeadBuilderOverlay.cs(114,14): error CS0538: 'INotifyBuildComplete' in explicit interface declaration is not an interface
-Traits/Render/RenderActorArc.cs(125,94): error CS0246: The type or namespace name 'INotifyBuildComplete' could not be found (are you missing a using directive or an assembly reference?)
-Traits/Undead Faction/BuildUpSound.cs(25,117): error CS0246: The type or namespace name 'INotifyBuildComplete' could not be found (are you missing a using directive or an assembly reference?)
-Traits/Undead Faction/BuildUpSound.cs(110,14): error CS0246: The type or namespace name 'INotifyBuildComplete' could not be found (are you missing a using directive or an assembly reference?)
-Traits/Undead Faction/BuildUpSound.cs(110,14): error CS0538: 'INotifyBuildComplete' in explicit interface declaration is not an interface
-Traits/Render/RenderActorArc.cs(204,14): error CS0246: The type or namespace name 'INotifyBuildComplete' could not be found (are you missing a using directive or an assembly reference?)
-Traits/Undead Faction/Skiptransforms.cs(97,33): error CS0539: 'SkipTransforms.IssueDeployOrder(Actor)' in explicit interface declaration is not a member of interface
-Traits/Undead Faction/Skiptransforms.cs(62,76): error CS0535: 'SkipTransforms' does not implement interface member 'IIssueDeployOrder.IssueDeployOrder(Actor, bool)'
-Traits/Render/RenderActorArc.cs(204,14): error CS0538: 'INotifyBuildComplete' in explicit interface declaration is not an interface
-Traits/WithFreeSpawnableActor.cs(63,112): error CS0246: The type or namespace name 'INotifyBuildComplete' could not be found (are you missing a using directive or an assembly reference?)
-Traits/WithFreeSpawnableActor.cs(213,14): error CS0246: The type or namespace name 'INotifyBuildComplete' could not be found (are you missing a using directive or an assembly reference?)
-Traits/WithFreeSpawnableActor.cs(213,14): error CS0538: 'INotifyBuildComplete' in explicit interface declaration is not an interface
-glibPreInstallPhase
-installing
-glibPreFixupPhase
-post-installation fixup
-shrinking RPATHs of ELF executables and libraries in /nix/store/6969df537i297r6f16ihypw704lskc1l-openra-mw-235
-patching script interpreter paths in /nix/store/6969df537i297r6f16ihypw704lskc1l-openra-mw-235
-/nix/store/6969df537i297r6f16ihypw704lskc1l-openra-mw-235/lib/openra-mw/.launch-game.sh-wrapped: interpreter directive changed from "/bin/sh" to "/nix/store/can00lfiynqkbsdkkmgp6qg8p8w92cxa-bash-4.4-p23/bin/sh"
-checking for references to /tmp/nix-build-openra-mw-235.drv-0/ in /nix/store/6969df537i297r6f16ihypw704lskc1l-openra-mw-235...
-building '/nix/store/pilpxraw21w37i9x868vf1232i2xsi4c-user-environment.drv'...
-created 173 symlinks in user environment
-
+make: *** [Makefile:51: engine] Error 2
+builder for '/nix/store/iv83zvs480kxsc59xjp3f5xzj5c8l9v2-openra-mw-235.drv' failed with exit code 2
+error: build of '/nix/store/iv83zvs480kxsc59xjp3f5xzj5c8l9v2-openra-mw-235.drv' failed
