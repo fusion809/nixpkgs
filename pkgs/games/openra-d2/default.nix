@@ -10,7 +10,7 @@ with stdenv.lib;
 
 let
   pname = "openra-d2";
-  version = "128";
+  version = "130";
   engine-version = "release-20181215";
   path = makeBinPath ([ mono python ] ++ optional (zenity != null) zenity);
   rpath = makeLibraryPath [ lua openal SDL2 ];
@@ -22,8 +22,8 @@ in stdenv.mkDerivation rec {
     (fetchFromGitHub {
       owner = "OpenRA";
       repo = "d2";
-      rev = "bc969207b532a2def69e0d6ac09a4e8fb5d4e946";
-      sha256 = "18v154kf1fmfk2gnymb3ggsfy73ql8rr7jvbhiw60yhzwx89cdk8";
+      rev = "a79c015593b7a21b77efb957dd1fdeb11a80512e";
+      sha256 = "1l8zwx66wchqf97acdzy7lgiijy9dc3cgjgqg9wfp17lyhsfhn6n";
       name = "d2";
     })
     (fetchFromGitHub {
