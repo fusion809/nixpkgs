@@ -23,7 +23,7 @@ in stdenv.mkDerivation rec {
       owner = "OpenRA";
       repo = "ra2";
       rev = "e5555ecd5734da249a19306d6671d6461e8ee04e";
-      sha256 = "1q5jbkpyhz1p0n7w0v8g6l8p3xcbnmcn0hvf3wxxs48n6fjyw694";
+      sha256 = "1r6377x0l9gbkr5zjm74r34kz9yjn5sz9ikznhjkd1qx49h0qlsr";
       name = "ra2";
     })
     (fetchFromGitHub {
