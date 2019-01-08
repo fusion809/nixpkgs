@@ -685,6 +685,8 @@ in
 
   bunny = callPackage ../tools/package-management/bunny { };
 
+  clair = callPackage ../tools/admin/clair { };
+
   cloud-sql-proxy = callPackage ../tools/misc/cloud-sql-proxy { };
 
   container-linux-config-transpiler = callPackage ../development/tools/container-linux-config-transpiler { };
@@ -2798,6 +2800,8 @@ in
 
   fuse-7z-ng = callPackage ../tools/filesystems/fuse-7z-ng { };
 
+  fuse-overlayfs = callPackage ../tools/filesystems/fuse-overlayfs {};
+
   fusee-launcher = callPackage ../development/tools/fusee-launcher { };
 
   fwknop = callPackage ../tools/security/fwknop { };
@@ -3238,6 +3242,8 @@ in
   habitat = callPackage ../applications/networking/cluster/habitat { };
 
   hardlink = callPackage ../tools/system/hardlink { };
+
+  hashcash = callPackage ../tools/security/hashcash { };
 
   hashcat = callPackage ../tools/security/hashcat { };
 
@@ -6011,6 +6017,8 @@ in
   vobcopy = callPackage ../tools/cd-dvd/vobcopy { };
 
   vobsub2srt = callPackage ../tools/cd-dvd/vobsub2srt { };
+
+  void = callPackage ../tools/misc/void { };
 
   volume_key = callPackage ../development/libraries/volume-key { };
 
