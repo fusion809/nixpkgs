@@ -23,7 +23,7 @@ in stdenv.mkDerivation rec {
       owner = "cookgreen";
       repo = "yr";
       rev = "b9cc14fc2f7846039a26e271f53236b9ebd957df";
-      sha256 = "1q5jbkpyhz1p0n7w0v8g6l8p3xcbnmcn0hvf3wxxs48n6fjyw694";
+      sha256 = "1hc9a0jhpivyv49np4a8vqxha93f0zm31s0sqv55jwk6wry664yr";
       name = "yr";
     })
     (fetchFromGitHub {
