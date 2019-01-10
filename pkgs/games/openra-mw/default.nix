@@ -11,7 +11,7 @@ with stdenv.lib;
 let
   pname = "openra-mw";
   version = "239";
-  engine-version = "MedievalWarfareEngine";
+  engine-version = "7e153c8881491b2301e4f0325b56c3ff7749194d";
   path = makeBinPath ([ mono python ] ++ optional (zenity != null) zenity);
   rpath = makeLibraryPath [ lua openal SDL2 ];
 
