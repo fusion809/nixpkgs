@@ -10,7 +10,7 @@ with stdenv.lib;
 
 let
   pname = "openra-dr";
-  version = "244";
+  version = "245";
   engine-version = "DarkReign";
   path = makeBinPath ([ mono python ] ++ optional (zenity != null) zenity);
   rpath = makeLibraryPath [ lua openal SDL2 ];
@@ -22,15 +22,15 @@ in stdenv.mkDerivation rec {
     (fetchFromGitHub {
       owner = "drogoganor";
       repo = "DarkReign";
-      rev = "e21db398f4d995c91b9e1a0f31ffaa7d54f43742";
-      sha256 = "1gzvdf6idmx0rr8afaxd9dsbnxljif2kic6znkd9vcrwnqmp1fjr";
+      rev = "ddeab8347853428d2be71ef1df250c4cbc6bfb51";
+      sha256 = "1ibsnim9ws8iq5qqxvkzch28lw1pz2gsi0sdf0hpff9vc0039wcb";
       name = "DarkReign";
     })
     (fetchFromGitHub {
       owner = "drogoganor";
       repo = "OpenRA" ;
       rev = engine-version;
-      sha256 = "0x7k96j3q16dgay4jjlyv9kcgn4sc4v9ksw6ijnjws7q1r2rjs0m";
+      sha256 = "1q402s8jgpgc7rhsxlrrj0zd8s40jn1facq80zirazh0ydl648hr";
       name = "engine";
 
       extraPostFetch = ''

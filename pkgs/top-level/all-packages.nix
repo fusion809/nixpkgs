@@ -4580,6 +4580,8 @@ in
 
   ola = callPackage ../applications/misc/ola { };
 
+  omping = callPackage ../applications/networking/omping { };
+
   onioncircuits = callPackage ../tools/security/onioncircuits {
     inherit (gnome3) defaultIconTheme;
   };
@@ -5911,6 +5913,8 @@ in
 
   ua = callPackage ../tools/networking/ua { };
 
+  ubridge = callPackage ../tools/networking/ubridge { };
+
   ucl = callPackage ../development/libraries/ucl { };
 
   ucspi-tcp = callPackage ../tools/networking/ucspi-tcp { };
@@ -6714,7 +6718,7 @@ in
 
   eql = callPackage ../development/compilers/eql {};
 
-  elm2nix = haskell.lib.justStaticExecutables (haskellPackages.callPackage ../development/tools/elm2nix {});
+  elm2nix = haskell.lib.justStaticExecutables haskellPackages.elm2nix;
 
   elmPackages = recurseIntoAttrs (callPackage ../development/compilers/elm { });
 
@@ -9044,7 +9048,7 @@ in
   selendroid = callPackage ../development/tools/selenium/selendroid { };
 
   sconsPackages = callPackage ../development/tools/build-managers/scons { };
-  scons = sconsPackages.scons_3_0_2;
+  scons = sconsPackages.scons_3_0_3;
   scons_2_5_1 = sconsPackages.scons_2_5_1;
 
   mill = callPackage ../development/tools/build-managers/mill { };
@@ -20816,7 +20820,9 @@ in
 
   openmw-tes3mp = libsForQt5.callPackage ../games/openmw/tes3mp.nix { };
 
-  openra = callPackage ../games/openra { lua = lua5_1; };
+  openraPackages = import ../games/openra pkgs;
+
+  openra = openraPackages.engines.release;
 
   openra-ura = callPackage ../games/openra-ura { lua = lua5_1; };
 
@@ -21450,6 +21456,8 @@ in
   bedtools = callPackage ../applications/science/biology/bedtools { };
 
   bcftools = callPackage ../applications/science/biology/bcftools { };
+
+  bftools = callPackage ../applications/science/biology/bftools { };
 
   conglomerate = callPackage ../applications/science/biology/conglomerate { };
 
