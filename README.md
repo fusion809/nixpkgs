@@ -1,9 +1,11 @@
 # fusion809 Nixpkgs fork
-This repository contains the upstream Nixpkgs packages, along with some of my own. 
+This repository contains the upstream Nixpkgs packages, along with some others created (and I generally modify a little, usually package versions) and with some of my own. 
 
 ## Changes
 
 * The version of Vim is kept at the latest version, with updates within a day of the upstream release.
+
+* RuneScape's NXT Client ([`runescape-launcher`](pkgs/games/runescape-launcher)), based on NixOS/nixpkgs#31075. 
 
 * The version of OpenRA is bleeding-edge, with me keeping it at the latest commit and updating within a day of the upstream release. I also added the experimental Tiberian Sun mod to it.
 
