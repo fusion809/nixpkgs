@@ -20840,6 +20840,8 @@ in
 
   openra-raclassic = callPackage ../games/openra-raclassic { lua = lua5_1; };
 
+  runescape-launcher = callPackage ../games/runescape-launcher { };
+
   openrw = callPackage ../games/openrw { };
 
   openspades = callPackage ../games/openspades {
