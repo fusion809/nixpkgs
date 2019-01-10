@@ -22,5 +22,6 @@ buildFHSUserEnv rec {
     zlib
     glew110
     mesa
+    libGL
   ];
 }
