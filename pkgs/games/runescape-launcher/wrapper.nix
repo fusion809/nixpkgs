@@ -23,5 +23,6 @@ buildFHSUserEnv rec {
     glew110
     mesa
     libGL
+    xdg_utils
   ];
 }
