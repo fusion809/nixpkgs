@@ -183,7 +183,7 @@ in {
     '';
   };
 
-  raclassic = buildOpenRAMod {
+  raclassic = unsafeBuildOpenRAMod {
     version = "179";
     title = "Red Alert Classic";
     description = "A modernization of the original Command & Conquer: Red Alert game";
