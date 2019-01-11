@@ -131,7 +131,7 @@ in {
     };
   };
 
-  mw = buildOpenRAMod rec {
+  mw = unsafeBuildOpenRAMod rec {
     version = "239";
     title = "Medieval Warfare";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
