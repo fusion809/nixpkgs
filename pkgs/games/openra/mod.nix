@@ -91,7 +91,7 @@ in stdenv.mkDerivation (recursiveUpdate packageAttrs rec {
     }
     cp "$mod_icon" $(mkdirp $out/share/pixmaps)/${pname}.png
 
-    if ! ( [[ ${mod.name} == "d2" ]] || [[ ${mod.name} == "ss" ]] || [[ ${mod.name} == "mw" ]] ); then
+    if ! ( [[ ${mod.name} == "d2" ]] || [[ ${mod.name} == "ss" ]] || [[ ${mod.name} == "mw" ]] || [[ ${mod.name} == "yr" ]]); then
       for size in 16 32 48 64 128 256; do
         size=''${size}x''${size}
         cp packaging/linux/mod_''${size}.png $(mkdirp $out/share/icons/hicolor/''${size}/apps)/${pname}.png
