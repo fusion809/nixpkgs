@@ -81,7 +81,8 @@ in stdenv.mkDerivation (recursiveUpdate packageAttrs rec {
 
     substitute ${./openra-mod.desktop} $(mkdirp $out/share/applications)/${pname}.desktop \
       --subst-var-by name ${escapeShellArg mod.name} \
-      --subst-var-by title ${escapeShellArg mod.title}
+      --subst-var-by title ${escapeShellArg mod.title} \
+      --subst-var-by description ${escapeShellArg mod.description}
 
     cp README.md $(mkdirp $out/share/doc/packages/${pname})/README.md
 
