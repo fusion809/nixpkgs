@@ -60,15 +60,15 @@ in {
   };
 
   dr = buildOpenRAMod rec {
-    version = "244";
+    version = "245";
     title = "Dark Reign";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/drogoganor/DarkReign;
     src = fetchFromGitHub {
       owner = "drogoganor";
       repo = "DarkReign";
-      rev = "e21db398f4d995c91b9e1a0f31ffaa7d54f43742";
-      sha256 = "1gzvdf6idmx0rr8afaxd9dsbnxljif2kic6znkd9vcrwnqmp1fjr";
+      rev = "ddeab8347853428d2be71ef1df250c4cbc6bfb51";
+      sha256 = "1ibsnim9ws8iq5qqxvkzch28lw1pz2gsi0sdf0hpff9vc0039wcb";
     };
     engine = let commit = "7fcfb1dcb2bd472fa6680ffa37bd3bbedb2c44c5"; in {
       version = abbrevCommit commit;
@@ -108,14 +108,14 @@ in {
   };
 
   kknd = buildOpenRAMod rec {
-    version = "142";
+    version = "143";
     title = "Krush, Kill 'n' Destroy";
     description = "Re-imagination of the original ${title} game";
     homepage = https://kknd-game.com/;
     src = fetchFromGitHub {
       owner = "IceReaper";
       repo = "KKnD";
-      rev = "54d34292168d5c47529688c8d5ca7693c4001ef3";
+      rev = "5530babcb05170e0959e4cf2b079161e9fedde4f";
       sha256 = "1rsdig282cfr8b4iamr9ri6sshgppp8gllfyib6c2hvqqr301720";
     };
     engine = let commit = "4e8eab4ca00d1910203c8a103dfd2c002714daa8"; in {
@@ -132,15 +132,15 @@ in {
   };
 
   mw = buildOpenRAMod rec {
-    version = "235";
+    version = "239";
     title = "Medieval Warfare";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/CombinE88/Medieval-Warfare;
     src = fetchFromGitHub {
       owner = "CombinE88";
       repo = "Medieval-Warfare";
-      rev = "1e4fc7ea24d0806c5a7cd753490e967d804a3567";
-      sha256 = "0swa66mzb6wr8vf1yivrss54dl98jzzwh9b8qrjfwmfrq2i356iq";
+      rev = "33304665e0e2225145f8e413d552c1e29aa38156";
+      sha256 = "0jhw958y86n8y7w5hvgkmd6rx1k3mp75897i2408jymy0lpx2h3k";
     };
     engine = let commit = "9f9617aa359ebc1923252b7a4a79def73ecfa8a2"; in {
       version = abbrevCommit commit;
@@ -156,15 +156,15 @@ in {
   };
 
   ra2 = buildOpenRAMod rec {
-    version = "876";
+    version = "880";
     title = "Red Alert 2";
     description = "Re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/OpenRA/ra2;
     src = fetchFromGitHub {
       owner = "OpenRA";
       repo = "ra2";
-      rev = "6a864b2a5887ae42291768fb3dec73082fee44ee";
-      sha256 = "19m4z9r00dj67746ps2f9a8i1icq8nm0iiww6dl975yl6gaxp5qy";
+      rev = "e5555ecd5734da249a19306d6671d6461e8ee04e";
+      sha256 = "1r6377x0l9gbkr5zjm74r34kz9yjn5sz9ikznhjkd1qx49h0qlsr";
     };
     engine = rec {
       version = "20180923";
@@ -184,15 +184,15 @@ in {
   };
 
   raclassic = buildOpenRAMod {
-    version = "171";
+    version = "179";
     title = "Red Alert Classic";
     description = "A modernization of the original Command & Conquer: Red Alert game";
     homepage = https://github.com/OpenRA/raclassic;
     src = fetchFromGitHub {
       owner = "OpenRA";
       repo = "raclassic";
-      rev = "a2319b3dfb367a8d4278bf7baf55a10abf615fbc";
-      sha256 = "1k67fx4d9hg8mckzp7pp8lxa6ngqxnnrnbqyfls99dqc4df1iw0a";
+      rev = "95f557b229d07021a9136fab2857dec35ce7ca72";
+      sha256 = "0xiymbgw2rjkagqfmrzsc8lb8a67d99jl3198f54k7m4g8831alm";
     };
     engine = rec {
       version = "20181215";
@@ -262,23 +262,23 @@ in {
   };
 
   ss = buildOpenRAMod rec {
-    version = "72";
+    version = "76";
     title = "Sole Survivor";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/MustaphaTR/sole-survivor;
     src = fetchFromGitHub {
       owner = "MustaphaTR";
       repo = "sole-survivor";
-      rev = "fad65579c8b487cef9a8145e872390ed77c16c69";
-      sha256 = "0h7is7x2qyvq7vqp0jgw5zrdkw8g7ndd82d843ldhnb0a3vyrk34";
+      rev = "d39461a69a544106416e9c80c57c0f4c635842db";
+      sha256 = "1fl807avg6j5v2abjcg01s35ycbkglv42mr022mx1qzywwx6qz9p";
     };
-    engine = let commit = "becfc154c5cd3891d695339ff86883db8b5790a5"; in {
+    engine = let commit = "b1e87e4f60175cf753697d890c0a299c202e65cf"; in {
       version = abbrevCommit commit;
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
         rev = commit;
-        sha256 = "0id8vf3cjr7h5pz4sw8pdaz3sc45lxr21k1fk4309kixsrpa7i0y";
+        sha256 = "1wwrmhkppdrq5wyjrzjdrmfg9qi49z02r21iqc2cxlcr98wj4ka2";
         name = "engine";
         inherit extraPostFetch;
       };
