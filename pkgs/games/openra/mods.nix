@@ -17,7 +17,7 @@ in {
       rev = "16fb77d037be7005c3805382712c33cec1a2788c";
       sha256 = "11fjyr3692cy2a09bqzk5ya1hf6plh8hmdrgzds581r9xbj0q4pr";
     };
-    engine = let commit = "b8a7dd52ff893ed8225726d4ed4e14ecad748404"; in {
+    engine = let commit = "b8a7dd5"; in {
       version = abbrevCommit commit;
       src = fetchFromGitHub {
         owner = "Inq8";
@@ -31,15 +31,15 @@ in {
   };
 
   d2 = unsafeBuildOpenRAMod rec {
-    version = "128";
+    version = "134";
     title = "Dune II";
     description = "A modernization of the original ${title} game";
     homepage = https://github.com/OpenRA/d2;
     src = fetchFromGitHub {
       owner = "OpenRA";
       repo = "d2";
-      rev = "bc969207b532a2def69e0d6ac09a4e8fb5d4e946";
-      sha256 = "18v154kf1fmfk2gnymb3ggsfy73ql8rr7jvbhiw60yhzwx89cdk8";
+      rev = "69a4aa708e2c26376469c0048fac13592aa452ca";
+      sha256 = "1mfch4s6c05slyqvxllklbxpqq8dqcbx3515n3gyylyq43gq481r";
     };
     engine = rec {
       version = "20181215";
@@ -208,15 +208,15 @@ in {
   };
 
   rv = unsafeBuildOpenRAMod {
-    version = "1294";
+    version = "1297";
     title = "Romanov's Vengeance";
     description = "Re-imagination of the original Command & Conquer: Red Alert 2 game";
     homepage = https://github.com/MustaphaTR/Romanovs-Vengeance;
     src = fetchFromGitHub {
       owner = "MustaphaTR";
       repo = "Romanovs-Vengeance";
-      rev = "c21cb11579d7e12354c5ccb5c3c47e567c6b3d4f";
-      sha256 = "1vmc5b9awx8q0mahwv11fzgplw9w7m8kzvnx5cl7xr1w5wk87428";
+      rev = "40d92790d89e59f3a0ecef36c2686fb76ae2f3be";
+      sha256 = "043dlv18zjl5m9kgmd1swfs16pwcj3ip01gd82x2wpb2w8h5vwwx";
     };
     engine = let commit = "e9e99074b294c32fbe88dd8727581cb8c512c2e2"; in {
       version = abbrevCommit commit;
