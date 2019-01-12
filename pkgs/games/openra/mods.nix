@@ -184,15 +184,15 @@ in {
   };
 
   raclassic = buildOpenRAMod {
-    version = "179";
+    version = "180";
     title = "Red Alert Classic";
     description = "A modernization of the original Command & Conquer: Red Alert game";
     homepage = https://github.com/OpenRA/raclassic;
     src = fetchFromGitHub {
       owner = "OpenRA";
       repo = "raclassic";
-      rev = "95f557b229d07021a9136fab2857dec35ce7ca72";
-      sha256 = "0xiymbgw2rjkagqfmrzsc8lb8a67d99jl3198f54k7m4g8831alm";
+      rev = "675bcee68fbaf1cad32e1cf63f984ef0fd11ab92";
+      sha256 = "0sljsjjcd7fbw3c3ffhxqihhsff7z30452x8v395h1bkbxj1fbzl";
     };
     engine = rec {
       version = "20190106";
@@ -208,15 +208,15 @@ in {
   };
 
   rv = unsafeBuildOpenRAMod {
-    version = "1305";
+    version = "1308";
     title = "Romanov's Vengeance";
     description = "Re-imagination of the original Command & Conquer: Red Alert 2 game";
     homepage = https://github.com/MustaphaTR/Romanovs-Vengeance;
     src = fetchFromGitHub {
       owner = "MustaphaTR";
       repo = "Romanovs-Vengeance";
-      rev = "31097e25369d8b17c1a71609b1996d512e5919a1";
-      sha256 = "1ppqyhaybzy8q50wbf7kgyxsw3i4rlk18zckxm775xfw5ilprijd";
+      rev = "30a50b1e9efbd8cae907863843bbdd27ec60c2af";
+      sha256 = "1nx14n3z5jc5jmwkmkv0q3c3ikakln8irp3klx64fhy8ca2njzx9";
     };
     engine = let commit = "e9e99074b294c32fbe88dd8727581cb8c512c2e2"; in {
       version = abbrevCommit commit;
@@ -262,23 +262,23 @@ in {
   };
 
   ss = buildOpenRAMod rec {
-    version = "76";
+    version = "77";
     title = "Sole Survivor";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/MustaphaTR/sole-survivor;
     src = fetchFromGitHub {
       owner = "MustaphaTR";
       repo = "sole-survivor";
-      rev = "d39461a69a544106416e9c80c57c0f4c635842db";
-      sha256 = "1fl807avg6j5v2abjcg01s35ycbkglv42mr022mx1qzywwx6qz9p";
+      rev = "23e1f3e5d8b98c936797b6680d95d56a69a9e2ab";
+      sha256 = "104clmxphchs7r8y7hpmw103bychayz80bqj98bp89i64nv9d89x";
     };
-    engine = let commit = "b1e87e4f60175cf753697d890c0a299c202e65cf"; in {
+    engine = let commit = "6de92de"; in {
       version = abbrevCommit commit;
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
         rev = commit;
-        sha256 = "1wwrmhkppdrq5wyjrzjdrmfg9qi49z02r21iqc2cxlcr98wj4ka2";
+        sha256 = "0ps9x379plrrj1hnj4fpr26lc46mzgxknv5imxi0bmrh5y4781ql";
         name = "engine";
         inherit extraPostFetch;
       };
