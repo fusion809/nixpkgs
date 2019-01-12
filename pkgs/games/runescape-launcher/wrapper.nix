@@ -24,5 +24,6 @@ buildFHSUserEnv rec {
     mesa
     libGL
     xdg_utils
+    kde-cli-tools
   ];
 }

@@ -18,7 +18,7 @@ stdenv.mkDerivation rec {
   installPhase = ''
     cp -r . $out
     substituteInPlace $out/bin/runescape-launcher --replace /usr/share $out/share
-    substituteInPlace $out/share/applications/runescape-launcher --replace /usr/bin $out/bin    
+    substituteInPlace $out/share/applications/runescape-launcher.desktop --replace /usr/bin $out/bin    
   '';
 
   meta = with stdenv.lib; {
