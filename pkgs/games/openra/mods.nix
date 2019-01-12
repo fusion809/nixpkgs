@@ -183,7 +183,7 @@ in {
     '';
   };
 
-  raclassic = unsafeBuildOpenRAMod {
+  raclassic = buildOpenRAMod {
     version = "179";
     title = "Red Alert Classic";
     description = "A modernization of the original Command & Conquer: Red Alert game";
@@ -195,12 +195,12 @@ in {
       sha256 = "0xiymbgw2rjkagqfmrzsc8lb8a67d99jl3198f54k7m4g8831alm";
     };
     engine = rec {
-      version = "20181215";
+      version = "20190106";
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
-        rev = "release-${version}";
-        sha256 = "0p0izykjnz7pz02g2khp7msqa00jhjsrzk9y0g29dirmdv75qa4r";
+        rev = "playtest-${version}";
+        sha256 = "0ps9x379plrrj1hnj4fpr26lc46mzgxknv5imxi0bmrh5y4781ql";
         name = "engine";
         inherit extraPostFetch;
       };
@@ -208,15 +208,15 @@ in {
   };
 
   rv = unsafeBuildOpenRAMod {
-    version = "1297";
+    version = "1305";
     title = "Romanov's Vengeance";
     description = "Re-imagination of the original Command & Conquer: Red Alert 2 game";
     homepage = https://github.com/MustaphaTR/Romanovs-Vengeance;
     src = fetchFromGitHub {
       owner = "MustaphaTR";
       repo = "Romanovs-Vengeance";
-      rev = "40d92790d89e59f3a0ecef36c2686fb76ae2f3be";
-      sha256 = "043dlv18zjl5m9kgmd1swfs16pwcj3ip01gd82x2wpb2w8h5vwwx";
+      rev = "31097e25369d8b17c1a71609b1996d512e5919a1";
+      sha256 = "1ppqyhaybzy8q50wbf7kgyxsw3i4rlk18zckxm775xfw5ilprijd";
     };
     engine = let commit = "e9e99074b294c32fbe88dd8727581cb8c512c2e2"; in {
       version = abbrevCommit commit;
@@ -237,15 +237,15 @@ in {
   };
 
   sp = unsafeBuildOpenRAMod {
-    version = "157";
+    version = "159";
     title = "Shattered Paradise";
     description = "Re-imagination of the original Command & Conquer: Tiberian Sun game";
     homepage = https://github.com/ABrandau/OpenRAModSDK;
     src = fetchFromGitHub {
       owner = "ABrandau";
       repo = "OpenRAModSDK";
-      rev = "e8eca73615f8541f792d5398c567e9994065758a";
-      sha256 = "05r5d5kr71ir8s3ryvyraqzcbckv95c0mz1iidhrnx92xjv8l64c";
+      rev = "d2e4ea26c6f069a06e56e37bd36e98737a36f560";
+      sha256 = "1rzmg0x9r9bclnla7klpdp3c4a51kmfhhbd45cfsnhkwgqin9f8g";
     };
     engine = let commit = "82a2f234bdf3b768cea06408e3de30f9fbbe9412"; in {
       version = abbrevCommit commit;
