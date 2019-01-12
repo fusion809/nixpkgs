@@ -1007,7 +1007,9 @@ in
 
   blockdiag = with python3Packages; toPythonApplication blockdiag;
 
-  blsd = callPackage ../tools/misc/blsd { };
+  blsd = callPackage ../tools/misc/blsd {
+    libgit2 = libgit2_0_27;
+  };
 
   bluez-alsa = callPackage ../tools/bluetooth/bluez-alsa { };
 
@@ -1167,6 +1169,8 @@ in
                           };
 
   cfdyndns = callPackage ../applications/networking/dyndns/cfdyndns { };
+
+  cht-sh = callPackage ../tools/misc/cht.sh { };
 
   ckbcomp = callPackage ../tools/X11/ckbcomp { };
 
@@ -6668,7 +6672,10 @@ in
   clang-sierraHack-stdenv = overrideCC stdenv clang-sierraHack;
   libcxxStdenv = if stdenv.isDarwin then stdenv else lowPrio llvmPackages.libcxxStdenv;
 
-  clasp-common-lisp = callPackage ../development/compilers/clasp {};
+  clasp-common-lisp = callPackage ../development/compilers/clasp {
+    llvmPackages = llvmPackages_6;
+    stdenv = llvmPackages_6.stdenv;
+  };
 
   clean = callPackage ../development/compilers/clean { };
 
@@ -7012,7 +7019,8 @@ in
   };
   gcc-arm-embedded-6 = callPackage ../development/compilers/gcc-arm-embedded/6 {};
   gcc-arm-embedded-7 = callPackage ../development/compilers/gcc-arm-embedded/7 {};
-  gcc-arm-embedded = gcc-arm-embedded-7;
+  gcc-arm-embedded-8 = callPackage ../development/compilers/gcc-arm-embedded/8 {};
+  gcc-arm-embedded = gcc-arm-embedded-8;
 
   gforth = callPackage ../development/compilers/gforth {};
 
@@ -9915,6 +9923,10 @@ in
   icon-lang = callPackage ../development/interpreters/icon-lang { };
 
   libgit2 = callPackage ../development/libraries/git2 {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
+
+  libgit2_0_27 = callPackage ../development/libraries/git2/0.27.nix {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
@@ -22087,10 +22099,12 @@ in
   ns-3 = callPackage ../development/libraries/science/networking/ns3 { };
 
   root = callPackage ../applications/science/misc/root {
+    inherit (darwin) cf-private;
     inherit (darwin.apple_sdk.frameworks) Cocoa OpenGL;
   };
 
   root5 = lowPrio (callPackage ../applications/science/misc/root/5.nix {
+    inherit (darwin) cf-private;
     inherit (darwin.apple_sdk.frameworks) Cocoa OpenGL;
   });
 
