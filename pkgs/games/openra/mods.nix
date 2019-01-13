@@ -142,13 +142,13 @@ in {
       rev = "f8c5a7b9730a0221ec445680321c8db51b64f7da";
       sha256 = "013vq0pkfz6i64kj2akd1dn9ijxdvrykjngaz33jjrjhjj5w6lsb";
     };
-    engine = let commit = "9f9617aa359ebc1923252b7a4a79def73ecfa8a2"; in {
+    engine = let commit = "6d3cf55416ad549947c452d1bf15abcba4663462"; in {
       version = abbrevCommit commit;
       src = fetchFromGitHub {
         owner = "CombinE88";
         repo = "OpenRA" ;
         rev = commit;
-        sha256 = "02h29xnc1cb5zr001cnmaww5qnfnfaza4v28251jgzkby593r32q";
+        sha256 = "1h0ic5112434zzd8ln07n45n63ms13p9ihl55gm963sy65y1h1k3";
         name = "engine";
         inherit extraPostFetch;
       };
