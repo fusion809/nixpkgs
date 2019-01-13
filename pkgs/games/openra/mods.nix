@@ -140,7 +140,7 @@ in {
       owner = "CombinE88";
       repo = "Medieval-Warfare";
       rev = "f8c5a7b9730a0221ec445680321c8db51b64f7da";
-      sha256 = "";
+      sha256 = "013vq0pkfz6i64kj2akd1dn9ijxdvrykjngaz33jjrjhjj5w6lsb";
     };
     engine = let commit = "9f9617aa359ebc1923252b7a4a79def73ecfa8a2"; in {
       version = abbrevCommit commit;
@@ -148,7 +148,7 @@ in {
         owner = "CombinE88";
         repo = "OpenRA" ;
         rev = commit;
-        sha256 = "";
+        sha256 = "02h29xnc1cb5zr001cnmaww5qnfnfaza4v28251jgzkby593r32q";
         name = "engine";
         inherit extraPostFetch;
       };
