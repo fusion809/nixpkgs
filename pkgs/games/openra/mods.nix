@@ -184,14 +184,14 @@ in {
   };
 
   raclassic = buildOpenRAMod {
-    version = "180";
+    version = "181";
     title = "Red Alert Classic";
     description = "A modernization of the original Command & Conquer: Red Alert game";
     homepage = https://github.com/OpenRA/raclassic;
     src = fetchFromGitHub {
       owner = "OpenRA";
       repo = "raclassic";
-      rev = "675bcee68fbaf1cad32e1cf63f984ef0fd11ab92";
+      rev = "8240890b32191ce34241c22158b8a79e8c380879";
       sha256 = "0sljsjjcd7fbw3c3ffhxqihhsff7z30452x8v395h1bkbxj1fbzl";
     };
     engine = rec {
