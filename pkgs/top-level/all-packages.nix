@@ -3485,6 +3485,8 @@ in
 
   invoice2data  = callPackage ../tools/text/invoice2data  { };
 
+  inxi = callPackage ../tools/system/inxi { };
+
   iodine = callPackage ../tools/networking/iodine { };
 
   ioping = callPackage ../tools/system/ioping { };
@@ -4710,7 +4712,9 @@ in
 
   pagmo2 = callPackage ../development/libraries/pagmo2 { };
 
-  pakcs = callPackage ../development/compilers/pakcs {};
+  pakcs = callPackage ../development/compilers/pakcs {
+    haskellPackages = haskell.packages.ghc844;
+  };
 
   pal = callPackage ../tools/misc/pal { };
 
@@ -6811,7 +6815,7 @@ in
   # built with, and use, that cross-compiled libc.
   gccCrossStageStatic = assert stdenv.targetPlatform != stdenv.hostPlatform; let
     libcCross1 =
-      if stdenv.targetPlatform.libc == "msvcrt" then targetPackages.windows.mingw_w64_headers
+      if stdenv.targetPlatform.libc == "msvcrt" then windows.mingw_w64_headers
       else if stdenv.targetPlatform.libc == "libSystem" then darwin.xcode
       else null;
     binutils1 = wrapBintoolsWith {
@@ -21247,6 +21251,7 @@ in
     clipboard-indicator = callPackage ../desktops/gnome-3/extensions/clipboard-indicator { };
     dash-to-dock = callPackage ../desktops/gnome-3/extensions/dash-to-dock { };
     dash-to-panel = callPackage ../desktops/gnome-3/extensions/dash-to-panel { };
+    gsconnect = callPackage ../desktops/gnome-3/extensions/gsconnect { };
     icon-hider = callPackage ../desktops/gnome-3/extensions/icon-hider { };
     impatience = callPackage ../desktops/gnome-3/extensions/impatience.nix { };
     mediaplayer = callPackage ../desktops/gnome-3/extensions/mediaplayer { };
