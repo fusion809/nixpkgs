@@ -42,12 +42,12 @@ in {
       sha256 = "1mfch4s6c05slyqvxllklbxpqq8dqcbx3515n3gyylyq43gq481r";
     };
     engine = rec {
-      version = "20181215";
+      version = "release-20181215";
       mods = [ "cnc" "d2k" "ra" ];
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
-        rev = "release-${version}";
+        rev = "${version}";
         sha256 = "0p0izykjnz7pz02g2khp7msqa00jhjsrzk9y0g29dirmdv75qa4r";
         name = "engine";
         inherit extraPostFetch;
@@ -132,14 +132,14 @@ in {
   };
 
   mw = unsafeBuildOpenRAMod rec {
-    version = "247";
+    version = "248";
     title = "Medieval Warfare";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/CombinE88/Medieval-Warfare;
     src = fetchFromGitHub {
       owner = "CombinE88";
       repo = "Medieval-Warfare";
-      rev = "f8c5a7b9730a0221ec445680321c8db51b64f7da";
+      rev = "9a1bffd5d18632bc8959ceb0ca02af3d80853f0a";
       sha256 = "013vq0pkfz6i64kj2akd1dn9ijxdvrykjngaz33jjrjhjj5w6lsb";
     };
     engine = let commit = "6d3cf55416ad549947c452d1bf15abcba4663462"; in {
@@ -167,11 +167,11 @@ in {
       sha256 = "1r6377x0l9gbkr5zjm74r34kz9yjn5sz9ikznhjkd1qx49h0qlsr";
     };
     engine = rec {
-      version = "20180923";
+      version = "release-20180923";
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
-        rev = "release-${version}";
+        rev = "${version}";
         sha256 = "1pgi3zaq9fwwdq6yh19bwxscslqgabjxkvl9bcn1a5agy4bfbqk5";
         name = "engine";
         inherit extraPostFetch;
@@ -195,11 +195,11 @@ in {
       sha256 = "0sljsjjcd7fbw3c3ffhxqihhsff7z30452x8v395h1bkbxj1fbzl";
     };
     engine = rec {
-      version = "20190106";
+      version = "playtest-20190106";
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
-        rev = "playtest-${version}";
+        rev = "${version}";
         sha256 = "0ps9x379plrrj1hnj4fpr26lc46mzgxknv5imxi0bmrh5y4781ql";
         name = "engine";
         inherit extraPostFetch;
@@ -321,11 +321,11 @@ in {
       sha256 = "1rd962ja1x72rz68kbmp19yiip3iif50hzlj3v8k1f5l94r2x2pn";
     };
     engine = rec {
-      version = "20180923";
+      version = "release-20180923";
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
-        rev = "release-${version}";
+        rev = "${version}";
         sha256 = "1pgi3zaq9fwwdq6yh19bwxscslqgabjxkvl9bcn1a5agy4bfbqk5";
         name = "engine";
         inherit extraPostFetch;
