@@ -3579,7 +3579,7 @@
   };
   psyanticy = {
     email = "iuns@outlook.fr";
-    github = "Assassinkin";
+    github = "PsyanticY";
     name = "Psyanticy";
   };
   puffnfresh = {
@@ -3929,6 +3929,11 @@
     email = "s@uyon.co";
     github = "sauyon";
     name = "Sauyon Lee";
+  };
+  sb0 = {
+    email = "sb@m-labs.hk";
+    github = "sbourdeauducq";
+    name = "Sébastien Bourdeauducq";
   };
   sboosali = {
     email = "SamBoosalis@gmail.com";
