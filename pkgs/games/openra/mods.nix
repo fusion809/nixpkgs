@@ -216,7 +216,7 @@ in {
       owner = "MustaphaTR";
       repo = "Romanovs-Vengeance";
       rev = "2b4e8ba1d0a8e3ba8bd0872c594f276196df3197";
-      sha256 = "1nx14n3z5jc5jmwkmkv0q3c3ikakln8irp3klx64fhy8ca2njzx9";
+      sha256 = "09gffq663x5c5hml2f0rax77pzbs6nb5f9saqxi8c8n5qlr99yzf";
     };
     engine = let commit = "e9e9907"; in {
       version = abbrevCommit commit;
