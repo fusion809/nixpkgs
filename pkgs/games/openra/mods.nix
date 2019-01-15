@@ -208,17 +208,17 @@ in {
   };
 
   rv = unsafeBuildOpenRAMod {
-    version = "1308";
+    version = "1312";
     title = "Romanov's Vengeance";
     description = "Re-imagination of the original Command & Conquer: Red Alert 2 game";
     homepage = https://github.com/MustaphaTR/Romanovs-Vengeance;
     src = fetchFromGitHub {
       owner = "MustaphaTR";
       repo = "Romanovs-Vengeance";
-      rev = "30a50b1e9efbd8cae907863843bbdd27ec60c2af";
+      rev = "2b4e8ba1d0a8e3ba8bd0872c594f276196df3197";
       sha256 = "1nx14n3z5jc5jmwkmkv0q3c3ikakln8irp3klx64fhy8ca2njzx9";
     };
-    engine = let commit = "e9e99074b294c32fbe88dd8727581cb8c512c2e2"; in {
+    engine = let commit = "e9e9907"; in {
       version = abbrevCommit commit;
       mods = [ "as" ];
       src = fetchFromGitHub {
@@ -237,24 +237,24 @@ in {
   };
 
   sp = unsafeBuildOpenRAMod {
-    version = "161";
+    version = "162";
     title = "Shattered Paradise";
     description = "Re-imagination of the original Command & Conquer: Tiberian Sun game";
     homepage = https://github.com/ABrandau/OpenRAModSDK;
     src = fetchFromGitHub {
       owner = "ABrandau";
       repo = "OpenRAModSDK";
-      rev = "c7070e1bae5ff64ab02730cd91e87dcbd873207f";
-      sha256 = "1cgyabaz35nxfd075n2xw51pn2l6mgac7d4z8syj8hjwjj0m7521";
+      rev = "e94314ef38ad32a6b3315098f4e13fb07cb06e56";
+      sha256 = "0064cq4qchmxqdj39n1sklfbm5n4fwknnj78jrddx4k7i021l4rb";
     };
-    engine = let commit = "82a2f234bdf3b768cea06408e3de30f9fbbe9412"; in {
+    engine = let commit = "cfb9bfaa70b218bb195fba5c92ce925c58432ba1"; in {
       version = abbrevCommit commit;
       mods = [ "as" "ts" ];
       src = fetchFromGitHub {
         owner = "ABrandau";
         repo = "OpenRA" ;
         rev = commit;
-        sha256 = "1nl3brvx1bikxm5rmpc7xmd32n722jiyjh86pnar6b6idr1zj2ws";
+        sha256 = "0zdx5b3x295a266m74b48ia9r6y4j3biwcdpdj145snmvak1501n";
         name = "engine";
         inherit extraPostFetch;
       };
