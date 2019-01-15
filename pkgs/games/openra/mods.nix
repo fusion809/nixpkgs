@@ -148,7 +148,7 @@ in {
         owner = "CombinE88";
         repo = "OpenRA" ;
         rev = commit;
-        sha256 = "1rmxkrla8lhvjzi4mw6xfmvnx7xw2x4xrpps10y0zsmv61lpq69i";
+        sha256 = "1h0ic5112434zzd8ln07n45n63ms13p9ihl55gm963sy65y1h1k3";
         name = "engine";
         inherit extraPostFetch;
       };
