@@ -1382,7 +1382,7 @@ in
 
   esptool-ck = callPackage ../tools/misc/esptool-ck { };
 
-  ephemeralpg = callPackage ../applications/misc/ephemeralpg {};
+  ephemeralpg = callPackage ../development/tools/database/ephemeralpg {};
 
   et = callPackage ../applications/misc/et {};
 
@@ -5814,6 +5814,8 @@ in
   toilet = callPackage ../tools/misc/toilet { };
 
   tokei = callPackage ../development/tools/misc/tokei { };
+
+  toml2nix = (callPackage ../tools/toml2nix { }).toml2nix { };
 
   tor = callPackage ../tools/security/tor {
     openssl = openssl_1_1;
@@ -11993,8 +11995,6 @@ in
 
   pg_similarity = callPackage ../servers/sql/postgresql/pg_similarity {};
 
-  pg_tmp = callPackage ../development/tools/database/pg_tmp { };
-
   pgroonga = callPackage ../servers/sql/postgresql/pgroonga {};
 
   plv8 = callPackage ../servers/sql/postgresql/plv8 {
@@ -17607,6 +17607,8 @@ in
 
   sway = callPackage ../applications/window-managers/sway { };
   sway-beta = callPackage ../applications/window-managers/sway/beta.nix { };
+  swayidle = callPackage ../applications/window-managers/sway/idle.nix { };
+  swaylock = callPackage ../applications/window-managers/sway/lock.nix { };
 
   velox = callPackage ../applications/window-managers/velox {
     stConf = config.st.conf or null;
