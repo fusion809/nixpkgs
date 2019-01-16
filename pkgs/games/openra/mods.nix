@@ -132,23 +132,23 @@ in {
   };
 
   mw = unsafeBuildOpenRAMod rec {
-    version = "250";
+    version = "251";
     title = "Medieval Warfare";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/CombinE88/Medieval-Warfare;
     src = fetchFromGitHub {
       owner = "CombinE88";
       repo = "Medieval-Warfare";
-      rev = "5bb3adf739478ff34543823771e1a1e7a50ab979";
-      sha256 = "1rmxkrla8lhvjzi4mw6xfmvnx7xw2x4xrpps10y0zsmv61lpq6i0";
+      rev = "0d9c033f628fe8798eab120c968e3cb45184740b";
+      sha256 = "0sq74rw499bdbng3j9w4v26ga666gdyq03y501jjgf327sgxcbgr";
     };
-    engine = let commit = "6d3cf55416ad549947c452d1bf15abcba4663462"; in {
+    engine = let commit = "27786854f01e6a63ccab5d49ad58f64af1b010cb"; in {
       version = abbrevCommit commit;
       src = fetchFromGitHub {
         owner = "CombinE88";
         repo = "OpenRA" ;
         rev = commit;
-        sha256 = "1h0ic5112434zzd8ln07n45n63ms13p9ihl55gm963sy65y1h1k3";
+        sha256 = "03mkh894606rzzy39g9mysnngpglq5g71k66rfydrz3vzlw9dlv1";
         name = "engine";
         inherit extraPostFetch;
       };
@@ -237,15 +237,15 @@ in {
   };
 
   sp = unsafeBuildOpenRAMod {
-    version = "162";
+    version = "163";
     title = "Shattered Paradise";
     description = "Re-imagination of the original Command & Conquer: Tiberian Sun game";
     homepage = https://github.com/ABrandau/OpenRAModSDK;
     src = fetchFromGitHub {
       owner = "ABrandau";
       repo = "OpenRAModSDK";
-      rev = "e94314ef38ad32a6b3315098f4e13fb07cb06e56";
-      sha256 = "0064cq4qchmxqdj39n1sklfbm5n4fwknnj78jrddx4k7i021l4rb";
+      rev = "b0f62f0ba81042bede1d8f67ab96d59681f6d173";
+      sha256 = "1rq6wfwb4p1x1bsvagw2k4rrrfzlvm1r4md19mb2simvfc2wzcp0";
     };
     engine = let commit = "cfb9bfaa70b218bb195fba5c92ce925c58432ba1"; in {
       version = abbrevCommit commit;
