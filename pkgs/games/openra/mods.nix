@@ -59,7 +59,7 @@ in {
     '';
   };
 
-  dr = buildOpenRAMod rec {
+  dr = unsafeBuildOpenRAMod rec {
     version = "248";
     title = "Dark Reign";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
