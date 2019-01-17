@@ -70,13 +70,13 @@ in {
       rev = "977da997c78c7289a4f0e0b566771a37a8469db5";
       sha256 = "0i6hd3ffz9lzby2yp0zrjy1jcvmnvvcb37lv73pbp5arcwlpb2cf";
     };
-    engine = let commit = "release-20181215"; in {
+    engine = let commit = "05b866a87a0eb3e1f644a13171d232c21083ad17"; in {
       version = abbrevCommit commit;
       src = fetchFromGitHub {
         owner = "drogoganor";
         repo = "OpenRA" ;
         rev = commit;
-        sha256 = "0p0izykjnz7pz02g2khp7msqa00jhjsrzk9y0g29dirmdv75qa4r";
+        sha256 = "1q402s8jgpgc7rhsxlrrj0zd8s40jn1facq80zirazh0ydl648hr";
         name = "engine";
         inherit extraPostFetch;
       };
