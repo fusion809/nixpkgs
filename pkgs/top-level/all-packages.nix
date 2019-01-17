@@ -197,6 +197,7 @@ in
 
   fetchgit = callPackage ../build-support/fetchgit {
     git = buildPackages.gitMinimal;
+    cacert = buildPackages.cacert;
   };
 
   fetchgitPrivate = callPackage ../build-support/fetchgit/private.nix { };
@@ -6523,6 +6524,11 @@ in
   any-nix-shell = callPackage ../shells/any-nix-shell { };
 
   bash = lowPrio (callPackage ../shells/bash/4.4.nix { });
+  bash_5 = lowPrio (callPackage ../shells/bash/5.0.nix { });
+  bashInteractive_5 = lowPrio (callPackage ../shells/bash/5.0.nix {
+    interactive = true;
+    withDocs = true;
+  });
 
   # WARNING: this attribute is used by nix-shell so it shouldn't be removed/renamed
   bashInteractive = callPackage ../shells/bash/4.4.nix {
@@ -7224,11 +7230,17 @@ in
 
   oraclejdk8distro = installjdk: pluginSupport:
     (if pluginSupport then appendToName "with-plugin" else x: x)
-      (callPackage ../development/compilers/oraclejdk/jdk8cpu-linux.nix { inherit installjdk pluginSupport; });
+      (callPackage ../development/compilers/oraclejdk/jdk8cpu-linux.nix {
+        inherit installjdk pluginSupport;
+        licenseAccepted = config.oraclejdk.accept_license or false;
+      });
 
   oraclejdk8psu_distro = installjdk: pluginSupport:
     (if pluginSupport then appendToName "with-plugin" else x: x)
-      (callPackage ../development/compilers/oraclejdk/jdk8psu-linux.nix { inherit installjdk pluginSupport; });
+      (callPackage ../development/compilers/oraclejdk/jdk8psu-linux.nix {
+        inherit installjdk pluginSupport;
+        licenseAccepted = config.oraclejdk.accept_license or false;
+      });
 
   javacard-devkit = pkgsi686Linux.callPackage ../development/compilers/javacard-devkit { };
 
@@ -12387,6 +12399,8 @@ in
   readline63 = callPackage ../development/libraries/readline/6.3.nix { };
 
   readline70 = callPackage ../development/libraries/readline/7.0.nix { };
+
+  readline80 = callPackage ../development/libraries/readline/8.0.nix { };
 
   readosm = callPackage ../development/libraries/readosm { };
 
