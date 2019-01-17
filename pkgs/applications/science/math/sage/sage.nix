@@ -49,7 +49,7 @@ stdenv.mkDerivation rec {
   installCheckPhase = ''
     export HOME="$TMPDIR/sage-home"
     mkdir -p "$HOME"
-    "$out/bin/sage" -c 'browse_sage_doc._open("reference", testing=True)'
+    "$out/bin/sage" -c 'browse_sage_doc._open("reference", testing=False)'
   '';
 
   passthru = {
