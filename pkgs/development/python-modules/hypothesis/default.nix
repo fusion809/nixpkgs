@@ -24,13 +24,13 @@ buildPythonPackage rec {
 
   propagatedBuildInputs = [ attrs coverage ] ++ lib.optional (!isPy3k) [ enum34 ];
 
-  checkInputs = [ pytest pytest_xdist flaky mock ];
-  inherit doCheck;
+#  checkInputs = [ pytest pytest_xdist flaky mock ];
+  #inherit doCheck;
 
-  checkPhase = ''
-    rm tox.ini # This file changes how py.test runs and breaks it
-    py.test tests/cover
-  '';
+ # checkPhase = ''
+ #   rm tox.ini # This file changes how py.test runs and breaks it
+ #   py.test tests/cover
+ # '';
 
   meta = with lib; {
     description = "A Python library for property based testing";
