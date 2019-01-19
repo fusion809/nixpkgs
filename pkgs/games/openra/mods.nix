@@ -140,7 +140,7 @@ in {
       owner = "CombinE88";
       repo = "Medieval-Warfare";
       rev = "b3f77c1ff59eef29d3aa835561ef032002d0e8e8";
-      sha256 = "142kcvim2xf2db4jdbq31gy8fb6rpjrhqv7iv85a84lkshsf22aw";
+      sha256 = "0ggzq19zhv2jipnrhsi403izr66qvxvv77i1n1s1s9fwcgk0fbzy";
     };
     engine = let commit = "7f125452b03d7bef4b022e2cfffd47efcf294911"; in {
       version = abbrevCommit commit;
