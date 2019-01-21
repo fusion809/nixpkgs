@@ -1,21 +1,41 @@
 /* List of NixOS maintainers.
 
     handle = {
-      name = "Real name";
+      # Required
+      name = "Your name";
       email = "address@example.org";
+
+      # Optional
       github = "GithubUsername";
+      keys = [{
+        longkeyid = "rsa2048/0x0123456789ABCDEF";
+        fingerprint = "AAAA BBBB CCCC DDDD EEEE  FFFF 0000 1111 2222 3333";
+      }];
     };
 
-  where `name` is your real name, `email` is your maintainer email
-  address and `github` is your GitHub handle (as it appears in the
-  URL of your profile page, `https://github.com/<userhandle>`).
- address
-  The only required fields are `name` and `email`.
+  where
+
+  - `handle` is the handle you are going to use in nixpkgs expressions,
+  - `name` is your, preferably real, name,
+  - `email` is your maintainer email address, and
+  - `github` is your GitHub handle (as it appears in the URL of your profile page, `https://github.com/<userhandle>`),
+  - `keys` is a list of your PGP/GPG key IDs and fingerprints.
+
+  `handle == github` is strongly preffered whenever `github` is an acceptable attribute name and is short and convenient.
+
+  Add PGP/GPG keys only if you actually use them to sign commits and/or mail.
+
+  To get the required PGP/GPG values for a key run
+  ```shell
+  gpg --keyid-format 0xlong --fingerprint <email> | head -n 2
+  ```
+
+  !!! Note that PGP/GPG values stored here are for informational purposes only, don't use this file as a source of truth.
+
   More fields may be added in the future.
 
   Please keep the list alphabetically sorted.
-  See `../maintainers/scripts/check-maintainer-github-handles.sh`
-  for an example on how to work with this data.
+  See `./scripts/check-maintainer-github-handles.sh` for an example on how to work with this data.
   */
 {
   "1000101" = {
@@ -1943,6 +1963,15 @@
     email = "tkatchev@gmail.com";
     name = "Ivan Tkatchev";
   };
+  ivegotasthma = {
+    email = "ivegotasthma@protonmail.com";
+    github = "ivegotasthma";
+    name = "John Doe";
+    keys = [{
+      longkeyid = "rsa4096/09AC52AEA87817A4";
+      fingerprint = "4008 2A5B 56A4 79B9 83CB  95FD 09AC 52AE A878 17A4";
+    }];
+  };
   ixmatus = {
     email = "parnell@digitalmentat.com";
     github = "ixmatus";
@@ -3338,6 +3367,10 @@
     email = "oxij@oxij.org";
     github = "oxij";
     name = "Jan Malakhovski";
+    keys = [{
+      longkeyid = "rsa2048/0x0E6CA66E5C557AA8";
+      fingerprint = "514B B966 B46E 3565 0508  86E8 0E6C A66E 5C55 7AA8";
+    }];
   };
   oyren = {
     email = "m.scheuren@oyra.eu";

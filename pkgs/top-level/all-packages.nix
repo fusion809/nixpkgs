@@ -208,6 +208,8 @@ in
 
   fetchMavenArtifact = callPackage ../build-support/fetchmavenartifact { };
 
+  prefer-remote-fetch = import ../build-support/prefer-remote-fetch;
+
   global-platform-pro = callPackage ../development/tools/global-platform-pro/default.nix { };
 
   graph-easy = callPackage ../tools/graphics/graph-easy { };
@@ -5887,6 +5889,8 @@ in
 
   tracefilesim = callPackage ../development/tools/analysis/garcosim/tracefilesim { };
 
+  transifex-client = python3.pkgs.callPackage ../tools/text/transifex-client { };
+
   translate-shell = callPackage ../applications/misc/translate-shell { };
 
   transporter = callPackage ../applications/networking/transporter { };
@@ -9875,6 +9879,8 @@ in
   gcab = callPackage ../development/libraries/gcab { };
 
   gcr = callPackage ../development/libraries/gcr { };
+
+  gdl = callPackage ../development/libraries/gdl { };
 
   gdome2 = callPackage ../development/libraries/gdome2 {
     inherit (gnome2) gtkdoc;
@@ -16985,6 +16991,8 @@ in
   fehlstart = callPackage ../applications/misc/fehlstart { };
 
   fetchmail = callPackage ../applications/misc/fetchmail { };
+
+  fff = callPackage ../applications/misc/fff { };
 
   fig2dev = callPackage ../applications/graphics/fig2dev { };
 
