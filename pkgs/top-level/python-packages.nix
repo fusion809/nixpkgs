@@ -454,6 +454,8 @@ in {
 
   mwoauth = callPackage ../development/python-modules/mwoauth { };
 
+  nanomsg-python = callPackage ../development/python-modules/nanomsg-python { inherit (pkgs) nanomsg; };
+
   nbval = callPackage ../development/python-modules/nbval { };
 
   nest-asyncio = callPackage ../development/python-modules/nest-asyncio { };
@@ -1440,10 +1442,10 @@ in {
 
   pytest = self.pytest_39;
 
-  inherit (callPackage ../development/python-modules/pytest {
+  pytest_39 = callPackage ../development/python-modules/pytest {
     # hypothesis tests require pytest that causes dependency cycle
     hypothesis = self.hypothesis.override { doCheck = false; };
-  }) pytest_39 pytest_37;
+  };
 
   pytest-httpbin = callPackage ../development/python-modules/pytest-httpbin { };
 
@@ -1741,16 +1743,6 @@ in {
   ftputil = callPackage ../development/python-modules/ftputil { };
 
   fudge = callPackage ../development/python-modules/fudge { };
-
-  fudge_9 = self.fudge.overridePythonAttrs (old: rec {
-     version = "0.9.6";
-
-     src = fetchPypi {
-      pname = "fudge";
-      inherit version;
-      sha256 = "34690c4692e8717f4d6a2ab7d841070c93c8d0ea0d2615b47064e291f750b1a0";
-    };
-  });
 
   funcparserlib = callPackage ../development/python-modules/funcparserlib { };
 
@@ -2521,15 +2513,6 @@ in {
   fusepy = callPackage ../development/python-modules/fusepy { };
 
   future = callPackage ../development/python-modules/future { };
-  future15 = self.future.overridePythonAttrs (old: rec {
-    name = "future-${version}";
-    version = "0.15.2";
-    src = fetchPypi {
-      pname = "future";
-      version = "0.15.2";
-      sha256 = "15wvcfzssc68xqnqi1dq4fhd0848hwi9jn42hxyvlqna40zijfrx";
-    };
-  });
 
   futures = callPackage ../development/python-modules/futures { };
 
@@ -3319,8 +3302,7 @@ in {
 
   rfc3986 = callPackage ../development/python-modules/rfc3986 { };
 
-   cachetools_1 = callPackage ../development/python-modules/cachetools/1.nix {};
-   cachetools = callPackage ../development/python-modules/cachetools {};
+  cachetools = callPackage ../development/python-modules/cachetools {};
 
   cmd2_8 = callPackage ../development/python-modules/cmd2/old.nix {};
   cmd2_9 = callPackage ../development/python-modules/cmd2 {};
@@ -3371,8 +3353,6 @@ in {
   pagerduty = callPackage ../development/python-modules/pagerduty { };
 
   pandas = callPackage ../development/python-modules/pandas { };
-
-  pandas_0_17_1 = callPackage ../development/python-modules/pandas/0.17.1.nix { };
 
   xlrd = callPackage ../development/python-modules/xlrd { };
 
@@ -3848,9 +3828,6 @@ in {
 
   reportlab = callPackage ../development/python-modules/reportlab { };
 
-  requests2 = throw "requests2 has been deprecated. Use requests instead.";
-
-  # use requests, not requests_2
   requests = callPackage ../development/python-modules/requests { };
 
   requests_download = callPackage ../development/python-modules/requests_download { };
@@ -4683,9 +4660,6 @@ in {
   pushbullet = callPackage ../development/python-modules/pushbullet { };
 
   power = callPackage ../development/python-modules/power { };
-
-  # added 2018-05-23, can be removed once 18.09 is branched off
-  udiskie = throw "pythonPackages.udiskie has been replaced by udiskie";
 
   pythonefl = callPackage ../development/python-modules/python-efl { };
 
