@@ -7,15 +7,15 @@ let
 
 in {
   ca = buildOpenRAMod {
-    version = "93";
+    version = "96";
     title = "Combined Arms";
     description = "A game that combines units from the official OpenRA Red Alert and Tiberian Dawn mods";
     homepage = https://github.com/Inq8/CAmod;
     src = fetchFromGitHub {
       owner = "Inq8";
       repo = "CAmod";
-      rev = "16fb77d037be7005c3805382712c33cec1a2788c";
-      sha256 = "11fjyr3692cy2a09bqzk5ya1hf6plh8hmdrgzds581r9xbj0q4pr";
+      rev = "fc3cf0baf2b827650eaae9e1d2335a3eed24bac9";
+      sha256 = "15w91xs253gyrlzsgid6ixxjazx0fbzick6vlkiay0znb58n883m";
     };
     engine = let commit = "b8a7dd5"; in {
       version = abbrevCommit commit;
