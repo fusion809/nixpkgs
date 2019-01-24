@@ -237,24 +237,24 @@ in {
   };
 
   sp = unsafeBuildOpenRAMod {
-    version = "170";
+    version = "172";
     title = "Shattered Paradise";
     description = "Re-imagination of the original Command & Conquer: Tiberian Sun game";
     homepage = https://github.com/ABrandau/OpenRAModSDK;
     src = fetchFromGitHub {
       owner = "ABrandau";
       repo = "OpenRAModSDK";
-      rev = "09349f32c3aefa6e0a3ba69c7dfe0b4e3e8950e9";
-      sha256 = "04scgkvj0zcgngifha0wh48n41rvs18vgsppgbvgpc63cvia93mk";
+      rev = "ac90ba7613e71e3e2619fdd1150d3374ed0d49b7";
+      sha256 = "1fnakdalsv4rrjfk6y1l88vpaylkcjc3289y97yfhlnlr3mchy22";
     };
-    engine = let commit = "cfb9bfaa70b218bb195fba5c92ce925c58432ba1"; in {
+    engine = let commit = "d3545c0b751aea2105748eddaab5919313e35314"; in {
       version = abbrevCommit commit;
       mods = [ "as" "ts" ];
       src = fetchFromGitHub {
         owner = "ABrandau";
         repo = "OpenRA" ;
         rev = commit;
-        sha256 = "0zdx5b3x295a266m74b48ia9r6y4j3biwcdpdj145snmvak1501n";
+        sha256 = "1jsldl6vnf3r9dzppdm4z7kqbrzkidda5k74wc809i8c4jjnq9rq";
         name = "engine";
         inherit extraPostFetch;
       };
