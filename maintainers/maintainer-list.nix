@@ -1456,6 +1456,10 @@
     email = "elis@hirwing.se";
     github = "etu";
     name = "Elis Hirwing";
+    keys = [{
+      longkeyid = "rsa4096/0xD57EFA625C9A925F";
+      fingerprint = "67FE 98F2 8C44 CF22 1828  E12F D57E FA62 5C9A 925F";
+    }];
   };
   evck = {
     email = "eric@evenchick.com";
@@ -2882,6 +2886,11 @@
     email = "joerg@thalheim.io";
     github = "mic92";
     name = "Jörg Thalheim";
+    keys = [{
+      # compare with https://keybase.io/Mic92
+      longkeyid = "rsa4096/0x003F2096411B5F92";
+      fingerprint = "3DEE 1C55 6E1C 3DC5 54F5  875A 003F 2096 411B 5F92";
+    }];
   };
   michaelpj = {
     email = "michaelpj@gmail.com";
@@ -3600,6 +3609,14 @@
     email = "dev.primeos@gmail.com";
     github = "primeos";
     name = "Michael Weiss";
+    keys = [
+      { longkeyid = "ed25519/0x130826A6C2A389FD"; # Git only
+        fingerprint = "86A7 4A55 07D0 58D1 322E  37FD 1308 26A6 C2A3 89FD";
+      }
+      { longkeyid = "rsa3072/0xBCA9943DD1DF4C04"; # Email, etc.
+        fingerprint = "AF85 991C C950 49A2 4205  1933 BCA9 943D D1DF 4C04";
+      }
+    ];
   };
   Profpatsch = {
     email = "mail@profpatsch.de";
@@ -4183,6 +4200,10 @@
     email = "sebastien.maret@icloud.com";
     github = "smaret";
     name = "Sébastien Maret";
+    keys = [{
+      longkeyid = "rsa4096/0x86E30E5A0F5FC59C";
+      fingerprint = "4242 834C D401 86EF 8281  4093 86E3 0E5A 0F5F C59C";
+    }];
   };
   smironov = {
     email = "grrwlf@gmail.com";
@@ -4373,6 +4394,10 @@
     email = "me@tadeo.ca";
     github = "tadeokondrak";
     name = "Tadeo Kondrak";
+    keys = [{
+      longkeyid = "ed25519/0xFBE607FCC49516D3";
+      fingerprint = "0F2B C0C7 E77C 5B42 AC5B  4C18 FBE6 07FC C495 16D3";
+    }];
   };
   tadfisher = {
     email = "tadfisher@gmail.com";
