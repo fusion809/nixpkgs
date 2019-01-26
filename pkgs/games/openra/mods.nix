@@ -108,23 +108,23 @@ in {
   };
 
   kknd = buildOpenRAMod rec {
-    version = "143";
+    version = "147";
     title = "Krush, Kill 'n' Destroy";
     description = "Re-imagination of the original ${title} game";
     homepage = https://kknd-game.com/;
     src = fetchFromGitHub {
       owner = "IceReaper";
       repo = "KKnD";
-      rev = "5530babcb05170e0959e4cf2b079161e9fedde4f";
-      sha256 = "1rsdig282cfr8b4iamr9ri6sshgppp8gllfyib6c2hvqqr301720";
+      rev = "5852fbc86d5abeb2ca214a6a325acd9dd3906060";
+      sha256 = "17rc7brgwwx8lc4xky6b4n226063ik83kv5p7i3362idpxdc5y9w";
     };
-    engine = let commit = "4e8eab4ca00d1910203c8a103dfd2c002714daa8"; in {
+    engine = let commit = "818d6c0b642f50a11b1d0a2fa48aa9cc2c7152c7"; in {
       version = abbrevCommit commit;
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
         rev = commit;
-        sha256 = "1yyqparf93x8yzy1f46gsymgkj5jls25v2yc7ighr3f7mi3igdvq";
+        sha256 = "06il4k8hcwdynh7k7fjdpz9afg313d3im173yfbarylb0lpjm65l";
         name = "engine";
         inherit extraPostFetch;
       };
