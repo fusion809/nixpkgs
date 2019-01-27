@@ -33,7 +33,7 @@ in {
     sha256 = "0ps9x379plrrj1hnj4fpr26lc46mzgxknv5imxi0bmrh5y4781ql";
   };
 
-  bleed = let commit = "d6d1f3a06d2e5482386e7430f4076da12320ae61"; in buildUpstreamOpenRAEngine {
+  bleed = let commit = "a2e35144a7e1a805b4da0003a6a31676dce94de7"; in buildUpstreamOpenRAEngine {
     version = abbrevCommit commit;
     rev = commit;
     sha256 = "1xzr5scxdwv58wpkm4b3jn9s23ima85qlbm6y0y5x1j4zxizwc4i";
