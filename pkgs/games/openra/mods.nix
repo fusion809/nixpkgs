@@ -84,23 +84,23 @@ in {
   };
 
   gen = buildOpenRAMod {
-    version = "1151";
+    version = "1157";
     title = "Generals Alpha";
     description = "Re-imagination of the original Command & Conquer: Generals game";
     homepage = https://github.com/MustaphaTR/Generals-Alpha;
     src = fetchFromGitHub {
       owner = "MustaphaTR";
       repo = "Generals-Alpha";
-      rev = "e29f09b7a8483440606678121a3c00e845806cab";
-      sha256 = "1bsq9l9j2i9qgd1aik1ah2i4379vgqbfy0z26irzhp71dylycs25";
+      rev = "4f5e11d916e4a03d8cf1c97eef484ce2d77d7df2";
+      sha256 = "1wnl4qrlhynnlahgdlxwhgsdba5wgdg9yrv9f8hkgi69j60szypd";
     };
     engine = rec {
-      version = "gen-20190128_2";
+      version = "gen-20190128_3";
       src = fetchFromGitHub {
         owner = "MustaphaTR";
         repo = "OpenRA" ;
         rev = version;
-        sha256 = "1zyqh8y8rqpj95d92hdc162w5813d3rbihynj37kll212pwc3gg3";
+        sha256 = "1x6byz37s8qcpqj902zvkvbv95rv2mv2kj35c12gbpyc92xkqkq0";
         name = "generals-alpha-engine";
         inherit extraPostFetch;
       };
