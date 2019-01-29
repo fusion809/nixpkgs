@@ -60,15 +60,15 @@ in {
   };
 
   dr = unsafeBuildOpenRAMod rec {
-    version = "263";
+    version = "265";
     title = "Dark Reign";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/drogoganor/DarkReign;
     src = fetchFromGitHub {
       owner = "drogoganor";
       repo = "DarkReign";
-      rev = "2082e550d04827c10d4160ac2d0230e5510aab23";
-      sha256 = "1f7javi1524qs4gv9mqlxjj00vl62nd0xb300r3i3y2456nf4bg0";
+      rev = "d88e0b322cb276a71938d76e1a66e987583efb9e";
+      sha256 = "1mnafhd8kydii75nrn3qaqwr88rw5djfsdxdnphjj6s9q9c48609";
     };
     engine = let commit = "e08b75c2add30439228ea3dd61d6be60d1800329"; in {
       version = abbrevCommit commit;
@@ -84,23 +84,23 @@ in {
   };
 
   gen = buildOpenRAMod {
-    version = "1157";
+    version = "1158";
     title = "Generals Alpha";
     description = "Re-imagination of the original Command & Conquer: Generals game";
     homepage = https://github.com/MustaphaTR/Generals-Alpha;
     src = fetchFromGitHub {
       owner = "MustaphaTR";
       repo = "Generals-Alpha";
-      rev = "4f5e11d916e4a03d8cf1c97eef484ce2d77d7df2";
-      sha256 = "1wnl4qrlhynnlahgdlxwhgsdba5wgdg9yrv9f8hkgi69j60szypd";
+      rev = "75134d0f7d0b8723d5ea293ea309e5d57cd06698";
+      sha256 = "008c9rdw8x012srgkpg1fmzfc0k035xjfa9sw1xb576zy3pfwgz4";
     };
     engine = rec {
-      version = "gen-20190128_3";
+      version = "gen-20190129";
       src = fetchFromGitHub {
         owner = "MustaphaTR";
         repo = "OpenRA" ;
         rev = version;
-        sha256 = "1x6byz37s8qcpqj902zvkvbv95rv2mv2kj35c12gbpyc92xkqkq0";
+        sha256 = "16mkfxc1k8d68a5ijmrn4cch8vq77kl30h1j5g30f2dswilvz6nw";
         name = "generals-alpha-engine";
         inherit extraPostFetch;
       };
@@ -208,15 +208,15 @@ in {
   };
 
   rv = unsafeBuildOpenRAMod {
-    version = "1330";
+    version = "1333";
     title = "Romanov's Vengeance";
     description = "Re-imagination of the original Command & Conquer: Red Alert 2 game";
     homepage = https://github.com/MustaphaTR/Romanovs-Vengeance;
     src = fetchFromGitHub {
       owner = "MustaphaTR";
       repo = "Romanovs-Vengeance";
-      rev = "9230e6f1dd9758467832aee4eda115e18f0e635f";
-      sha256 = "0bwbmmlhp1kh8rgk2nx1ca9vqssj849amndacf318d61gksc1w9n";
+      rev = "903d7d022383b0d5c89d568f99d1baf5799cbb0c";
+      sha256 = "1m6rifhaiyblpyywaargmjs434h36zgi5mp31235l4qs87cim4h3";
     };
     engine = let commit = "f3873ae"; in {
       version = abbrevCommit commit;
@@ -310,18 +310,18 @@ in {
   };
 
   yr = unsafeBuildOpenRAMod rec {
-    version = "118";
+    version = "120";
     homepage = https://github.com/cookgreen/yr;
     title = "Yuri's Revenge";
     description = "Re-imagination of the original Command & Conquer: ${title} game";
     src = fetchFromGitHub {
       owner = "cookgreen";
       repo = "yr";
-      rev = "c26bf14155d040edf33c6c5eb3677517d07b39f8";
-      sha256 = "15k6gv4rx3490n0cs9q7ah7q31z89v0pddsw6nqv0fhcahhvq1bc";
+      rev = "98eed6075ba64a9cd7f833c34fdf93dcc9f9db89";
+      sha256 = "1jajiyiy6wharkhscn55dy8ip37jid5ygv0rizacrx54sg7w63px";
     };
     engine = rec {
-      version = "cfb9bfaa70b218bb195fba5c92ce925c58432ba1";
+      version = "release-20180923";
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
