@@ -132,23 +132,23 @@ in {
   };
 
   mw = unsafeBuildOpenRAMod rec {
-    version = "258";
+    version = "260";
     title = "Medieval Warfare";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/CombinE88/Medieval-Warfare;
     src = fetchFromGitHub {
       owner = "CombinE88";
       repo = "Medieval-Warfare";
-      rev = "3b9d21e50ad3f3f9979c6fd4922752f761a227f6";
-      sha256 = "1qqzc8wjzpn8cpb1g39fw5zwnm2rgy7fq4dpanfx2jjf9kx4qdp1";
+      rev = "1bbb1da823ea7a1320f1fd4607ac9d4e670b33a4";
+      sha256 = "09fp7k95jd6hjqdasbspbd43z5670wkyzbbgqkll9dfsrv0sky0v";
     };
-    engine = let commit = "ba480706acb0b75f8ea4469252f04e6b43af39e5"; in {
+    engine = let commit = "dc57a75f11cc7673bf08433775d4a4e9052d16d7"; in {
       version = abbrevCommit commit;
       src = fetchFromGitHub {
         owner = "CombinE88";
         repo = "OpenRA" ;
         rev = commit;
-        sha256 = "1cwiwxl1z586k0p710pm70mgajwqx76xzvzsd6c6nbkimd23877j";
+        sha256 = "0ga3855j6bc7h81q03cw6laiaiz12915zg8aqah1idvxbzicfy7l";
         name = "engine";
         inherit extraPostFetch;
       };
