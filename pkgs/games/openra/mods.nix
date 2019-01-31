@@ -15,7 +15,7 @@ in {
       owner = "Inq8";
       repo = "CAmod";
       rev = "fc3cf0baf2b827650eaae9e1d2335a3eed24bac9";
-      sha256 = "15w91xs253gyrlzsgid6ixxjazx0fbzick6vlkiay0znb58n883m";
+      sha256 = "1qwy18ccih79lrj7vbid3v96lrg1ix8279wpi46jdgdmhgppkms9";
     };
     engine = let commit = "b8a7dd5"; in {
       version = abbrevCommit commit;
