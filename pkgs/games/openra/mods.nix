@@ -15,7 +15,7 @@ in {
       owner = "Inq8";
       repo = "CAmod";
       rev = "fc3cf0baf2b827650eaae9e1d2335a3eed24bac9";
-      sha256 = "1qwy18ccih79lrj7vbid3v96lrg1ix8279wpi46jdgdmhgppkms9";
+      sha256 = "15w91xs253gyrlzsgid6ixxjazx0fbzick6vlkiay0znb58n883m";
     };
     engine = let commit = "b8a7dd5"; in {
       version = abbrevCommit commit;
@@ -140,7 +140,7 @@ in {
       owner = "CombinE88";
       repo = "Medieval-Warfare";
       rev = "1bbb1da823ea7a1320f1fd4607ac9d4e670b33a4";
-      sha256 = "09fp7k95jd6hjqdasbspbd43z5670wkyzbbgqkll9dfsrv0sky0v";
+      sha256 = "1snpbfbgwh32iki3mkdjzhm5cs1iz1hnqwmi2m57br1pd7xbvlrj";
     };
     engine = let commit = "dc57a75f11cc7673bf08433775d4a4e9052d16d7"; in {
       version = abbrevCommit commit;
@@ -148,7 +148,7 @@ in {
         owner = "CombinE88";
         repo = "OpenRA" ;
         rev = commit;
-        sha256 = "0ga3855j6bc7h81q03cw6laiaiz12915zg8aqah1idvxbzicfy7l";
+        sha256 = "1qwy18ccih79lrj7vbid3v96lrg1ix8279wpi46jdgdmhgppkms9";
         name = "engine";
         inherit extraPostFetch;
       };
@@ -237,15 +237,15 @@ in {
   };
 
   sp = unsafeBuildOpenRAMod {
-    version = "182";
+    version = "183";
     title = "Shattered Paradise";
     description = "Re-imagination of the original Command & Conquer: Tiberian Sun game";
     homepage = https://github.com/ABrandau/OpenRAModSDK;
     src = fetchFromGitHub {
       owner = "ABrandau";
       repo = "OpenRAModSDK";
-      rev = "6f0750c607b222386f5c0071611b700345e68f2a";
-      sha256 = "12y6fjgr9i4whisb2m3bc4yn2wwj8wmn1c27f2c36j09gjl2cymm";
+      rev = "817e84685089217aba0959f7987c387c65e4ecee";
+      sha256 = "0qyi5aw5sw3rm9g2vmr8va8k6ppf3c6paaqckwww2jpmfjgxhssz";
     };
     engine = let commit = "d3545c0b751aea2105748eddaab5919313e35314"; in {
       version = abbrevCommit commit;
@@ -310,18 +310,18 @@ in {
   };
 
   yr = unsafeBuildOpenRAMod rec {
-    version = "122";
+    version = "124";
     homepage = https://github.com/cookgreen/yr;
     title = "Yuri's Revenge";
     description = "Re-imagination of the original Command & Conquer: ${title} game";
     src = fetchFromGitHub {
       owner = "cookgreen";
       repo = "yr";
-      rev = "70d4b0ec9113380ca17ae05ab130824390cb80de";
-      sha256 = "1swif91fx4rzhg91r9yrxifvm0a3d42xksihnf67hq3nawi4g03x";
+      rev = "6ab2c690e8b5ce4b3528e5d360f682d88850c46b";
+      sha256 = "1rx3d943nv7in31p2wma4h37dgfvhh3kr5vrn2h4c404ikkxgqjh";
     };
     engine = rec {
-      version = "release-20180923";
+      version = "d3545c0b751aea2105748eddaab5919313e35314";
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
