@@ -20898,6 +20898,8 @@ in
 
   openmw-tes3mp = libsForQt5.callPackage ../games/openmw/tes3mp.nix { };
 
+  ocs-store = callPackage ../applications/misc/ocs-store {} ;
+
   openraPackages = import ../games/openra pkgs;
 
   openra = openraPackages.engines.release;
