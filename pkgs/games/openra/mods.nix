@@ -84,23 +84,23 @@ in {
   };
 
   gen = buildOpenRAMod {
-    version = "1159";
+    version = "1160";
     title = "Generals Alpha";
     description = "Re-imagination of the original Command & Conquer: Generals game";
     homepage = https://github.com/MustaphaTR/Generals-Alpha;
     src = fetchFromGitHub {
       owner = "MustaphaTR";
       repo = "Generals-Alpha";
-      rev = "bd5910b27533520b44f513eb9ca8544be5d11e6e";
-      sha256 = "1l72zpkxacid3hji5dpfqx4swkcf61v1l0p9q6f6rq52l3lln30x";
+      rev = "e44824192eeb4c6527585550ca0b89d2d7045bf5";
+      sha256 = "0x2wlnzria1zbaim9npz8sh3yd2r83i95v8c0n0xih0y8qr0g4lh";
     };
     engine = rec {
-      version = "gen-20190129";
+      version = "gen-20190202";
       src = fetchFromGitHub {
         owner = "MustaphaTR";
         repo = "OpenRA" ;
         rev = version;
-        sha256 = "16mkfxc1k8d68a5ijmrn4cch8vq77kl30h1j5g30f2dswilvz6nw";
+        sha256 = "16fvsv0b0mz96rf3hr1srysxs6xnh5bybwk543al5g0zd87wisdr";
         name = "generals-alpha-engine";
         inherit extraPostFetch;
       };
@@ -208,15 +208,15 @@ in {
   };
 
   rv = unsafeBuildOpenRAMod {
-    version = "1343";
+    version = "1348";
     title = "Romanov's Vengeance";
     description = "Re-imagination of the original Command & Conquer: Red Alert 2 game";
     homepage = https://github.com/MustaphaTR/Romanovs-Vengeance;
     src = fetchFromGitHub {
       owner = "MustaphaTR";
       repo = "Romanovs-Vengeance";
-      rev = "c43d215cee5fbeec02fdec0f1c71dea7fb2d1c15";
-      sha256 = "04mrsk936xpxk8jgns48z4m69l1lj27zvcnmqyg9b4l0rrqqczjq";
+      rev = "f7794054f4dd3dd6d67118c97f37444a39e37a43";
+      sha256 = "0ih3sw57zsrvaza7qnp7zsxhvd98i7cw6bryp93xa4i0wh4h6l3z";
     };
     engine = let commit = "f3873ae"; in {
       version = abbrevCommit commit;
