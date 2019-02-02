@@ -21,7 +21,7 @@
   - `github` is your GitHub handle (as it appears in the URL of your profile page, `https://github.com/<userhandle>`),
   - `keys` is a list of your PGP/GPG key IDs and fingerprints.
 
-  `handle == github` is strongly preffered whenever `github` is an acceptable attribute name and is short and convenient.
+  `handle == github` is strongly preferred whenever `github` is an acceptable attribute name and is short and convenient.
 
   Add PGP/GPG keys only if you actually use them to sign commits and/or mail.
 
@@ -67,6 +67,11 @@
     email = "ab@fmap.me";
     github = "abbradar";
     name = "Nikolay Amiantov";
+  };
+  abhi18av = {
+    email = "abhi18av@gmail.com";
+    github = "abhi18av";
+    name = "Abhinav Sharma";
   };
   abigailbuccaneer = {
     email = "abigailbuccaneer@gmail.com";
@@ -892,6 +897,11 @@
     github = "cko";
     name = "Christine Koppelt";
   };
+  clacke = {
+    email = "claes.wallin@greatsinodevelopment.com";
+    github = "clacke";
+    name = "Claes Wallin";
+  };
   cleverca22 = {
     email = "cleverca22@gmail.com";
     github = "cleverca22";
@@ -1427,6 +1437,10 @@
     email = "justin.humm@posteo.de";
     github = "erictapen";
     name = "Justin Humm";
+    keys = [{
+      longkeyid = "rsa4096/0x438871E000AA178E";
+      fingerprint = "984E 4BAD 9127 4D0E AE47  FF03 4388 71E0 00AA 178E";
+    }];
   };
   erikryb = {
     email = "erik.rybakken@math.ntnu.no";
@@ -1763,6 +1777,11 @@
     email = "david.guibert@gmail.com";
     github = "dguibert";
     name = "David Guibert";
+  };
+  groodt = {
+    email = "groodt@gmail.com";
+    github = "groodt";
+    name = "Greg Roodt";
   };
   guibou = {
     email = "guillaum.bouchard@gmail.com";
@@ -3466,6 +3485,11 @@
     github = "pesterhazy";
     name = "Paulus Esterhazy";
   };
+  petabyteboy = {
+    email = "me@pbb.lc";
+    github = "petabyteboy";
+    name = "Milan Pässler";
+  };
   peterhoeg = {
     email = "peter@hoeg.com";
     github = "peterhoeg";
@@ -3657,6 +3681,11 @@
     github = "PsyanticY";
     name = "Psyanticy";
   };
+  ptival = {
+    email = "valentin.robert.42@gmail.com";
+    github = "Ptival";
+    name = "Valentin Robert";
+  };
   puffnfresh = {
     email = "brian@brianmckenna.org";
     github = "puffnfresh";
@@ -3685,6 +3714,10 @@
     email = "hi@alyssa.is";
     github = "alyssais";
     name = "Alyssa Ross";
+    keys = [{
+      longkeyid = "rsa4096/736CCDF9EF51BD97";
+      fingerprint = "7573 56D7 79BB B888 773E  415E 736C CDF9 EF51 BD97";
+    }];
   };
   ragge = {
     email = "r.dahlen@gmail.com";
@@ -4654,7 +4687,7 @@
     name = "Thomas Tuegel";
   };
   tv = {
-    email = "tv@shackspace.de";
+    email = "tv@krebsco.de";
     github = "4z3";
     name = "Tomislav Viljetić";
   };
@@ -4903,11 +4936,6 @@
     email = "willroe@gmail.com";
     github = "wjlroe";
     name = "William Roe";
-  };
-  wkennington = {
-    email = "william@wkennington.com";
-    github = "wkennington";
-    name = "William A. Kennington III";
   };
   wmertens = {
     email = "Wout.Mertens@gmail.com";

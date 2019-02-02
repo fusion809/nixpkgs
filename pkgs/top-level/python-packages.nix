@@ -158,6 +158,8 @@ in {
 
   alerta-server = callPackage ../development/python-modules/alerta-server { };
 
+  androguard = callPackage ../development/python-modules/androguard { };
+
   phonenumbers = callPackage ../development/python-modules/phonenumbers { };
 
   agate-excel = callPackage ../development/python-modules/agate-excel { };
@@ -274,6 +276,8 @@ in {
 
   braintree = callPackage ../development/python-modules/braintree { };
 
+  django-sesame = callPackage ../development/python-modules/django-sesame { };
+
   breathe = callPackage ../development/python-modules/breathe { };
 
   brotli = callPackage ../development/python-modules/brotli { };
@@ -366,6 +370,8 @@ in {
 
   fastpbkdf2 = callPackage ../development/python-modules/fastpbkdf2 {  };
 
+  favicon = callPackage ../development/python-modules/favicon {  };
+
   fido2 = callPackage ../development/python-modules/fido2 {  };
 
   filterpy = callPackage ../development/python-modules/filterpy { };
@@ -377,6 +383,8 @@ in {
   fdint = callPackage ../development/python-modules/fdint { };
 
   fuse = callPackage ../development/python-modules/fuse-python { fuse = pkgs.fuse; };
+
+  fuzzywuzzy = callPackage ../development/python-modules/fuzzywuzzy { };
 
   genanki = callPackage ../development/python-modules/genanki { };
 
@@ -391,6 +399,8 @@ in {
   goocalendar = callPackage ../development/python-modules/goocalendar { };
 
   grandalf = callPackage ../development/python-modules/grandalf { };
+
+  gprof2dot = callPackage ../development/python-modules/gprof2dot { };
 
   gsd = callPackage ../development/python-modules/gsd { };
 
@@ -437,6 +447,8 @@ in {
   };
 
   libmr = callPackage ../development/python-modules/libmr { };
+
+  limitlessled = callPackage ../development/python-modules/limitlessled { };
 
   lmtpd = callPackage ../development/python-modules/lmtpd { };
 
@@ -774,11 +786,11 @@ in {
 
   supervise_api = callPackage ../development/python-modules/supervise_api { };
 
-  syncserver = callPackage ../development/python-modules/syncserver {};
-
   tables = callPackage ../development/python-modules/tables {
     hdf5 = pkgs.hdf5.override { zlib = pkgs.zlib; };
   };
+
+  tableaudocumentapi = callPackage ../development/python-modules/tableaudocumentapi { };
 
   trueskill = callPackage ../development/python-modules/trueskill { };
 
@@ -1638,6 +1650,8 @@ in {
 
   docker = callPackage ../development/python-modules/docker {};
 
+  docker-py = disabledIf isPy27 (callPackage ../development/python-modules/docker-py {});
+
   dockerpty = callPackage ../development/python-modules/dockerpty {};
 
   docker_pycreds = callPackage ../development/python-modules/docker-pycreds {};
@@ -1733,6 +1747,8 @@ in {
 
   fb-re2 = callPackage ../development/python-modules/fb-re2 { };
 
+  filetype = callPackage ../development/python-modules/filetype { };
+
   flexmock = callPackage ../development/python-modules/flexmock { };
 
   flit = callPackage ../development/python-modules/flit { };
@@ -1760,6 +1776,8 @@ in {
   fastcache = callPackage ../development/python-modules/fastcache { };
 
   functools32 = callPackage ../development/python-modules/functools32 { };
+
+  future-fstrings = callPackage ../development/python-modules/future-fstrings { };
 
   gateone = callPackage ../development/python-modules/gateone { };
 
@@ -1864,6 +1882,8 @@ in {
   imaplib2 = callPackage ../development/python-modules/imaplib2 { };
 
   ipfsapi = callPackage ../development/python-modules/ipfsapi { };
+
+  isbnlib = callPackage ../development/python-modules/isbnlib { };
 
   itsdangerous = callPackage ../development/python-modules/itsdangerous { };
 
@@ -2380,8 +2400,6 @@ in {
   pyfribidi = callPackage ../development/python-modules/pyfribidi { };
 
   pyftpdlib = callPackage ../development/python-modules/pyftpdlib { };
-
-  fdroidserver = callPackage ../development/python-modules/fdroidserver { };
 
   filebrowser_safe = callPackage ../development/python-modules/filebrowser_safe { };
 
@@ -3004,6 +3022,8 @@ in {
 
   matrix-client = callPackage ../development/python-modules/matrix-client { };
 
+  mautrix-appservice = callPackage ../development/python-modules/mautrix-appservice { };
+
   maya = callPackage ../development/python-modules/maya { };
 
   mccabe = callPackage ../development/python-modules/mccabe { };
@@ -3455,6 +3475,8 @@ in {
     name = "${python.libPrefix}-${pkgs.kmsxx.name}";
   });
 
+  precis-i18n = callPackage ../development/python-modules/precis-i18n { };
+
   pvlib = callPackage ../development/python-modules/pvlib { };
 
   pybase64 = callPackage ../development/python-modules/pybase64 { };
@@ -3721,6 +3743,8 @@ in {
 
   pyls-mypy = callPackage ../development/python-modules/pyls-mypy {};
 
+  pyu2f = callPackage ../development/python-modules/pyu2f { };
+
   pyudev = callPackage ../development/python-modules/pyudev {
     inherit (pkgs) systemd;
   };
@@ -3853,7 +3877,14 @@ in {
   # alias for an older package which did not support Python 3
   Quandl = callPackage ../development/python-modules/quandl { };
 
-  qscintilla = callPackage ../development/python-modules/qscintilla { };
+  qscintilla-qt4 = callPackage ../development/python-modules/qscintilla { };
+
+  qscintilla-qt5 = callPackage ../development/python-modules/qscintilla-qt5 {
+    qscintillaCpp = pkgs.libsForQt5.qscintilla;
+    lndir = pkgs.xorg.lndir;
+  };
+
+  qscintilla = self.qscintilla-qt4;
 
   qserve = callPackage ../development/python-modules/qserve { };
 
@@ -4029,6 +4060,8 @@ in {
 
   sphinx = callPackage ../development/python-modules/sphinx { };
 
+  sphinx-argparse = callPackage ../development/python-modules/sphinx-argparse { };
+
   sphinxcontrib-websupport = callPackage ../development/python-modules/sphinxcontrib-websupport { };
 
   hieroglyph = callPackage ../development/python-modules/hieroglyph { };
@@ -4160,9 +4193,7 @@ in {
 
   websockets = callPackage ../development/python-modules/websockets { };
 
-  Wand = callPackage ../development/python-modules/Wand {
-    imagemagick = pkgs.imagemagickBig;
-  };
+  Wand = callPackage ../development/python-modules/Wand { };
 
   wcwidth = callPackage ../development/python-modules/wcwidth { };
 
@@ -4324,6 +4355,8 @@ in {
 
   python-daemon = callPackage ../development/python-modules/python-daemon { };
 
+  python-vagrant = callPackage ../development/python-modules/python-vagrant { };
+
   sympy = callPackage ../development/python-modules/sympy { };
 
   pilkit = callPackage ../development/python-modules/pilkit { };
@@ -4405,6 +4438,10 @@ in {
   freezegun = callPackage ../development/python-modules/freezegun { };
 
   taskw = callPackage ../development/python-modules/taskw { };
+
+  telethon = callPackage ../development/python-modules/telethon { };
+
+  telethon-session-sqlalchemy = callPackage ../development/python-modules/telethon-session-sqlalchemy { };
 
   terminaltables = callPackage ../development/python-modules/terminaltables { };
 
