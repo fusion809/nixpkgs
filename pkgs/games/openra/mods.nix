@@ -60,15 +60,15 @@ in {
   };
 
   dr = unsafeBuildOpenRAMod rec {
-    version = "268";
+    version = "272";
     title = "Dark Reign";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/drogoganor/DarkReign;
     src = fetchFromGitHub {
       owner = "drogoganor";
       repo = "DarkReign";
-      rev = "0b37da1fbae0b1fc3b86d57f841c4fbadf7d335b";
-      sha256 = "16dwi1vkj31v2a99xq7qqcy4xgp2p4fi9bwwfk70qcdl4vncamm6";
+      rev = "f3f75952a444b13072f2e98109f98ba7f4399556";
+      sha256 = "0vn6zbbrq8pfhpx6smjpmga5c4vaj3r9y7dr8dsyyhqya0970zp1";
     };
     engine = let commit = "e08b75c2add30439228ea3dd61d6be60d1800329"; in {
       version = abbrevCommit commit;
@@ -208,15 +208,15 @@ in {
   };
 
   rv = unsafeBuildOpenRAMod {
-    version = "1348";
+    version = "1364";
     title = "Romanov's Vengeance";
     description = "Re-imagination of the original Command & Conquer: Red Alert 2 game";
     homepage = https://github.com/MustaphaTR/Romanovs-Vengeance;
     src = fetchFromGitHub {
       owner = "MustaphaTR";
       repo = "Romanovs-Vengeance";
-      rev = "f7794054f4dd3dd6d67118c97f37444a39e37a43";
-      sha256 = "0ih3sw57zsrvaza7qnp7zsxhvd98i7cw6bryp93xa4i0wh4h6l3z";
+      rev = "e788383b78f412a28580bfadff7b491d07691197";
+      sha256 = "02vzcq250163fl3151zp0hpi5h9phnxf42d1xs1wk5qdy4sqlgsx";
     };
     engine = let commit = "f3873ae"; in {
       version = abbrevCommit commit;
@@ -310,18 +310,18 @@ in {
   };
 
   yr = unsafeBuildOpenRAMod rec {
-    version = "126";
+    version = "127";
     homepage = https://github.com/cookgreen/yr;
     title = "Yuri's Revenge";
     description = "Re-imagination of the original Command & Conquer: ${title} game";
     src = fetchFromGitHub {
       owner = "cookgreen";
       repo = "yr";
-      rev = "9aeea477a425a0af208c856cc5ec9c601fd33dfb";
-      sha256 = "0xrnsbng2ghzw6zbiqk59dkzj65jnp7l0xpc4f7b9rmkl3kh6hb1";
+      rev = "f245ffaafaa0963c060722f8d5f08e5fe71457f1";
+      sha256 = "0gb5djxis0p3s08px667jd5q5rkh79vn2fwq9bhgdhn1gmn7glck";
     };
     engine = rec {
-      version = "f3873ae";
+      version = "release-20180923";
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
