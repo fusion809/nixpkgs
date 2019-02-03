@@ -53,11 +53,9 @@ let
 in pkgs.recurseIntoAttrs rec {
   # The whole attribute set is destructered to ensure those (and only those) attributes are given
   # and to provide defaults for those that are optional.
-  buildOpenRAEngine = { name ? null, version, description, homepage, mods, src }@engine:
-    # Allow specifying the name at a later point if no name has been given.
-    let builder = name: pkgs.callPackage ./engine.nix (common // {
-      engine = engine // { inherit name; };
-    }); in if name == null then builder else builder name;
+  buildOpenRAEngine = { version, description, homepage, mods, src }@engine: pkgs.callPackage ./engine.nix (common // {
+    inherit engine;
+  });
 
   # See `buildOpenRAEngine`.
   buildOpenRAMod = { name ? null, version, title, description, homepage, src, engine, assetsError ? "" }@mod: ({ version, mods ? [], src }@engine:
