@@ -95,7 +95,7 @@ in {
       sha256 = "0x2wlnzria1zbaim9npz8sh3yd2r83i95v8c0n0xih0y8qr0g4lh";
     };
     engine = rec {
-      version = "gen-20190202";
+      version = "818d6c0b642f50a11b1d0a2fa48aa9cc2c7152c7";
       src = fetchFromGitHub {
         owner = "MustaphaTR";
         repo = "OpenRA" ;
@@ -108,15 +108,15 @@ in {
   };
 
   kknd = buildOpenRAMod rec {
-    version = "142";
+    version = "147";
     title = "Krush, Kill 'n' Destroy";
     description = "Re-imagination of the original ${title} game";
     homepage = https://kknd-game.com/;
     src = fetchFromGitHub {
       owner = "IceReaper";
       repo = "KKnD";
-      rev = "54d34292168d5c47529688c8d5ca7693c4001ef3";
-      sha256 = "1rsdig282cfr8b4iamr9ri6sshgppp8gllfyib6c2hvqqr301720";
+      rev = "5852fbc86d5abeb2ca214a6a325acd9dd3906060";
+      sha256 = "17rc7brgwwx8lc4xky6b4n226063ik83kv5p7i3362idpxdc5y9w";
     };
     engine = let commit = "4e8eab4ca00d1910203c8a103dfd2c002714daa8"; in {
       version = abbrevCommit commit;
