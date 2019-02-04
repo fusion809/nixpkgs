@@ -60,15 +60,15 @@ in {
   };
 
   dr = unsafeBuildOpenRAMod rec {
-    version = "272";
+    version = "275";
     title = "Dark Reign";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/drogoganor/DarkReign;
     src = fetchFromGitHub {
       owner = "drogoganor";
       repo = "DarkReign";
-      rev = "f3f75952a444b13072f2e98109f98ba7f4399556";
-      sha256 = "0vn6zbbrq8pfhpx6smjpmga5c4vaj3r9y7dr8dsyyhqya0970zp1";
+      rev = "0cd710442bd3233b7be79863ed0b9a38a020fb25";
+      sha256 = "0jbfyshra2jyfmh0a6h98q63c3nhpzhv4n0f5dy3jjx4d0fx9f5l";
     };
     engine = let commit = "e08b75c2add30439228ea3dd61d6be60d1800329"; in {
       version = abbrevCommit commit;

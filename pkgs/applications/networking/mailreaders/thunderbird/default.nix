@@ -118,7 +118,10 @@ in stdenv.mkDerivation rec {
       # We wrap $target by replacing the $binary symlink.
       local target="$out/lib/thunderbird/thunderbird"
       local binary="$out/bin/thunderbird"
-
+      for size in 16 22 24 32 48 64 128 256
+      do
+        install -Dm644 $out/lib/${name}/chrome/icons/default/default$size.png $out/share/icons/hicolor/apps/$sizex$size/apps/${name}.png
+      done
       # Wrap correctly, this is needed to
       # 1) find Mozilla runtime, because argv0 must be the real thing,
       #    or a symlink thereto. It cannot be the wrapper itself
@@ -142,7 +145,7 @@ in stdenv.mkDerivation rec {
           name = "thunderbird";
           exec = "thunderbird %U";
           desktopName = "Thunderbird";
-          icon = "$out/lib/thunderbird/chrome/icons/default/default256.png";
+          icon = "thunderbird";
           genericName = "Mail Reader";
           categories = "Application;Network";
           mimeType = stdenv.lib.concatStringsSep ";" [
@@ -168,13 +171,6 @@ in stdenv.mkDerivation rec {
       patchelf --set-rpath "${lib.getLib libnotify
         }/lib:$(patchelf --print-rpath "$out"/lib/thunderbird*/libxul.so)" \
           "$out"/lib/thunderbird*/libxul.so
-    '';
-
-  doInstallCheck = true;
-  installCheckPhase =
-    ''
-      # Some basic testing
-      "$out/bin/thunderbird" --version
     '';
 
   disallowedRequisites = [ stdenv.cc ];
