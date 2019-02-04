@@ -47,7 +47,7 @@ in {
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
-        rev = "release-${version}";
+        rev = "${version}";
         sha256 = "1mfch4s6c05slyqvxllklbxpqq8dqcbx3515n3gyylyq43gq481r";
         name = "engine";
         inherit extraPostFetch;
@@ -184,23 +184,23 @@ in {
   };
 
   raclassic = buildOpenRAMod {
-    version = "171";
+    version = "181";
     title = "Red Alert Classic";
     description = "A modernization of the original Command & Conquer: Red Alert game";
     homepage = https://github.com/OpenRA/raclassic;
     src = fetchFromGitHub {
       owner = "OpenRA";
       repo = "raclassic";
-      rev = "a2319b3dfb367a8d4278bf7baf55a10abf615fbc";
-      sha256 = "1k67fx4d9hg8mckzp7pp8lxa6ngqxnnrnbqyfls99dqc4df1iw0a";
+      rev = "8240890b32191ce34241c22158b8a79e8c380879";
+      sha256 = "0dznyb6qa4n3ab87g1c4bihfc2nx53k6z0kajc7ynjdnwzvx69ww";
     };
     engine = rec {
-      version = "20181215";
+      version = "playtest-20190106";
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
-        rev = "release-${version}";
-        sha256 = "0p0izykjnz7pz02g2khp7msqa00jhjsrzk9y0g29dirmdv75qa4r";
+        rev = "${version}";
+        sha256 = "0ps9x379plrrj1hnj4fpr26lc46mzgxknv5imxi0bmrh5y4781ql";
         name = "engine";
         inherit extraPostFetch;
       };
@@ -310,23 +310,23 @@ in {
   };
 
   yr = unsafeBuildOpenRAMod rec {
-    version = "127";
+    version = "117";
     homepage = https://github.com/cookgreen/yr;
     title = "Yuri's Revenge";
     description = "Re-imagination of the original Command & Conquer: ${title} game";
     src = fetchFromGitHub {
       owner = "cookgreen";
       repo = "yr";
-      rev = "f245ffaafaa0963c060722f8d5f08e5fe71457f1";
-      sha256 = "0gb5djxis0p3s08px667jd5q5rkh79vn2fwq9bhgdhn1gmn7glck";
+      rev = "1d4beeb0687fe4b39b01ec31f3702cfb90a7f4f7";
+      sha256 = "1rd962ja1x72rz68kbmp19yiip3iif50hzlj3v8k1f5l94r2x2pn";
     };
     engine = rec {
       version = "release-20180923";
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
-        rev = "release-${version}";
-        sha256 = "0gb5djxis0p3s08px667jd5q5rkh79vn2fwq9bhgdhn1gmn7glck";
+        rev = "${version}";
+        sha256 = "1pgi3zaq9fwwdq6yh19bwxscslqgabjxkvl9bcn1a5agy4bfbqk5";
         name = "engine";
         inherit extraPostFetch;
       };
