@@ -12014,6 +12014,8 @@ in
 
   portmidi = callPackage ../development/libraries/portmidi {};
 
+  primesieve = callPackage ../development/libraries/science/math/primesieve { };
+
   prison = callPackage ../development/libraries/prison { };
 
   proj = callPackage ../development/libraries/proj { };
@@ -15715,6 +15717,8 @@ in
   numix-icon-theme-square = callPackage ../data/icons/numix-icon-theme-square { };
 
   numix-cursor-theme = callPackage ../data/icons/numix-cursor-theme { };
+
+  office-code-pro = callPackage ../data/fonts/office-code-pro { };
 
   oldstandard = callPackage ../data/fonts/oldstandard { };
 

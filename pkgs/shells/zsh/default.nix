@@ -18,15 +18,6 @@ stdenv.mkDerivation {
     sha256 = "1s3yww0mzgvpc48kp0x868mm3gbna42sbgzya0nknj0x5hn2jq3j";
   };
 
-#  patches = [
-#    (fetchpatch {
-#      name = "vcs_info.patch";
-#      url = "https://git.archlinux.org/svntogit/packages.git/plain/trunk/vcs_info.patch?h=packages/zsh&id=1b7537ff5343819b3110a76bbdd2a1bf9ef80c4a";
-#      sha256 = "0rc63cdc0qzhmj2dp5jnmxgyl5c47w857s8379fq36z8g0bi3rwq";
-#      excludes = [ "ChangeLog" ];
-#    })
-#  ];
-
   buildInputs = [ ncurses pcre ];
 
   configureFlags = [
