@@ -120,7 +120,7 @@ in stdenv.mkDerivation rec {
       local binary="$out/bin/thunderbird"
       for size in 16 22 24 32 48 64 128 256
       do
-        install -Dm644 $out/lib/${name}/chrome/icons/default/default$size.png $out/share/icons/hicolor/apps/$sizex$size/apps/${name}.png
+        install -Dm644 $out/lib/thunderbird/chrome/icons/default/default$size.png $out/share/icons/hicolor/apps/$sizex$size/apps/thunderbird.png
       done
       # Wrap correctly, this is needed to
       # 1) find Mozilla runtime, because argv0 must be the real thing,
