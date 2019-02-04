@@ -171,7 +171,7 @@ in {
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
-        rev = "release-${version}";
+        rev = "${version}";
         sha256 = "1ifdnn6rsvhgffq108p3fjral4kvvl3vmqm7ix8hjycncjb0zl09";
         name = "engine";
         inherit extraPostFetch;
@@ -270,7 +270,7 @@ in {
       owner = "MustaphaTR";
       repo = "sole-survivor";
       rev = "23e1f3e5d8b98c936797b6680d95d56a69a9e2ab";
-      sha256 = "104clmxphchs7r8y7hpmw103bychayz80bqj98bp89i64nv9d89x";
+      sha256 = "0h7is7x2qyvq7vqp0jgw5zrdkw8g7ndd82d843ldhnb0a3vyrk34";
     };
     engine = let commit = "becfc154c5cd3891d695339ff86883db8b5790a5"; in {
       version = abbrevCommit commit;
@@ -310,23 +310,23 @@ in {
   };
 
   yr = unsafeBuildOpenRAMod rec {
-    version = "117";
+    version = "127";
     homepage = https://github.com/cookgreen/yr;
     title = "Yuri's Revenge";
     description = "Re-imagination of the original Command & Conquer: ${title} game";
     src = fetchFromGitHub {
       owner = "cookgreen";
       repo = "yr";
-      rev = "1d4beeb0687fe4b39b01ec31f3702cfb90a7f4f7";
-      sha256 = "1rd962ja1x72rz68kbmp19yiip3iif50hzlj3v8k1f5l94r2x2pn";
+      rev = "f245ffaafaa0963c060722f8d5f08e5fe71457f1";
+      sha256 = "0gb5djxis0p3s08px667jd5q5rkh79vn2fwq9bhgdhn1gmn7glck";
     };
     engine = rec {
-      version = "20180923";
+      version = "release-20180923";
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
         rev = "release-${version}";
-        sha256 = "1pgi3zaq9fwwdq6yh19bwxscslqgabjxkvl9bcn1a5agy4bfbqk5";
+        sha256 = "0gb5djxis0p3s08px667jd5q5rkh79vn2fwq9bhgdhn1gmn7glck";
         name = "engine";
         inherit extraPostFetch;
       };
