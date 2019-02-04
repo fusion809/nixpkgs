@@ -7,15 +7,15 @@ let
 
 in {
   ca = buildOpenRAMod {
-    version = "93";
+    version = "96";
     title = "Combined Arms";
     description = "A game that combines units from the official OpenRA Red Alert and Tiberian Dawn mods";
     homepage = https://github.com/Inq8/CAmod;
     src = fetchFromGitHub {
       owner = "Inq8";
       repo = "CAmod";
-      rev = "16fb77d037be7005c3805382712c33cec1a2788c";
-      sha256 = "11fjyr3692cy2a09bqzk5ya1hf6plh8hmdrgzds581r9xbj0q4pr";
+      rev = "fc3cf0baf2b827650eaae9e1d2335a3eed24bac9";
+      sha256 = "15w91xs253gyrlzsgid6ixxjazx0fbzick6vlkiay0znb58n883m";
     };
     engine = let commit = "b8a7dd52ff893ed8225726d4ed4e14ecad748404"; in {
       version = abbrevCommit commit;
@@ -42,13 +42,13 @@ in {
       sha256 = "1mfch4s6c05slyqvxllklbxpqq8dqcbx3515n3gyylyq43gq481r";
     };
     engine = rec {
-      version = "e08b75c2add30439228ea3dd61d6be60d1800329";
+      version = "release-20181215";
       mods = [ "cnc" "d2k" "ra" ];
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
         rev = "${version}";
-        sha256 = "1mfch4s6c05slyqvxllklbxpqq8dqcbx3515n3gyylyq43gq481r";
+        sha256 = "0p0izykjnz7pz02g2khp7msqa00jhjsrzk9y0g29dirmdv75qa4r";
         name = "engine";
         inherit extraPostFetch;
       };
@@ -167,12 +167,12 @@ in {
       sha256 = "1ifdnn6rsvhgffq108p3fjral4kvvl3vmqm7ix8hjycncjb0zl09";
     };
     engine = rec {
-      version = "6de92de";
+      version = "release-20180923";
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
         rev = "${version}";
-        sha256 = "1ifdnn6rsvhgffq108p3fjral4kvvl3vmqm7ix8hjycncjb0zl09";
+        sha256 = "1pgi3zaq9fwwdq6yh19bwxscslqgabjxkvl9bcn1a5agy4bfbqk5";
         name = "engine";
         inherit extraPostFetch;
       };
@@ -321,7 +321,7 @@ in {
       sha256 = "0gb5djxis0p3s08px667jd5q5rkh79vn2fwq9bhgdhn1gmn7glck";
     };
     engine = rec {
-      version = "release-20180923";
+      version = "b8a7dd5";
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
