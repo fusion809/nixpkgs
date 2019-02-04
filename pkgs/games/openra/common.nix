@@ -79,7 +79,7 @@ in {
     dontStrip = true;
 
     meta = {
-      maintainers = with maintainers; [ fusion809 msteen rardiol ];
+      maintainers = with maintainers; [ msteen rardiol ];
       license = licenses.gpl3;
       platforms = platforms.linux;
     };

@@ -19,7 +19,7 @@ with stdenv.lib;
 stdenv.mkDerivation (recursiveUpdate packageAttrs rec {
   name = "${pname}-${version}";
   pname = "openra";
-  inherit (engine) version;
+  version = "${engine.name}-${engine.version}";
 
   src = engine.src;
 
