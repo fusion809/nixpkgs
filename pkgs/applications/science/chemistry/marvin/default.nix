@@ -10,7 +10,7 @@ stdenv.mkDerivation rec {
   src = fetchurl {
     name = "marvin-${version}.deb";
     url = "http://dl.chemaxon.com/marvin/${version}/marvin_linux_${versions.majorMinor version}.deb";
-    sha256 = "1ccsimfvms5q4prjyk6sg5hsc3hkcjjfq3gl7jjm8dgd2173zzyc";
+    sha256 = "14qlllrqfamx7q4sy81s8mmwxxjaqfc7514l4rhk8rh2iiyk8mj7";
   };
 
   nativeBuildInputs = [ dpkg makeWrapper ];
@@ -25,7 +25,9 @@ stdenv.mkDerivation rec {
         --set INSTALL4J_JAVA_HOME "${jre}" \
         --prefix PATH : ${makeBinPath [ coreutils gawk gnugrep gnused ]}
     }
-    cp -r opt $out
+    mkdir -p $out/opt/chemaxon/marvinsuite/.install4j
+    cp -r opt/opt/chemaxon/marvinsuite/* $out/opt/chemaxon/marvinsuite
+    cp opt/opt/chemaxon/marvinsuite/.install4j/{*.lprop,build.uuid,*.png,*.ico,*.jar,*.utf8,*.conf,MessagesDefault} $out/opt/chemaxon/marvinsuite/.install4j
     mkdir -p $out/bin $out/share/pixmaps $out/share/applications
     for name in LicenseManager MarvinSketch MarvinView; do
       wrapBin $out/opt/chemaxon/marvinsuite/$name
