@@ -60,23 +60,23 @@ in {
   };
 
   dr = buildOpenRAMod rec {
-    version = "275";
+    version = "277";
     title = "Dark Reign";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/drogoganor/DarkReign;
     src = fetchFromGitHub {
       owner = "drogoganor";
       repo = "DarkReign";
-      rev = "0cd710442bd3233b7be79863ed0b9a38a020fb25";
-      sha256 = "0jbfyshra2jyfmh0a6h98q63c3nhpzhv4n0f5dy3jjx4d0fx9f5l";
+      rev = "8686e19a2a11287040ee8f05f9df7407ababc7d7";
+      sha256 = "0mws1lc2ry56l4y3x49m75h1r85sc5n1zxqxm4y8hvj87rg3fqil";
     };
-    engine = let commit = "7fcfb1dcb2bd472fa6680ffa37bd3bbedb2c44c5"; in {
+    engine = let commit = "e08b75c2add30439228ea3dd61d6be60d1800329"; in {
       version = abbrevCommit commit;
       src = fetchFromGitHub {
         owner = "drogoganor";
         repo = "OpenRA" ;
         rev = commit;
-        sha256 = "0x7k96j3q16dgay4jjlyv9kcgn4sc4v9ksw6ijnjws7q1r2rjs0m";
+        sha256 = "125vf962p69ajrh5pxgfwsi0ksczqwvlw5kn2fvffiwvh8d5in23";
         name = "engine";
         inherit extraPostFetch;
       };
@@ -95,7 +95,7 @@ in {
       sha256 = "0x2wlnzria1zbaim9npz8sh3yd2r83i95v8c0n0xih0y8qr0g4lh";
     };
     engine = rec {
-      version = "818d6c0b642f50a11b1d0a2fa48aa9cc2c7152c7";
+      version = "gen-20190202";
       src = fetchFromGitHub {
         owner = "MustaphaTR";
         repo = "OpenRA" ;
