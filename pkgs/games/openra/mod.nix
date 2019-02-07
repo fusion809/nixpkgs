@@ -77,6 +77,7 @@ in stdenv.mkDerivation (recursiveUpdate packageAttrs rec {
       --subst-var out \
       --subst-var-by name ${escapeShellArg mod.name} \
       --subst-var-by title ${escapeShellArg mod.title} \
+      --subst-var-by description ${escapeShellArg mod.description} \
       --subst-var-by assetsError ${escapeShellArg mod.assetsError}
     chmod +x $out/lib/${pname}/launch-game.sh
 
