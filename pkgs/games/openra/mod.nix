@@ -69,6 +69,9 @@ in stdenv.mkDerivation (recursiveUpdate packageAttrs rec {
 
     cp -r ${engineSourceName}/mods/{${concatStringsSep "," ([ "common" "modcontent" ] ++ engine.mods)}} mods/${mod.name} \
       $out/lib/${pname}/mods/
+    if [[ ${mod.name} == "kknd" ]]; then
+      cp -r mods/{kknd1,kknd2} $out/lib/${pname}/mods
+    fi
 
     substitute ${./mod-launch-game.sh} $out/lib/${pname}/launch-game.sh \
       --subst-var out \
