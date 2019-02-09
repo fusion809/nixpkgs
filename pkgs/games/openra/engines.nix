@@ -28,9 +28,9 @@ in {
   };
 
   playtest = buildUpstreamOpenRAEngine rec {
-    version = "20190106";
+    version = "20190209";
     rev = "playtest-${version}";
-    sha256 = "0ps9x379plrrj1hnj4fpr26lc46mzgxknv5imxi0bmrh5y4781ql";
+    sha256 = "1mciv08l5pl36gni5b005pswrvyjgwfhs9lvbh7sxnj2s875mkqd";
   };
 
   bleed = let commit = "f9cf45e63414922e951c1c465a342079e6b3c629"; in buildUpstreamOpenRAEngine {
