@@ -3,7 +3,7 @@
 let
   name = "scilab-bin-${ver}";
 
-  ver = "6.0.1";
+  ver = "6.0.2";
 
   majorVer = builtins.elemAt (lib.splitString "." ver) 0;
 
