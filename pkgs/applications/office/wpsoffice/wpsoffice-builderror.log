@@ -1,0 +1,17 @@
+installing 'wpsoffice-10.1.0.6757'
+these derivations will be built:
+  /nix/store/9a6ay34dcnf4xb7fw6s91qgksbabwagn-wpsoffice-10.1.0.6757.drv
+building '/nix/store/9a6ay34dcnf4xb7fw6s91qgksbabwagn-wpsoffice-10.1.0.6757.drv'...
+unpacking sources
+unpacking source archive /nix/store/bqdlg67pmr5k2g6pmpwfryjfx9gvy4va-wpsoffice-10.1.0.6757.tar.xz
+source root is wps-office_10.1.0.6757_x86_64
+setting SOURCE_DATE_EPOCH to timestamp 1536582032 of file wps-office_10.1.0.6757_x86_64/wps
+patching sources
+configuring
+no configure script, doing nothing
+building
+no Makefile, doing nothing
+installing
+ln: failed to create symbolic link './wps-office': No such file or directory
+builder for '/nix/store/9a6ay34dcnf4xb7fw6s91qgksbabwagn-wpsoffice-10.1.0.6757.drv' failed with exit code 1
+error: build of '/nix/store/9a6ay34dcnf4xb7fw6s91qgksbabwagn-wpsoffice-10.1.0.6757.drv' failed
