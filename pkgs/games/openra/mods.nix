@@ -68,7 +68,7 @@ in {
       owner = "drogoganor";
       repo = "DarkReign";
       rev = "212c40160882c7efe0c2910b9c41072ab86ce1a2";
-      sha256 = "18lkqzkdqm9p51189l0qbjcbkday1sx8rdcz39qxza77b9sc3n27";
+      sha256 = "0glhk8lr43cz1hgfw8ls12wj8v8w0fhz1ihfb12mh2lrj0n9wrjs";
     };
     engine = let commit = "9a460c0297a5747aedd17e198ba0cf038c68dc59"; in {
       version = abbrevCommit commit;
@@ -310,18 +310,18 @@ in {
   };
 
   yr = unsafeBuildOpenRAMod rec {
-    version = "133";
+    version = "135";
     homepage = https://github.com/cookgreen/yr;
     title = "Yuri's Revenge";
     description = "Re-imagination of the original Command & Conquer: ${title} game";
     src = fetchFromGitHub {
       owner = "cookgreen";
       repo = "yr";
-      rev = "121837af9b5068a668869354d0a2e58bf49fc9ea";
-      sha256 = "0s06w2baigmb9jjkv0abg2wgnaxs3p8jqlhxm97v4bg9kgbdka39";
+      rev = "8d9aa62eca353bd0eec76b904c0e72cb57a0892f";
+      sha256 = "0mxd6pj1cgxqcjsql6a8lfnd16v0mwvknk29ms83ljb3yqm64gbd";
     };
     engine = rec {
-      version = "SP-11-02-19";
+      version = "release-20181215";
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
