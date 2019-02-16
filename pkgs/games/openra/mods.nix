@@ -60,15 +60,15 @@ in {
   };
 
   dr = buildOpenRAMod rec {
-    version = "294";
+    version = "296";
     title = "Dark Reign";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/drogoganor/DarkReign;
     src = fetchFromGitHub {
       owner = "drogoganor";
       repo = "DarkReign";
-      rev = "212c40160882c7efe0c2910b9c41072ab86ce1a2";
-      sha256 = "0glhk8lr43cz1hgfw8ls12wj8v8w0fhz1ihfb12mh2lrj0n9wrjs";
+      rev = "867b5976538e49e60d96a5cd5ec600bb7c5a790f";
+      sha256 = "0qnfazrqp37fgvzvkwa453g5905iss9jllg9y5xnkjgh10j2snxz";
     };
     engine = let commit = "9a460c0297a5747aedd17e198ba0cf038c68dc59"; in {
       version = abbrevCommit commit;
@@ -310,15 +310,15 @@ in {
   };
 
   yr = unsafeBuildOpenRAMod rec {
-    version = "135";
+    version = "136";
     homepage = https://github.com/cookgreen/yr;
     title = "Yuri's Revenge";
     description = "Re-imagination of the original Command & Conquer: ${title} game";
     src = fetchFromGitHub {
       owner = "cookgreen";
       repo = "yr";
-      rev = "8d9aa62eca353bd0eec76b904c0e72cb57a0892f";
-      sha256 = "0mxd6pj1cgxqcjsql6a8lfnd16v0mwvknk29ms83ljb3yqm64gbd";
+      rev = "29de4868660f0b2f1ecdf8373e0b18ba90d9574d";
+      sha256 = "1m0icpilsvv79dwkwpjvdb32w1s1d3wqlcb0v8mwiqx302p6b4k4";
     };
     engine = rec {
       version = "release-20181215";
