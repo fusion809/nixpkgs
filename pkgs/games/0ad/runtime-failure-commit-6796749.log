@@ -1,0 +1,71 @@
+TIMER| InitVfs: 159.901 us
+Writing the mainlog at /home/fusion809/.config/0ad/logs/mainlog.html
+TIMER| CONFIG_Init: 1.57857 ms
+Sound: AlcInit success, using OpenAL Soft
+TIMER| shutdown ConfigDB: 0.36 us
+TIMER| resource modules: 2.32513 ms
+TIMER TOTALS (9 clients)
+-----------------------------------------------------
+  tc_pool_alloc: 0 c (0x)
+  tc_png_decode: 0 c (0x)
+  tc_dds_transform: 0 c (0x)
+  tc_transform: 0 c (0x)
+  tc_plain_transform: 0 c (0x)
+  tc_ShaderGLSLLink: 0 c (0x)
+  tc_ShaderGLSLCompile: 0 c (0x)
+  tc_ShaderValidation: 0 c (0x)
+  xml_validation: 0 c (0x)
+-----------------------------------------------------
+TIMER| shutdown misc: 324.532 us
+TIMER| InitVfs: 665.063 us
+Writing the mainlog at /home/fusion809/.config/0ad/logs/mainlog.html
+TIMER| CONFIG_Init: 2.0994 ms
+Sound: AlcInit success, using OpenAL Soft
+UserReport written to /home/fusion809/.config/0ad/logs/userreport_hwdetect.txt
+TIMER| RunHardwareDetection: 20.6258 ms
+TIMER| write_sys_info: 17.8709 ms
+TIMER| InitRenderer: 4.589 ms
+TIMER| ps_console: 2.44841 ms
+TIMER| ps_lang_hotkeys: 796.164 us
+TIMER| common/modern/setup.xml: 385.772 us
+TIMER| common/modern/styles.xml: 219.941 us
+TIMER| common/modern/sprites.xml: 1.11493 ms
+TIMER| common/setup.xml: 290.642 us
+TIMER| common/sprites.xml: 416.552 us
+TIMER| common/styles.xml: 82.861 us
+TIMER| pregame/backgrounds/: 363.271 us
+TIMER| pregame/sprites.xml: 114.031 us
+TIMER| pregame/styles.xml: 30.21 us
+TIMER| pregame/mainmenu.xml: 16.6199 ms
+TIMER| common/global.xml: 441.152 us
+tex_dds.cpp(485): Function call failed: return value was -120102 (Invalid/unsupported texture format)
+Function call failed: return value was -120102 (Invalid/unsupported texture format)
+Location: tex_dds.cpp:485 (decode_pf)
+
+Call stack:
+
+(0x9d760e) /run/current-system/sw/bin/0ad() [0x9d760e]
+(0x983ff1) /run/current-system/sw/bin/0ad() [0x983ff1]
+(0x985b7b) /run/current-system/sw/bin/0ad() [0x985b7b]
+(0x9f70c9) /run/current-system/sw/bin/0ad() [0x9f70c9]
+(0x9f56b7) /run/current-system/sw/bin/0ad() [0x9f56b7]
+(0x9c9f0f) /run/current-system/sw/bin/0ad() [0x9c9f0f]
+(0x9cce33) /run/current-system/sw/bin/0ad() [0x9cce33]
+(0x7c9e70) /run/current-system/sw/bin/0ad() [0x7c9e70]
+(0x7d4cca) /run/current-system/sw/bin/0ad() [0x7d4cca]
+(0x7c7aff) /run/current-system/sw/bin/0ad() [0x7c7aff]
+(0x7a38a1) /run/current-system/sw/bin/0ad() [0x7a38a1]
+(0x7c2f2b) /run/current-system/sw/bin/0ad() [0x7c2f2b]
+(0x8ee51c) /run/current-system/sw/bin/0ad() [0x8ee51c]
+(0x95e3a3) /run/current-system/sw/bin/0ad() [0x95e3a3]
+(0x9208d0) /run/current-system/sw/bin/0ad() [0x9208d0]
+(0x8faf7d) /run/current-system/sw/bin/0ad() [0x8faf7d]
+
+errno = 0 (No error reported here)
+OS error = ?
+
+
+(C)ontinue, (S)uppress, (B)reak, Launch (D)ebugger, or (E)xit?
+E 
+[1]    29889 abort      0ad
+

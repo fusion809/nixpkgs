@@ -3,16 +3,19 @@
 stdenv.mkDerivation rec {
   name = "0ad-data-${version}";
   inherit (zeroad-unwrapped) version;
+  commit = "6796749eed54351b45f7c7c545d43a135ccf063e";
 
   src = fetchurl {
-    url = "http://releases.wildfiregames.com/0ad-${version}-alpha-unix-data.tar.xz";
-    sha256 = "04x7729hk6zw1xj3n4s4lvaviijsnbjf5rhzvjxlr5fygvg4l6z1";
+    url = "https://github.com/0ad/0ad/archive/${commit}.tar.gz";
+    sha256 = "1dnajfwhy8ync2n75r31nnblrzsy5swyx61jbg0m05and0hxpapp";
   };
 
   installPhase = ''
     rm binaries/data/tools/fontbuilder/fonts/*.txt
     mkdir -p $out/share/0ad
     cp -r binaries/data $out/share/0ad/
+    # The following should be in the main package
+    rm -rf $out/share/0ad/data/l10n
   '';
 
   meta = with stdenv.lib; {
