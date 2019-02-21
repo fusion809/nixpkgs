@@ -156,15 +156,15 @@ in {
   };
 
   ra2 = buildOpenRAMod rec {
-    version = "883";
+    version = "884";
     title = "Red Alert 2";
     description = "Re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/OpenRA/ra2;
     src = fetchFromGitHub {
       owner = "OpenRA";
       repo = "ra2";
-      rev = "96d2d14986a70b69c7b0df4433b3ffd2de19e922";
-      sha256 = "1ifdnn6rsvhgffq108p3fjral4kvvl3vmqm7ix8hjycncjb0zl09";
+      rev = "a6f6ae8897a069567e9c1114d58f940f85314d61";
+      sha256 = "10b5ac20i1sxp9sj93yzdnhmj8xqyqwqx7gg9mbngy8x1r7744vr";
     };
     engine = rec {
       version = "release-20180923";
