@@ -70,7 +70,7 @@ in {
       rev = "b7adc728b38170bdc1ea4ec7703d23be0695adc8";
       sha256 = "0p97mrd9k3ffqjyykq9hy115v6033gcs8qqi6fxd2p1msj09sg88";
     };
-    engine = let commit = "fc49e7dc20b64b9abdf3bc2b9d3b4f32af44c7d0"; in {
+    engine = let commit = "f91d3f2603bbf51afaa89357e4defcdc36138102"; in {
       version = abbrevCommit commit;
       src = fetchFromGitHub {
         owner = "drogoganor";
