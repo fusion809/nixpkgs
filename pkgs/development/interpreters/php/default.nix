@@ -2,7 +2,7 @@
 { lib, stdenv, fetchurl, flex, bison, autoconf
 , mysql, libxml2, readline, zlib, curl, postgresql, gettext
 , openssl, pcre, pcre2, pkgconfig, sqlite, config, libjpeg, libpng, freetype
-, libxslt, libmcrypt, bzip2, icu, openldap, cyrus_sasl, libmhash
+, libxslt, libmcrypt, bzip2, icu, openldap, cyrus_sasl, libmhash, unixODBC
 , uwimap, pam, gmp, apacheHttpd, libiconv, systemd, libsodium, html-tidy, libargon2, libzip
 }:
 
@@ -28,6 +28,7 @@ let
   , curlSupport ? config.php.curl or true
   , gettextSupport ? config.php.gettext or true
   , pcntlSupport ? config.php.pcntl or true
+  , pdo_odbcSupport ? config.php.pdo_odbc or true
   , postgresqlSupport ? config.php.postgresql or true
   , pdo_pgsqlSupport ? config.php.pdo_pgsql or true
   , readlineSupport ? config.php.readline or true
@@ -88,6 +89,7 @@ let
         ++ optional readlineSupport readline
         ++ optional sqliteSupport sqlite
         ++ optional postgresqlSupport postgresql
+        ++ optional pdo_odbcSupport unixODBC
         ++ optional pdo_pgsqlSupport postgresql
         ++ optional pdo_mysqlSupport mysqlBuildInputs
         ++ optional mysqliSupport mysqlBuildInputs
@@ -141,6 +143,7 @@ let
       ++ optional readlineSupport "--with-readline=${readline.dev}"
       ++ optional sqliteSupport "--with-pdo-sqlite=${sqlite.dev}"
       ++ optional postgresqlSupport "--with-pgsql=${postgresql}"
+      ++ optional pdo_odbcSupport "--with-pdo-odbc=unixODBC,${unixODBC}"
       ++ optional pdo_pgsqlSupport "--with-pdo-pgsql=${postgresql}"
       ++ optional pdo_mysqlSupport "--with-pdo-mysql=${if mysqlndSupport then "mysqlnd" else mysql.connector-c}"
       ++ optionals mysqliSupport [
@@ -253,16 +256,16 @@ in {
   };
 
   php72 = generic {
-    version = "7.2.14";
-    sha256 = "15v5gbdxi6jkgdflpj5rqqzzfvwdb55hls4azh71xgy793934qgm";
+    version = "7.2.15";
+    sha256 = "0m05dmad138qfxcb2z4czf9pfv1746g9yzlch48kjikajhb7cgn9";
 
     # https://bugs.php.net/bug.php?id=76826
     extraPatches = optional stdenv.isDarwin ./php72-darwin-isfinite.patch;
   };
 
   php73 = generic {
-    version = "7.3.1";
-    sha256 = "13iqfkz9rmx9vy106lvw1nbk88qgwdkvxam0l5s14r7jsw62pvxg";
+    version = "7.3.2";
+    sha256 = "1p8amf91i6lrrphd6ypfh3kic64bpqf04dxp7dj1xxnjrgd50vwl";
 
     # https://bugs.php.net/bug.php?id=76826
     extraPatches = optional stdenv.isDarwin ./php73-darwin-isfinite.patch;

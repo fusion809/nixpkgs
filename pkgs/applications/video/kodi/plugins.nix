@@ -1,13 +1,14 @@
 { stdenv, callPackage, fetchurl, fetchFromGitHub, unzip
 , cmake, kodiPlain, libcec_platform, tinyxml
 , steam, libusb, pcre-cpp, jsoncpp, libhdhomerun, zlib
-, python2Packages }:
+, python2Packages, expat, glib, nspr, nss }:
 
 with stdenv.lib;
 
 let self = rec {
 
   pluginDir = "/share/kodi/addons";
+  rel = "Leia";
 
   kodi = kodiPlain;
 
@@ -54,6 +55,8 @@ let self = rec {
 
     dontStrip = true;
 
+    extraRuntimeDependencies = [ ];
+
     installPhase = ''
       ${if isNull sourceDir then "" else "cd $src/$sourceDir"}
       d=$out${pluginDir}/${namespace}
@@ -64,7 +67,8 @@ let self = rec {
     '';
   } // args));
 
-  mkKodiABIPlugin = { plugin, namespace, version, extraBuildInputs ? [], ... }@args:
+  mkKodiABIPlugin = { plugin, namespace, version, extraBuildInputs ? [],
+    extraRuntimeDependencies ? [], extraInstallPhase ? "", ... }@args:
   toKodiPlugin (stdenv.mkDerivation (rec {
     name = "kodi-plugin-${plugin}-${version}";
 
@@ -72,6 +76,8 @@ let self = rec {
 
     buildInputs = [ cmake kodiPlain kodi-platform libcec_platform ]
                ++ extraBuildInputs;
+
+    inherit extraRuntimeDependencies;
 
     # disables check ensuring install prefix is that of kodi
     cmakeFlags = [
@@ -84,6 +90,7 @@ let self = rec {
     installPhase = let n = namespace; in ''
       make install
       ln -s $out/lib/addons/${n}/${n}.so.${version} $out${pluginDir}/${n}/${n}.so.${version}
+      ${extraInstallPhase}
     '';
   } // args));
 
@@ -355,13 +362,13 @@ let self = rec {
 
     plugin = "pvr-hts";
     namespace = "pvr.hts";
-    version = "3.4.16";
+    version = "4.4.14";
 
     src = fetchFromGitHub {
       owner = "kodi-pvr";
       repo = "pvr.hts";
-      rev = "b39e4e9870d68841279cbc7d7214f3ad9b27f330";
-      sha256 = "0pmlgqr4kd0gvckz77mj6v42kcx6lb23anm8jnf2fbn877snnijx";
+      rev = "${version}-${rel}";
+      sha256 = "1bcwcwd2yjhw85yk6lyhf0iqiclrsz7r7vpbxgc650fwqbb146gr";
     };
 
     meta = {
@@ -469,5 +476,34 @@ let self = rec {
       license = licenses.gpl3;
     };
   });
+
+  inputstream-adaptive = mkKodiABIPlugin rec {
+
+    plugin = "inputstream-adaptive";
+    namespace = "inputstream.adaptive";
+    version = "2.3.12";
+
+    src = fetchFromGitHub {
+      owner = "peak3d";
+      repo = "inputstream.adaptive";
+      rev = "${version}";
+      sha256 = "09d9b35mpaf3g5m51viyan9hv7d2i8ndvb9wm0j7rs5gwsf0k71z";
+    };
+
+    extraBuildInputs = [ expat ];
+
+    extraRuntimeDependencies = [ glib nspr nss stdenv.cc.cc.lib ];
+
+    extraInstallPhase = let n = namespace; in ''
+      ln -s $out/lib/addons/${n}/libssd_wv.so $out/${pluginDir}/${n}/libssd_wv.so
+    '';
+
+    meta = {
+      homepage = https://github.com/peak3d/inputstream.adaptive;
+      description = "Kodi inputstream addon for several manifest types";
+      platforms = platforms.all;
+      maintainers = with maintainers; [ sephalon ];
+    };
+  };
 
 }; in self

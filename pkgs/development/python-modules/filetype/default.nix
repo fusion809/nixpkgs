@@ -1,20 +1,16 @@
 { lib
 , buildPythonPackage
-, fetchFromGitHub
+, fetchPypi
 , python
 }:
 
 buildPythonPackage rec {
   pname = "filetype";
-  version = "1.0.2";
+  version = "1.0.4";
 
-  # No tests in PyPI tarball
-  # See https://github.com/h2non/filetype.py/pull/33
-  src = fetchFromGitHub {
-    owner = "h2non";
-    repo = "filetype.py";
-    rev = "v${version}";
-    sha256 = "000gl3q2cadfnmqnbxg31ppc3ak8blzb4nfn75faxbp7b6r5qgr2";
+  src = fetchPypi {
+    inherit pname version;
+    sha256 = "366c50d0211798e696626f125134163ac2fff25a70131eec80a1d1a6196c1027";
   };
 
   checkPhase = ''
