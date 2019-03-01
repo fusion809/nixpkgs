@@ -60,15 +60,15 @@ in {
   };
 
   dr = unsafeBuildOpenRAMod rec {
-    version = "314";
+    version = "317";
     title = "Dark Reign";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/drogoganor/DarkReign;
     src = fetchFromGitHub {
       owner = "drogoganor";
       repo = "DarkReign";
-      rev = "b966ec217b89a33e215cdbace15445b18c3f0e79";
-      sha256 = "1a43cbd8s73rzn2akzs76j69inws3rvmbwfj1z10mnmphgxyv8a8";
+      rev = "26fff363df97ea984503c3653634da4659040fb1";
+      sha256 = "0rndpbd67wqbihl4yi9mhfpfv3wlfmjhdz9qc1zygjcbgahczkni";
     };
     engine = let commit = "f91d3f2603bbf51afaa89357e4defcdc36138102"; in {
       version = abbrevCommit commit;
@@ -156,15 +156,15 @@ in {
   };
 
   ra2 = buildOpenRAMod rec {
-    version = "887";
+    version = "890";
     title = "Red Alert 2";
     description = "Re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/OpenRA/ra2;
     src = fetchFromGitHub {
       owner = "OpenRA";
       repo = "ra2";
-      rev = "2f3e70562667c7a2ce880ff4b635fa3f679c5569";
-      sha256 = "00lpz0llws4zmrlkr6n7xb50aa4qzm24akjbvvgbvvypywwpjzs3";
+      rev = "5141929a41abedd329dcf352c12190413f0b0e95";
+      sha256 = "18n297rd474n0pi3yyq3rwzgckzhy0scvsrnzmkvqr5msnksmvc2";
     };
     engine = rec {
       version = "release-20180923";
