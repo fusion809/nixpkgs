@@ -25,9 +25,10 @@ stdenv.mkDerivation rec {
         --set INSTALL4J_JAVA_HOME "${jre}" \
         --prefix PATH : ${makeBinPath [ coreutils gawk gnugrep gnused ]}
     }
-    mkdir -p $out/opt/chemaxon/marvinsuite/.install4j
-    cp -r opt/opt/chemaxon/marvinsuite/* $out/opt/chemaxon/marvinsuite
-    cp opt/opt/chemaxon/marvinsuite/.install4j/{*.lprop,build.uuid,*.png,*.ico,*.jar,*.utf8,*.conf,MessagesDefault} $out/opt/chemaxon/marvinsuite/.install4j
+     cp -r opt $out
+#    mkdir -p $out/opt/chemaxon/marvinsuite/.install4j
+#    cp -r opt/opt/chemaxon/marvinsuite/* $out/opt/chemaxon/marvinsuite
+#    cp opt/opt/chemaxon/marvinsuite/.install4j/{*.lprop,build.uuid,*.png,*.ico,*.jar,*.utf8,*.conf,MessagesDefault} $out/opt/chemaxon/marvinsuite/.install4j
     mkdir -p $out/bin $out/share/pixmaps $out/share/applications
     for name in LicenseManager MarvinSketch MarvinView; do
       wrapBin $out/opt/chemaxon/marvinsuite/$name
