@@ -1628,6 +1628,10 @@
     email = "fpletz@fnordicwalking.de";
     github = "fpletz";
     name = "Franz Pletz";
+    keys = [{
+      longkeyid = "rsa4096/0x846FDED7792617B4";
+      fingerprint = "8A39 615D CE78 AF08 2E23  F303 846F DED7 7926 17B4";
+    }];
   };
   fps = {
     email = "mista.tapas@gmx.net";
@@ -2294,6 +2298,11 @@
   joko = {
     email = "ioannis.koutras@gmail.com";
     github = "jokogr";
+    keys = [{
+      # compare with https://keybase.io/joko
+      longkeyid = "rsa2048/0x85EAE7D9DF56C5CA";
+      fingerprint = "B154 A8F9 0610 DB45 0CA8  CF39 85EA E7D9 DF56 C5CA";
+    }];
     name = "Ioannis Koutras";
   };
   jonafato = {
@@ -5064,7 +5073,7 @@
     name = "Kranium Gikos Mendoza";
   };
   worldofpeace = {
-    email = "worldofpeace@users.noreply.github.com";
+    email = "worldofpeace@protonmail.ch";
     github = "worldofpeace";
     name = "Worldofpeace";
   };
@@ -5276,5 +5285,10 @@
     email = "shmish111@gmail.com";
     github = "shmish111";
     name = "David Smith";
+  };
+  minijackson = {
+    email = "minijackson@riseup.net";
+    github = "minijackson";
+    name = "Rémi Nicole";
   };
 }
