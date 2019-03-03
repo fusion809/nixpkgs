@@ -1,14 +1,14 @@
 { stdenv, fetchurl, sane-backends, qtbase, qtsvg, nss, autoPatchelfHook, lib, makeWrapper }:
 
 let
-  version = "5.2.20";
+  version = "5.3.16";
 
 in stdenv.mkDerivation {
   name = "masterpdfeditor-${version}";
 
   src = fetchurl {
     url = "https://code-industry.net/public/master-pdf-editor-${version}_qt5.amd64.tar.gz";
-    sha256 = "1399zv3m7a2rxvmy213f5yii3krsqyahpwdzsw8j535xrb9f3z1m";
+    sha256 = "03a9b9sk1ppd3wwx1lmp1557jhydm92irpf6i3fdrmqb4vaj759l";
   };
 
   nativeBuildInputs = [ autoPatchelfHook makeWrapper ];
