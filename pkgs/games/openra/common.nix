@@ -4,6 +4,7 @@
 { stdenv, makeSetupHook, curl, unzip, dos2unix, pkgconfig, makeWrapper
 , lua, mono, dotnetPackages, python
 , libGL, openal, SDL2
+, freetype
 , zenity
 }:
 
