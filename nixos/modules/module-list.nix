@@ -182,6 +182,7 @@
   ./services/audio/mpd.nix
   ./services/audio/mopidy.nix
   ./services/audio/slimserver.nix
+  ./services/audio/snapserver.nix
   ./services/audio/squeezelite.nix
   ./services/audio/ympd.nix
   ./services/backup/bacula.nix
@@ -189,6 +190,7 @@
   ./services/backup/duplicati.nix
   ./services/backup/crashplan.nix
   ./services/backup/crashplan-small-business.nix
+  ./services/backup/duplicity.nix
   ./services/backup/mysql-backup.nix
   ./services/backup/postgresql-backup.nix
   ./services/backup/restic.nix
@@ -268,6 +270,7 @@
   ./services/desktops/gnome3/gnome-online-accounts.nix
   ./services/desktops/gnome3/gnome-remote-desktop.nix
   ./services/desktops/gnome3/gnome-online-miners.nix
+  ./services/desktops/gnome3/gnome-settings-daemon.nix
   ./services/desktops/gnome3/gnome-terminal-server.nix
   ./services/desktops/gnome3/gnome-user-share.nix
   ./services/desktops/gnome3/gpaste.nix

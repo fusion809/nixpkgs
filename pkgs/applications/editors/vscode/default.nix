@@ -27,7 +27,7 @@ let
 in
   stdenv.mkDerivation rec {
     name = "vscode-${version}";
-    version = "1.31.1";
+    version = "1.32.0";
 
     src = fetchurl {
       name = "VSCode_${version}_${plat}.${archive_fmt}";
