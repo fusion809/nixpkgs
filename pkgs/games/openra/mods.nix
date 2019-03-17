@@ -208,15 +208,15 @@ in {
   };
 
   rv = unsafeBuildOpenRAMod {
-    version = "1594";
+    version = "1595";
     title = "Romanov's Vengeance";
     description = "Re-imagination of the original Command & Conquer: Red Alert 2 game";
     homepage = https://github.com/MustaphaTR/Romanovs-Vengeance;
     src = fetchFromGitHub {
       owner = "MustaphaTR";
       repo = "Romanovs-Vengeance";
-      rev = "d4aba74311a0eef77710d33043e6abe41c0ee081";
-      sha256 = "18qzq3djl6l68hdkhvsja028gbdims5qig95lkw53pv9hm3bccya";
+      rev = "5b3f11741992b81365399a43acc43b1676d2fb32";
+      sha256 = "0ndh62q0xsqgzq2wdniyb7jrq98fdjhvjhxqk9b4m3w6p3khbl4l";
     };
     engine = let commit = "5d28d40"; in {
       version = abbrevCommit commit;
