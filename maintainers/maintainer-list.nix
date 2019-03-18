@@ -523,6 +523,11 @@
     email = "sivaraman.balaji@gmail.com";
     name = "Balaji Sivaraman";
   };
+  balsoft = {
+    email = "balsoft75@gmail.com";
+    github = "balsoft";
+    name = "Alexander Bantyev";
+  };
   bandresen = {
     email = "bandresen@gmail.com";
     github = "bandresen";
@@ -2658,6 +2663,11 @@
     github = "limeytexan";
     name = "Michael Brantley";
   };
+  linarcx = {
+    email = "linarcx@gmail.com";
+    github = "linarcx";
+    name = "Kaveh Ahangar";
+  };
   linc01n = {
     email = "git@lincoln.hk";
     github = "linc01n";
@@ -2672,6 +2682,11 @@
     email = "linusarver@gmail.com";
     github = "listx";
     name = "Linus Arver";
+  };
+  luis = {
+      email = "luis.nixos@gmail.com";
+      github = "Luis-Hebendanz";
+      name = "Luis Hebendanz";
   };
   lionello = {
     email = "lio@lunesu.com";
@@ -2875,6 +2890,11 @@
     github = "matthiasbeyer";
     name = "Matthias Beyer";
   };
+  matti-kariluoma = {
+    email = "matti@kariluo.ma";
+    github = "matti-kariluoma";
+    name = "Matti Kariluoma";
+  };
   maurer = {
     email = "matthew.r.maurer+nix@gmail.com";
     github = "maurer";
@@ -2945,6 +2965,11 @@
     github = "meisternu";
     name = "Matt Miemiec";
   };
+  melchips = {
+    email = "truphemus.francois@gmail.com";
+    github = "melchips";
+    name = "Francois Truphemus";
+  };
   melsigl = {
     email = "melanie.bianca.sigl@gmail.com";
     github = "melsigl";
@@ -2958,6 +2983,11 @@
   metabar = {
     email = "softs@metabarcoding.org";
     name = "Celine Mercier";
+  };
+  mfossen = {
+    email = "msfossen@gmail.com";
+    github = "mfossen";
+    name = "Mitchell Fossen";
   };
   mgdelacroix = {
     email = "mgdelacroix@gmail.com";
@@ -3712,6 +3742,11 @@
     github = "polyrod";
     name = "Maurizio Di Pietro";
   };
+  pombeirp = {
+    email = "nix@endgr.33mail.com";
+    github = "PombeirP";
+    name = "Pedro Pombeiro";
+  };
   pradeepchhetri = {
     email = "pradeep.chhetri89@gmail.com";
     github = "pradeepchhetri";
@@ -3951,6 +3986,11 @@
     github = "rittelle";
     name = "Lennart Rittel";
   };
+  rixed = {
+    email = "rixed-github@happyleptic.org";
+    github = "rixed";
+    name = "Cedric Cellier";
+  };
   rkoe = {
     email = "rk@simple-is-better.org";
     github = "rkoe";
@@ -4030,6 +4070,11 @@
     email = "rprospero+nix@gmail.com";
     github = "rprospero";
     name = "Adam Washington";
+  };
+  rps = {
+    email = "robbpseaton@gmail.com";
+    github = "robertseaton";
+    name = "Robert P. Seaton";
   };
   rszibele = {
     email = "richard@szibele.com";
@@ -4459,6 +4504,11 @@
     github = "stesie";
     name = "Stefan Siegl";
   };
+  steve-chavez = {
+    email = "stevechavezast@gmail.com";
+    github = "steve-chavez";
+    name = "Steve Chávez";
+  };
   steveej = {
     email = "mail@stefanjunker.de";
     github = "steveej";
@@ -4642,6 +4692,11 @@
     email = "teo@nullable.se";
     github = "teozkr";
     name = "Teo Klestrup Röijezon";
+  };
+  terlar = {
+    email = "terlar@gmail.com";
+    github = "terlar";
+    name = "Terje Larsen";
   };
   teto = {
     email = "mcoudron@hotmail.com";

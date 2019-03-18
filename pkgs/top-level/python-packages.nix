@@ -178,6 +178,8 @@ in {
 
   ansicolor = callPackage ../development/python-modules/ansicolor { };
 
+  aplpy = callPackage ../development/python-modules/aplpy { };
+
   argon2_cffi = callPackage ../development/python-modules/argon2_cffi { };
 
   asana = callPackage ../development/python-modules/asana { };
@@ -193,6 +195,10 @@ in {
   astral = callPackage ../development/python-modules/astral { };
 
   astropy = callPackage ../development/python-modules/astropy { };
+
+  astropy-helpers = callPackage ../development/python-modules/astropy-helpers { };
+
+  astropy-healpix = callPackage ../development/python-modules/astropy-healpix { };
 
   astroquery = callPackage ../development/python-modules/astroquery { };
 
@@ -368,6 +374,8 @@ in {
 
   distorm3 = callPackage ../development/python-modules/distorm3 { };
 
+  distlib = callPackage ../development/python-modules/distlib { };
+
   distributed = callPackage ../development/python-modules/distributed { };
 
   docutils = callPackage ../development/python-modules/docutils { };
@@ -495,6 +503,9 @@ in {
   mpi4py = callPackage ../development/python-modules/mpi4py {
     mpi = pkgs.openmpi;
   };
+
+  msrestazure = callPackage ../development/python-modules/msrestazure { };
+  msrest = callPackage ../development/python-modules/msrest { };
 
   multiset = callPackage ../development/python-modules/multiset { };
 
@@ -788,6 +799,8 @@ in {
   pyvoro = callPackage ../development/python-modules/pyvoro { };
 
   relatorio = callPackage ../development/python-modules/relatorio { };
+
+  reproject = callPackage ../development/python-modules/reproject { };
 
   remotecv = callPackage ../development/python-modules/remotecv { };
 
@@ -1182,8 +1195,6 @@ in {
 
   csscompressor = callPackage ../development/python-modules/csscompressor {};
 
-  csvkit =  callPackage ../development/python-modules/csvkit { };
-
   cufflinks = callPackage ../development/python-modules/cufflinks { };
 
   cupy = callPackage ../development/python-modules/cupy {
@@ -1311,11 +1322,15 @@ in {
 
   canmatrix = callPackage ../development/python-modules/canmatrix {};
 
-  cairocffi = callPackage ../development/python-modules/cairocffi {};
 
-  cairosvg1 = callPackage ../development/python-modules/cairosvg/1_x.nix {};
+  cairocffi = let
+    inherit (callPackage ../development/python-modules/cairocffi {}) cairocffi_1_0 cairocffi_0_9;
+  in if isPy3k then cairocffi_1_0 else cairocffi_0_9;
 
-  cairosvg = callPackage ../development/python-modules/cairosvg {};
+  cairosvg = if isPy3k then
+    callPackage ../development/python-modules/cairosvg {}
+  else
+    callPackage ../development/python-modules/cairosvg/1_x.nix {};
 
   carrot = callPackage ../development/python-modules/carrot {};
 
@@ -1324,6 +1339,8 @@ in {
   case = callPackage ../development/python-modules/case {};
 
   cbor = callPackage ../development/python-modules/cbor {};
+
+  cbor2 = callPackage ../development/python-modules/cbor2 {};
 
   cassandra-driver = callPackage ../development/python-modules/cassandra-driver { };
 
@@ -1514,6 +1531,8 @@ in {
   bcrypt = callPackage ../development/python-modules/bcrypt { };
 
   cffi = callPackage ../development/python-modules/cffi { };
+
+  pyavm = callPackage ../development/python-modules/pyavm { };
 
   pycollada = callPackage ../development/python-modules/pycollada { };
 
@@ -1733,6 +1752,8 @@ in {
   dns = self.dnspython; # Alias for compatibility, 2017-12-10
 
   docker = callPackage ../development/python-modules/docker {};
+
+  dockerfile-parse = callPackage ../development/python-modules/dockerfile-parse {};
 
   docker-py = disabledIf isPy27 (callPackage ../development/python-modules/docker-py {});
 
@@ -2674,9 +2695,21 @@ in {
 
   google-auth-httplib2 = callPackage ../development/python-modules/google-auth-httplib2 { };
 
+  google-auth-oauthlib = callPackage ../development/python-modules/google-auth-oauthlib { };
+
   google_api_core = callPackage ../development/python-modules/google_api_core { };
 
-  google_api_python_client = callPackage ../development/python-modules/google-api-python-client { };
+  google_api_python_client = let
+    google_api_python_client = callPackage ../development/python-modules/google-api-python-client { };
+  in if isPy3k then google_api_python_client else
+    # Python 2.7 support was deprecated but is still needed by weboob
+    google_api_python_client.overridePythonAttrs (old: rec {
+      version = "1.7.6";
+      src = old.src.override {
+        inherit version;
+        sha256 = "14w5sdrp0bk9n0r2lmpqmrbf2zclpfq6q7giyahnskkfzdkb165z";
+      };
+    });
 
   google_apputils = callPackage ../development/python-modules/google_apputils { };
 
@@ -3983,6 +4016,8 @@ in {
 
   retry_decorator = callPackage ../development/python-modules/retry_decorator { };
 
+  qdarkstyle = callPackage ../development/python-modules/qdarkstyle { };
+
   quamash = callPackage ../development/python-modules/quamash { };
 
   quandl = callPackage ../development/python-modules/quandl { };
@@ -3991,8 +4026,8 @@ in {
 
   qscintilla-qt4 = callPackage ../development/python-modules/qscintilla { };
 
-  qscintilla-qt5 = callPackage ../development/python-modules/qscintilla-qt5 {
-    qscintillaCpp = pkgs.libsForQt5.qscintilla;
+  qscintilla-qt5 = pkgs.libsForQt5.callPackage ../development/python-modules/qscintilla-qt5 {
+    pythonPackages = self;
     lndir = pkgs.xorg.lndir;
   };
 
@@ -4951,6 +4986,8 @@ in {
   };
 
   potr = callPackage ../development/python-modules/potr {};
+
+  pyregion = callPackage ../development/python-modules/pyregion {};
 
   python-u2flib-host = callPackage ../development/python-modules/python-u2flib-host { };
 
