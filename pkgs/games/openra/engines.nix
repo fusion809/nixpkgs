@@ -22,15 +22,15 @@ let
 
 in {
   release = buildUpstreamOpenRAEngine rec {
-    version = "20181215";
+    version = "20190314";
     rev = "release-${version}";
-    sha256 = "0p0izykjnz7pz02g2khp7msqa00jhjsrzk9y0g29dirmdv75qa4r";
+    sha256 = "15pvn5cx3g0nzbrgpsfz8dngad5wkzp5dz25ydzn8bmxafiijvcr";
   };
 
   playtest = buildUpstreamOpenRAEngine rec {
-    version = "20190209";
+    version = "20190302";
     rev = "playtest-${version}";
-    sha256 = "1mciv08l5pl36gni5b005pswrvyjgwfhs9lvbh7sxnj2s875mkqd";
+    sha256 = "1vqvfk2p2lpk3m0d3rpvj34i8cmk3mfc7w4cn4llqd9zp4kk9pya";
   };
 
   bleed = let commit = "a3325277d919a27e65c63f1a580458931e8004f5"; in buildUpstreamOpenRAEngine {
