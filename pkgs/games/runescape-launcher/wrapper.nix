@@ -7,6 +7,7 @@ buildFHSUserEnv rec {
 
   targetPkgs = pkgs: with pkgs // pkgs.xorg; [
     libSM
+    libglvnd
     libX11
     libXxf86vm
     libpng12
