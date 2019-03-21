@@ -6,7 +6,7 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://content.runescape.com/downloads/ubuntu/pool/non-free/r/runescape-launcher/runescape-launcher_${version}_amd64.deb";
-    sha256 = "0cqnc1dyhw97mc15jkxi30fhkgsiiaaf47mw0j9a8wc2m79j18z1";
+    sha256 = "0bk4af12k1m5cchzymhi9gfk90v6n9qphhxx2x9z1hba5v2yc0gj";
   };
 
   dontPatchELF = true;
