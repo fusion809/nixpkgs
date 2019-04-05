@@ -1,12 +1,12 @@
 { lib, fetchFromGitHub }:
 rec {
-  version = "8.1.1119";
+  version = "8.1.1120";
 
   src = fetchFromGitHub {
     owner = "vim";
     repo = "vim";
     rev = "v${version}";
-    sha256 = "1j8zhkylfa897f33v2zcdzfphkj8p7a50a55ih8xs6xscwi6gbcs";
+    sha256 = "1v68jd4vynzfzx4c2bnm8axk5fp11qgrdvhx2b535d6b0qvkzbnw";
   };
 
   enableParallelBuilding = true;
