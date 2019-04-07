@@ -317,8 +317,8 @@ in {
     src = fetchFromGitHub {
       owner = "cookgreen";
       repo = "yr";
-      rev = "0009d038501b0f24aed582f448052a173ec8503f";
-      sha256 = "0cd3cjf4x5lwp8kjkhlivi9z5xmpj4yjjim7mcplnggvp4lha978";
+      rev = "31076ba58e74e5763ae5988ce6f3e59567f96126";
+      sha256 = "1anzndbmgk0cbma10wzvsw9mdc6qhmdx80mdckv9pfl9ln6dnl03";
     };
     engine = rec {
       version = "release-20181215";
