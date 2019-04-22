@@ -245,7 +245,7 @@ in {
       owner = "ABrandau";
       repo = "OpenRAModSDK";
       rev = "e19167685d02df67d4c9ddbd750673bad118ec56";
-      sha256 = "16mgn585j3vx8w9fkz7w0yjz3c1hzz9pdd34dzagvby417q17qgf";
+      sha256 = "0nr7kx2gdg4p81w3z4dvrq5rw594csa3y3gfmbj5rip2njnwwzf0";
     };
     engine = let commit = "SP-22-04-19"; in {
       version = abbrevCommit commit;
