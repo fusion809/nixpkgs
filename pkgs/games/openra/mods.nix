@@ -31,15 +31,15 @@ in {
   };
 
   d2 = unsafeBuildOpenRAMod rec {
-    version = "146";
+    version = "147";
     title = "Dune II";
     description = "A modernization of the original ${title} game";
     homepage = https://github.com/OpenRA/d2;
     src = fetchFromGitHub {
       owner = "OpenRA";
       repo = "d2";
-      rev = "f21b3169f1bc6f766f127a30030b6369a5226bc5";
-      sha256 = "1q0fr20a8ibnyxks2whnfw5f9xvmwkxs9zlbqdhkjvf7d1sg10l2";
+      rev = "8932073849d135688d444cb3e42f76ad8990b4f4";
+      sha256 = "15l3gk1gigv35ir95spm0biyx3c3711g7py7x1ly160mxipb3rfx";
     };
     engine = rec {
       version = "release-20190314";
