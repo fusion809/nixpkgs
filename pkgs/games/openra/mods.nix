@@ -310,15 +310,15 @@ in {
   };
 
   yr = unsafeBuildOpenRAMod rec {
-    version = "199";
+    version = "201";
     homepage = https://github.com/cookgreen/yr;
     title = "Yuri's Revenge";
     description = "Re-imagination of the original Command & Conquer: ${title} game";
     src = fetchFromGitHub {
       owner = "cookgreen";
       repo = "yr";
-      rev = "5b8b952dbe21f194a6d00485f20e215ce8362712";
-      sha256 = "0hxzrqnz5d7qj1jjr20imiyih62x1cnmndf75nnil4c4sj82f9a6";
+      rev = "64903e1b2947cb6847bea9d5ea1482ece7b71574";
+      sha256 = "0yny1nq1cj05cbl091lgnpxd9bs882cx0ckc41qf194rmlrb88ky";
     };
     engine = rec {
       version = "release-20190314";
