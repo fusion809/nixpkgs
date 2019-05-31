@@ -208,24 +208,24 @@ in {
   };
 
   rv = unsafeBuildOpenRAMod {
-    version = "1757";
+    version = "1758";
     title = "Romanov's Vengeance";
     description = "Re-imagination of the original Command & Conquer: Red Alert 2 game";
     homepage = https://github.com/MustaphaTR/Romanovs-Vengeance;
     src = fetchFromGitHub {
       owner = "MustaphaTR";
       repo = "Romanovs-Vengeance";
-      rev = "b12c2878d834e3d22f8d64b9d845c85aa9c747fb";
-      sha256 = "1asjrph1q13sji2bwjfagmakbh7fwvwd81c46w5s1hpnbm3w43gc";
+      rev = "ba69ffc7c8752572f2ebed6516a0a6ffb4f05e46";
+      sha256 = "1i51i15sal9lv38hxbdbw9851p9nsnwc983d7xfl3p7cy48iy9d6";
     };
-    engine = let commit = "a4dfc1e"; in {
+    engine = let commit = "48e5a17"; in {
       version = abbrevCommit commit;
       mods = [ "as" ];
       src = fetchFromGitHub {
         owner = "GraionDilach";
         repo = "OpenRA" ;
         rev = commit;
-        sha256 = "1yj9gng89a9rcqyk1bys4a3mwpxysnfvvpk5f8d5zpif9vzajn3h";
+        sha256 = "154410ahj5063ix6zvx7s1kzi000ziaby067g3bcw80vkm4dgp3f";
         name = "engine";
         inherit extraPostFetch;
       };
@@ -262,23 +262,23 @@ in {
   };
 
   ss = buildOpenRAMod rec {
-    version = "77";
+    version = "87";
     title = "Sole Survivor";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/MustaphaTR/sole-survivor;
     src = fetchFromGitHub {
       owner = "MustaphaTR";
       repo = "sole-survivor";
-      rev = "23e1f3e5d8b98c936797b6680d95d56a69a9e2ab";
-      sha256 = "0h7is7x2qyvq7vqp0jgw5zrdkw8g7ndd82d843ldhnb0a3vyrk34";
+      rev = "9e0ec309086e217c64c8b6f603e879a58d952646";
+      sha256 = "13hlqjlq7mx5ynydbk4rh35966dx6h169lsx0ispxz3gzh3gqi7f";
     };
-    engine = let commit = "becfc154c5cd3891d695339ff86883db8b5790a5"; in {
+    engine = let commit = "db487e1"; in {
       version = abbrevCommit commit;
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
         rev = commit;
-        sha256 = "0id8vf3cjr7h5pz4sw8pdaz3sc45lxr21k1fk4309kixsrpa7i0y";
+        sha256 = "1dsnbfiall5mismjk68pzh3hy2wxbg4v2zdqpw463raws7v19qnp";
         name = "engine";
         inherit extraPostFetch;
       };
