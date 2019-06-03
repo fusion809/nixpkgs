@@ -262,15 +262,15 @@ in {
   };
 
   ss = buildOpenRAMod rec {
-    version = "94";
+    version = "95";
     title = "Sole Survivor";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/MustaphaTR/sole-survivor;
     src = fetchFromGitHub {
       owner = "MustaphaTR";
       repo = "sole-survivor";
-      rev = "c430b68d8bff8072601a4e16f3c1b85580ea1fc2";
-      sha256 = "033h9j6141j34wkzbiqp7qq8s2s810p8qmzzn7wp8lkcl5x2gnv4";
+      rev = "8aea2c2d89801f77a9b1a96df5a4588b5bcebc07";
+      sha256 = "10sb3iivjivk2aj8bp1dx9jacq56qwig24pgr7frvhs8rwmhknz9";
     };
     engine = let commit = "db487e1"; in {
       version = abbrevCommit commit;
