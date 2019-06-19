@@ -237,14 +237,14 @@ in {
   };
 
   sp = unsafeBuildOpenRAMod {
-    version = "232";
+    version = "234";
     title = "Shattered Paradise";
     description = "Re-imagination of the original Command & Conquer: Tiberian Sun game";
     homepage = https://github.com/ABrandau/OpenRAModSDK;
     src = fetchFromGitHub {
       owner = "ABrandau";
       repo = "OpenRAModSDK";
-      rev = "614abc8dc47048c47975020966a86955d997410c";
+      rev = "0fefcea86120957d84d764518d30f33397871e4a";
       sha256 = "1jvgpbf56hd02ikhklv49br4d1jiv5hphc5kl79qnjlaacnj222x";
     };
     engine = let commit = "SP-22-04-19"; in {
