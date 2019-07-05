@@ -31,18 +31,18 @@ in {
   };
 
   d2 = unsafeBuildOpenRAMod rec {
-    version = "163";
+    version = "164";
     title = "Dune II";
     description = "A modernization of the original ${title} game";
     homepage = https://github.com/OpenRA/d2;
     src = fetchFromGitHub {
       owner = "OpenRA";
       repo = "d2";
-      rev = "2b37e3571355a930b781979ea5b9c18b6297fbaf";
-      sha256 = "0xzvamfiq6v59l7kxdylaidf0qi3xiclxmp0gfv61mj9kf5897b1";
+      rev = "04a163085c7039049b4737e9b51246230fdc988b";
+      sha256 = "03rsm34bc2i4avhq58l5cpsdlsqzp8kzvwiyrqpapf0x6xb3vb3b";
     };
     engine = rec {
-      version = "61922fe";
+      version = "27cfa9b";
       mods = [ "cnc" "d2k" "ra" ];
       src = fetchFromGitHub {
         owner = "OpenRA";
@@ -262,14 +262,14 @@ in {
   };
 
   ss = buildOpenRAMod rec {
-    version = "188";
+    version = "205";
     title = "Sole Survivor";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/MustaphaTR/sole-survivor;
     src = fetchFromGitHub {
       owner = "MustaphaTR";
       repo = "sole-survivor";
-      rev = "9faca780bf6093cb7c5daa2beb2ca7c9c87bf27c";
+      rev = "dd973861d9ec9b29bec06dac0b9d77d0df7d6cb8";
       sha256 = "1p1k2vh3pp5pgcl03yx3p0ynkr3mwh3b7mqzgipw0w37i2wynx07";
     };
     engine = let commit = "2d654e0"; in {
