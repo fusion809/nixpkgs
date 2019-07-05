@@ -270,7 +270,7 @@ in {
       owner = "MustaphaTR";
       repo = "sole-survivor";
       rev = "dd973861d9ec9b29bec06dac0b9d77d0df7d6cb8";
-      sha256 = "1p1k2vh3pp5pgcl03yx3p0ynkr3mwh3b7mqzgipw0w37i2wynx07";
+      sha256 = "083hvcmcbpvkaphfk2691nrsi594nq0ikq430fd4lxk5xzhv8bfg";
     };
     engine = let commit = "2d654e0"; in {
       version = abbrevCommit commit;
