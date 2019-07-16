@@ -33,9 +33,9 @@ in {
     sha256 = "1vqvfk2p2lpk3m0d3rpvj34i8cmk3mfc7w4cn4llqd9zp4kk9pya";
   };
 
-  bleed = let commit = "579d2c19e2179a5463b4abcc4551faf15caca76e"; in buildUpstreamOpenRAEngine {
-    version = "26232.git.579d2c1";
+  bleed = let commit = "c51f2c036a52717a788061d2d3941462669395a0"; in buildUpstreamOpenRAEngine {
+    version = "26245.git.c51f2c0";
     rev = commit;
-    sha256 = "03a1ws2zqvmjvk7y5k4zzjx6aspcsn52ainlys6y6nsy80sxv4ji";
+    sha256 = "0sa24x3hkm29hncrzw17y8zbfb5vkc2mh4a87lfp8q0dlj1alcvn";
   };
 }
