@@ -132,15 +132,15 @@ in {
   };
 
   mw = buildOpenRAMod rec {
-    version = "268";
+    version = "269";
     title = "Medieval Warfare";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/CombinE88/Medieval-Warfare;
     src = fetchFromGitHub {
       owner = "CombinE88";
       repo = "Medieval-Warfare";
-      rev = "88de480f852117b1d83218e71d953900f8c445a6";
-      sha256 = "1w48fx3nz1dx89af9r4bn3didy8ckaw5033mbj3kjb99g8f8rjac";
+      rev = "ad5ff94714db4994f5b461f94375a033e6ef48fa";
+      sha256 = "0x34qzww92i1jl6c1m46b6cnmvz3h270j5piq9kbpg2216f0ipg6";
     };
     engine = let commit = "dc57a75f11cc7673bf08433775d4a4e9052d16d7"; in {
       version = abbrevCommit commit;
@@ -208,15 +208,15 @@ in {
   };
 
   rv = unsafeBuildOpenRAMod {
-    version = "1925";
+    version = "1926";
     title = "Romanov's Vengeance";
     description = "Re-imagination of the original Command & Conquer: Red Alert 2 game";
     homepage = https://github.com/MustaphaTR/Romanovs-Vengeance;
     src = fetchFromGitHub {
       owner = "MustaphaTR";
       repo = "Romanovs-Vengeance";
-      rev = "ce1987fdc553265c9b78123443aee20c2e55744a";
-      sha256 = "1la2m0ia5wad2l83flhpci88x1b56gs6511i0lpa4acjaamwfh1s";
+      rev = "ed0cf05fc8692658fee6af3a07c4a12ad92a8c96";
+      sha256 = "01vpn797wwjsnm9yp0l0gsf3is800l0pb8b7pl08l61ndh0p43pm";
     };
     engine = let commit = "d16e9ff"; in {
       version = abbrevCommit commit;
