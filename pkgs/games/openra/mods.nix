@@ -132,15 +132,15 @@ in {
   };
 
   mw = buildOpenRAMod rec {
-    version = "269";
+    version = "270";
     title = "Medieval Warfare";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/CombinE88/Medieval-Warfare;
     src = fetchFromGitHub {
       owner = "CombinE88";
       repo = "Medieval-Warfare";
-      rev = "ad5ff94714db4994f5b461f94375a033e6ef48fa";
-      sha256 = "0x34qzww92i1jl6c1m46b6cnmvz3h270j5piq9kbpg2216f0ipg6";
+      rev = "05b523eea65eb03785f8f6472cba041e75e8e00e";
+      sha256 = "0ajwlcfqyxi2zk9g4lhw0pd3vg1zrpp8xazl9m5p9d13c10f0q1i";
     };
     engine = let commit = "dc57a75f11cc7673bf08433775d4a4e9052d16d7"; in {
       version = abbrevCommit commit;
