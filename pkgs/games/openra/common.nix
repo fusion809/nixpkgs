@@ -3,12 +3,8 @@
 */
 { stdenv, makeSetupHook, curl, unzip, dos2unix, pkgconfig, makeWrapper
 , lua, mono, dotnetPackages, python
-<<<<<<< HEAD
 , libGL, openal, SDL2
 , freetype
-=======
-, libGL, freetype, openal, SDL2
->>>>>>> upstream/master
 , zenity
 }:
 

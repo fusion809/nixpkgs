@@ -20,11 +20,6 @@ fi
 mono --debug OpenRA.Game.exe Game.Mod=@name@ Engine.LaunchPath="@out@/bin/openra-@name@" Engine.ModSearchPaths="@out@/lib/openra-@name@/mods" "$@"
 
 # Show a crash dialog if something went wrong
-<<<<<<< HEAD
-if [ $? -ne 0 -a $? -ne 1 ]; then
-  show_error "OpenRA - @title@ has encountered a fatal error.\nPlease refer to the crash logs for more information.\n\nLog files are located in ~/.openra/Logs"
-=======
 if (( $? != 0 && $? != 1 )); then
   show_error $'OpenRA - @title@ has encountered a fatal error.\nPlease refer to the crash logs for more information.\n\nLog files are located in ~/.openra/Logs'
->>>>>>> upstream/master
 fi
