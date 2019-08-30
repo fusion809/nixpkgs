@@ -1,4 +1,4 @@
-{ config, stdenv, lib, fetchurl
+{ config, stdenv, lib, fetchurl, fetchpatch
 , perl
 , libcap, libtool, libxml2, openssl
 , enablePython ? config.bind.enablePython or false, python3 ? null
@@ -8,20 +8,22 @@
 assert enableSeccomp -> libseccomp != null;
 assert enablePython -> python3 != null;
 
-let version = "9.12.3-P4"; in
+let version = "9.14.4"; in
 
 stdenv.mkDerivation rec {
   name = "bind-${version}";
 
   src = fetchurl {
     url = "https://ftp.isc.org/isc/bind9/${version}/${name}.tar.gz";
-    sha256 = "01pj47z5582rd538dmbzf1msw4jc8j4zr0zx4ciy88r6qr9l80fi";
+    sha256 = "0gxqws7ml15lwkjw9mdcd759gv5kk3s9m17j3vrp9448ls1gnbii";
   };
 
   outputs = [ "out" "lib" "dev" "man" "dnsutils" "host" ];
 
-  patches = [ ./dont-keep-configure-flags.patch ./remove-mkdir-var.patch ] ++
-    stdenv.lib.optional stdenv.isDarwin ./darwin-openssl-linking-fix.patch;
+  patches = [
+    ./dont-keep-configure-flags.patch
+    ./remove-mkdir-var.patch
+  ];
 
   nativeBuildInputs = [ perl ];
   buildInputs = [ libtool libxml2 openssl ]
@@ -74,13 +76,13 @@ stdenv.mkDerivation rec {
 
   doCheck = false; # requires root and the net
 
-  meta = {
-    homepage = http://www.isc.org/software/bind;
+  meta = with stdenv.lib; {
+    homepage = https://www.isc.org/downloads/bind/;
     description = "Domain name server";
-    license = stdenv.lib.licenses.mpl20;
+    license = licenses.mpl20;
 
-    maintainers = with stdenv.lib.maintainers; [peti];
-    platforms = with stdenv.lib.platforms; unix;
+    maintainers = with maintainers; [ peti globin ];
+    platforms = platforms.unix;
 
     outputsToInstall = [ "out" "dnsutils" "host" ];
   };

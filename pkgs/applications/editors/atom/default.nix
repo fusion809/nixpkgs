@@ -1,16 +1,16 @@
-{ stdenv, pkgs, fetchurl, makeWrapper, wrapGAppsHook, gvfs, gtk3, atomEnv }:
+{ stdenv, pkgs, fetchurl, wrapGAppsHook, gvfs, gtk3, atomEnv }:
 
 let
   versions = {
     atom = {
-      version = "1.35.1";
-      sha256 = "17jj8zhhxlacqzdawp305k0w05p4437wcg4w57mwqsbiaph9hsly";
+      version = "1.40.1";
+      sha256 = "0hzm491g22gqk2shi6zalbz2ja7x6bs4x60jr3kn278h3k7j2j8d";
     };
 
     atom-beta = {
-      version = "1.35.0";
-      beta = 0;
-      sha256 = "0gm5k573dq1hhnyw3719f5k1c6rsz872mhzg8q53n89y0g2r5xmw";
+      version = "1.41.0";
+      beta = 1;
+      sha256 = "1ppdf5lzpdfs9y0bhr2p2ic5q4zz8726sdamz4m04ncy459j7ggs";
     };
   };
 

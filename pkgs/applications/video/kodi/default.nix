@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchFromGitHub, autoconf, automake, libtool, makeWrapper
+{ stdenv, lib, fetchurl, fetchFromGitHub, autoconf, automake, libtool, makeWrapper, linuxHeaders
 , pkgconfig, cmake, gnumake, yasm, python2Packages
 , libgcrypt, libgpgerror, libunistring
 , boost, avahi, lame, autoreconfHook
@@ -13,7 +13,7 @@
 , libmpeg2, libsamplerate, libmad
 , libogg, libvorbis, flac, libxslt
 , lzo, libcdio, libmodplug, libass, libbluray
-, sqlite, mysql, nasm, gnutls, libva, libdrm, wayland
+, sqlite, mysql, nasm, gnutls, libva, libdrm
 , curl, bzip2, zip, unzip, glxinfo, xdpyinfo
 , libcec, libcec_platform, dcadec, libuuid
 , libcrossguid, libmicrohttpd
@@ -28,6 +28,8 @@
 , udevSupport ? true, udev ? null
 , usbSupport  ? false, libusb ? null
 , vdpauSupport ? true, libvdpau ? null
+, useWayland ? false, wayland ? null, wayland-protocols ? null
+, waylandpp ?  null, libxkbcommon ? null
 }:
 
 assert dbusSupport  -> dbus != null;
@@ -38,21 +40,37 @@ assert sambaSupport -> samba != null;
 assert udevSupport  -> udev != null;
 assert usbSupport   -> libusb != null && ! udevSupport; # libusb won't be used if udev is avaliable
 assert vdpauSupport -> libvdpau != null;
-
-# TODO for Kodi 18.0
-# - check if dbus support PR has been merged and add dbus as a buildInput
+assert useWayland -> wayland != null && wayland-protocols != null && waylandpp != null && libxkbcommon != null;
 
 let
-  kodiReleaseDate = "20190129";
-  kodiVersion = "18.0";
+  kodiReleaseDate = "20190627";
+  kodiVersion = "18.3";
   rel = "Leia";
 
   kodi_src = fetchFromGitHub {
     owner  = "xbmc";
     repo   = "xbmc";
     rev    = "${kodiVersion}-${rel}";
-    sha256 = "1ci5jjvqly01lysdp6j6jrnn49z4is9z5kan5zl3cpqm9w7rqarg";
+    sha256 = "18fbl5hs3aqccrn0m3x7hp95wlafjav0yvrwmb5q3gj24mwf6jld";
   };
+
+  cmakeProto = fetchurl {
+    url = "https://raw.githubusercontent.com/pramsey/libght/ca9b1121c352ea10170636e170040e1af015bad1/cmake/modules/CheckPrototypeExists.cmake";
+    sha256  = "1zai82gm5x55n3xvdv7mns3ja6a2k81x9zz0nk42j6s2yb0fkjxh";
+  };
+
+  cmakeProtoPatch = ''
+    # get rid of windows headers as they will otherwise be found first
+    rm -rf msvc
+
+    cp ${cmakeProto} cmake/${cmakeProto.name}
+    # we need to enable support for C++ for check_prototype_exists to do its thing
+    substituteInPlace CMakeLists.txt --replace 'LANGUAGES C' 'LANGUAGES C CXX'
+    if [ -f cmake/CheckHeadersSTDC.cmake ]; then
+      sed -i cmake/CheckHeadersSTDC.cmake \
+        -e '7iinclude(CheckPrototypeExists)'
+    fi
+  '';
 
   kodiDependency = { name, version, rev, sha256, ... } @attrs:
     let
@@ -70,8 +88,8 @@ let
   ffmpeg = kodiDependency rec {
     name    = "FFmpeg";
     version = "4.0.3";
-    rev     = "${version}-${rel}-RC5";
-    sha256  = "0l20bysv2y711khwpnpw4dz6mzd37qllki3fnv4dx1lj8ivydrlx";
+    rev     = "${version}-${rel}-18.2";
+    sha256  = "1krsjlr949iy5l6ljxancza1yi6w1annxc5s6k283i9mb15qy8cy";
     preConfigure = ''
       cp ${kodi_src}/tools/depends/target/ffmpeg/{CMakeLists.txt,*.cmake} .
     '';
@@ -80,16 +98,25 @@ let
     nativeBuildInputs = [ cmake nasm pkgconfig ];
   };
 
-  # we should be able to build these externally and have kodi reference them as buildInputs.
-  # Doesn't work ATM though so we just use them for the src
-
+  # We can build these externally but FindLibDvd.cmake forces us to build it
+  # them, so we currently just use them for the src.
   libdvdcss = kodiDependency rec {
     name              = "libdvdcss";
     version           = "1.4.2";
     rev               = "${version}-${rel}-Beta-5";
     sha256            = "0j41ydzx0imaix069s3z07xqw9q95k7llh06fc27dcn6f7b8ydyl";
-    buildInputs       = [ libdvdread ];
-    nativeBuildInputs = [ autoreconfHook pkgconfig ];
+    buildInputs       = [ linuxHeaders ];
+    nativeBuildInputs = [ cmake pkgconfig ];
+    postPatch = ''
+      rm -rf msvc
+
+      substituteInPlace config.h.cm \
+        --replace '#cmakedefine O_BINARY "''${O_BINARY}"' '#define O_BINARY 0'
+    '';
+    cmakeFlags = [
+      "-DBUILD_SHARED_LIBS=1"
+      "-DHAVE_LINUX_DVD_STRUCT=1"
+    ];
   };
 
   libdvdnav = kodiDependency rec {
@@ -97,8 +124,12 @@ let
     version           = "6.0.0";
     rev               = "${version}-${rel}-Alpha-3";
     sha256            = "0qwlf4lgahxqxk1r2pzl866mi03pbp7l1fc0rk522sc0ak2s9jhb";
-    buildInputs       = [ libdvdread ];
-    nativeBuildInputs = [ autoreconfHook pkgconfig ];
+    buildInputs       = [ libdvdcss libdvdread ];
+    nativeBuildInputs = [ cmake pkgconfig ];
+    postPatch         = cmakeProtoPatch;
+    postInstall = ''
+      mv $out/lib/liblibdvdnav.so $out/lib/libdvdnav.so
+    '';
   };
 
   libdvdread = kodiDependency rec {
@@ -106,11 +137,14 @@ let
     version           = "6.0.0";
     rev               = "${version}-${rel}-Alpha-3";
     sha256            = "1xxn01mhkdnp10cqdr357wx77vyzfb5glqpqyg8m0skyi75aii59";
-    nativeBuildInputs = [ autoreconfHook pkgconfig ];
+    buildInputs       = [ libdvdcss ];
+    nativeBuildInputs = [ cmake pkgconfig ];
+    configureFlags    = [ "--with-libdvdcss" ];
+    postPatch         = cmakeProtoPatch;
   };
 
 in stdenv.mkDerivation rec {
-    name = "kodi-${kodiVersion}";
+    name = "kodi-${lib.optionalString useWayland "wayland-"}${kodiVersion}";
 
     src = kodi_src;
 
@@ -123,7 +157,7 @@ in stdenv.mkDerivation rec {
       libX11 xorgproto libXt libXmu libXext
       libXinerama libXrandr libXtst libXfixes
       alsaLib libGLU_combined glew fontconfig freetype ftgl
-      libjpeg jasper libpng libtiff wayland
+      libjpeg jasper libpng libtiff
       libmpeg2 libsamplerate libmad
       libogg libvorbis flac libxslt systemd
       lzo libcdio libmodplug libass libbluray
@@ -144,7 +178,12 @@ in stdenv.mkDerivation rec {
     ++ lib.optional  sambaSupport    samba
     ++ lib.optional  udevSupport     udev
     ++ lib.optional  usbSupport      libusb
-    ++ lib.optional  vdpauSupport    libvdpau;
+    ++ lib.optional  vdpauSupport    libvdpau
+    ++ lib.optional  useWayland [
+      wayland waylandpp
+      # Not sure why ".dev" is needed here, but CMake doesn't find libxkbcommon otherwise
+      libxkbcommon.dev
+    ];
 
     nativeBuildInputs = [
       cmake
@@ -152,8 +191,8 @@ in stdenv.mkDerivation rec {
       makeWrapper
       which
       pkgconfig gnumake
-      autoconf automake libtool # still needed for some components. Check if that is the case with 18.0
-    ];
+      autoconf automake libtool # still needed for some components. Check if that is the case with 19.0
+    ] ++ lib.optional useWayland [ wayland-protocols ];
 
     cmakeFlags = [
       "-Dlibdvdcss_URL=${libdvdcss.src}"
@@ -164,6 +203,9 @@ in stdenv.mkDerivation rec {
       "-DENABLE_INTERNAL_CROSSGUID=OFF"
       "-DENABLE_OPTICAL=ON"
       "-DLIRC_DEVICE=/run/lirc/lircd"
+    ] ++ lib.optional useWayland [
+      "-DCORE_PLATFORM_NAME=wayland"
+      "-DWAYLAND_RENDER_SYSTEM=gl"
     ];
 
     enableParallelBuilding = true;

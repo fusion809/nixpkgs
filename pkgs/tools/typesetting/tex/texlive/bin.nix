@@ -2,10 +2,10 @@
 , texlive
 , zlib, libiconv, libpng, libX11
 , freetype, gd, libXaw, icu, ghostscript, libXpm, libXmu, libXext
-, perl, pkgconfig, autoreconfHook
+, perl, perlPackages, pkgconfig, autoreconfHook
 , poppler, libpaper, graphite2, zziplib, harfbuzz, potrace, gmp, mpfr
 , cairo, pixman, xorg, clisp, biber
-, makeWrapper
+, makeWrapper, shortenPerlShebang
 }:
 
 # Useful resource covering build options:
@@ -190,7 +190,7 @@ core-big = stdenv.mkDerivation { #TODO: upmendex
   hardeningDisable = [ "format" ];
 
   inherit (core) nativeBuildInputs;
-  buildInputs = core.buildInputs ++ [ core cairo harfbuzz icu graphite2 ];
+  buildInputs = core.buildInputs ++ [ core cairo harfbuzz icu graphite2 libX11 ];
 
   configureFlags = common.configureFlags
     ++ withSystemLibs [ "kpathsea" "ptexenc" "cairo" "harfbuzz" "icu" "graphite2" ]
@@ -280,6 +280,37 @@ dvipng = stdenv.mkDerivation {
   # I didn't manage to hardcode gs location by configureFlags
   postInstall = ''
     wrapProgram "$out/bin/dvipng" --prefix PATH : '${ghostscript}/bin'
+  '';
+};
+
+
+latexindent = perlPackages.buildPerlPackage rec {
+  pname = "latexindent";
+  inherit (src) version;
+
+  src = stdenv.lib.head (builtins.filter (p: p.tlType == "run") texlive.latexindent.pkgs);
+
+  outputs = [ "out" ];
+
+  nativeBuildInputs = stdenv.lib.optional stdenv.isDarwin shortenPerlShebang;
+  propagatedBuildInputs = with perlPackages; [ FileHomeDir LogDispatch LogLog4perl UnicodeLineBreak YAMLTiny ];
+
+  postPatch = ''
+    substituteInPlace scripts/latexindent/LatexIndent/GetYamlSettings.pm \
+      --replace '$FindBin::RealBin/defaultSettings.yaml' ${src}/scripts/latexindent/defaultSettings.yaml
+  '';
+
+  # Dirty hack to apply perlFlags, but do no build
+  preConfigure = ''
+    touch Makefile.PL
+  '';
+  buildPhase = ":";
+  installPhase = ''
+    install -D ./scripts/latexindent/latexindent.pl "$out"/bin/latexindent
+    mkdir -p "$out"/${perl.libPrefix}
+    cp -r ./scripts/latexindent/LatexIndent "$out"/${perl.libPrefix}/
+  '' + stdenv.lib.optionalString stdenv.isDarwin ''
+    shortenPerlShebang "$out"/bin/latexindent
   '';
 };
 

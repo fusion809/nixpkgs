@@ -95,7 +95,7 @@ stdenv.mkDerivation rec {
     homepage = https://uwsgi-docs.readthedocs.org/en/latest/;
     description = "A fast, self-healing and developer/sysadmin-friendly application container server coded in pure C";
     license = licenses.gpl2;
-    maintainers = with maintainers; [ abbradar schneefux ];
-    platforms = platforms.linux;
+    maintainers = with maintainers; [ abbradar schneefux globin ];
+    platforms = platforms.unix;
   };
 }

@@ -1,8 +1,8 @@
 { stdenv, lib, fetchurl, dpkg, wrapGAppsHook
-, gnome2, gtk3, atk, at-spi2-atk, cairo, pango, gdk_pixbuf, glib, freetype, fontconfig
+, gnome2, gtk3, atk, at-spi2-atk, cairo, pango, gdk-pixbuf, glib, freetype, fontconfig
 , dbus, libX11, xorg, libXi, libXcursor, libXdamage, libXrandr, libXcomposite
 , libXext, libXfixes, libXrender, libXtst, libXScrnSaver, nss, nspr, alsaLib
-, cups, expat, udev, libnotify
+, cups, expat, udev, libnotify, libuuid
 # Unfortunately this also overwrites the UI language (not just the spell
 # checking language!):
 , hunspellDicts, spellcheckerLanguage ? null # E.g. "de_DE"
@@ -31,12 +31,13 @@ let
     expat
     fontconfig
     freetype
-    gdk_pixbuf
+    gdk-pixbuf
     glib
     gnome2.GConf
     gtk3
     pango
     libnotify
+    libuuid
     libX11
     libXScrnSaver
     libXcomposite
@@ -56,11 +57,11 @@ let
 
 in stdenv.mkDerivation rec {
   name = "signal-desktop-${version}";
-  version = "1.22.0";
+  version = "1.26.2";
 
   src = fetchurl {
     url = "https://updates.signal.org/desktop/apt/pool/main/s/signal-desktop/signal-desktop_${version}_amd64.deb";
-    sha256 = "1j5kh0fvbl3nnxdpnwvamrnxfwbp6nzbij39b2lc5wp1m1yaaky5";
+    sha256 = "08qx7k82x6ybqi3lln6ixzmdz4sr8yz8vfx0y408b85wjfc7ncjk";
   };
 
   phases = [ "unpackPhase" "installPhase" ];

@@ -7,6 +7,9 @@
 , passthru ? {}
 , patches ? []
 
+# A function to override the go-modules derivation
+, overrideModAttrs ? (_oldAttrs : {})
+
 # modSha256 is the sha256 of the vendored dependencies
 , modSha256
 
@@ -27,16 +30,16 @@
 with builtins;
 
 let
-  args = removeAttrs args' [ "modSha256" "disabled" ];
+  args = removeAttrs args' [ "overrideModAttrs" "modSha256" "disabled" ];
 
   removeReferences = [ ] ++ lib.optional (!allowGoReference) go;
 
   removeExpr = refs: ''remove-references-to ${lib.concatMapStrings (ref: " -t ${ref}") refs}'';
 
-  go-modules = go.stdenv.mkDerivation {
+  go-modules = go.stdenv.mkDerivation (let modArgs = {
     name = "${name}-go-modules";
 
-    nativeBuildInputs = [ go git ];
+    nativeBuildInputs = [ go git cacert ];
 
     inherit (args) src;
     inherit (go) GOOS GOARCH;
@@ -44,16 +47,6 @@ let
     patches = args.patches or [];
 
     GO111MODULE = "on";
-
-    # XXX: Add support for other fetchers, such as hg, bzr and alike.
-    GIT_SSL_CAINFO = "${cacert}/etc/ssl/certs/ca-bundle.crt";
-
-    # Instruct Go where to find the cacert.
-    # SSL_CERT_FILE is used by Linux machines.
-    # NIX_SSL_CERT_FILE is used by Darwin machines based on
-    # pkgs/development/compilers/go/ssl-cert-file-1.9.patch.
-    NIX_SSL_CERT_FILE = "${cacert}/etc/ssl/certs/ca-bundle.crt";
-    SSL_CERT_FILE = "${cacert}/etc/ssl/certs/ca-bundle.crt";
 
     impureEnvVars = lib.fetchers.proxyImpureEnvVars ++ [
       "GIT_PROXY_COMMAND" "SOCKS_SERVER"
@@ -64,6 +57,7 @@ let
 
       export GOCACHE=$TMPDIR/go-cache
       export GOPATH="$TMPDIR/go"
+      mkdir -p "''${GOPATH}/pkg/mod/cache/download"
 
       runHook postConfigure
     '';
@@ -88,7 +82,7 @@ let
     outputHashMode = "recursive";
     outputHashAlgo = "sha256";
     outputHash = modSha256;
-  };
+  }; in modArgs // overrideModAttrs modArgs);
 
   package = go.stdenv.mkDerivation (args // {
     nativeBuildInputs = [ removeReferencesTo go ] ++ nativeBuildInputs;
@@ -134,7 +128,7 @@ let
         local type;
         type="$1"
         if [ -n "$subPackages" ]; then
-          echo "./$subPackages"
+          echo "$subPackages" | sed "s,\(^\| \),\1./,g"
         else
           find . -type f -name \*$type.go -exec dirname {} \; | grep -v "/vendor/" | sort --unique
         fi
@@ -153,6 +147,7 @@ let
           export NIX_BUILD_CORES=1
       fi
       for pkg in $(getGoDirs ""); do
+        echo "Building subPackage $pkg"
         buildGoDir install "$pkg"
       done
     '' + lib.optionalString (stdenv.hostPlatform != stdenv.buildPlatform) ''

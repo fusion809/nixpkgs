@@ -37,7 +37,9 @@ lib.makeScope pkgs.newScope (self: with self; {
 
   gnome_python_desktop = callPackage ./bindings/gnome-python-desktop { };
 
-  gnome_vfs = callPackage ./platform/gnome-vfs { };
+  gnome_vfs = callPackage ./platform/gnome-vfs {
+    openssl = pkgs.openssl_1_0_2;
+  };
 
   libgnome = callPackage ./platform/libgnome { };
 
@@ -47,9 +49,9 @@ lib.makeScope pkgs.newScope (self: with self; {
 
   libbonoboui = callPackage ./platform/libbonoboui { };
 
-  gtkhtml = callPackage ./platform/gtkhtml { };
+  gtkhtml = callPackage ./platform/gtkhtml { enchant = pkgs.enchant1; };
 
-  gtkhtml4 = callPackage ./platform/gtkhtml/4.x.nix { };
+  gtkhtml4 = callPackage ./platform/gtkhtml/4.x.nix { enchant = pkgs.enchant1; };
 
   gtkglext = callPackage ./platform/gtkglext { };
 

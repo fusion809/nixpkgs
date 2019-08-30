@@ -1,6 +1,5 @@
 { stdenv
 , fetch
-, fetchpatch
 , cmake
 , python
 , libffi
@@ -15,15 +14,14 @@
 , debugVersion ? false
 , enableManpages ? false
 , enableSharedLibraries ? true
-, enablePFM ? !stdenv.isDarwin
+, enablePFM ? !(stdenv.isDarwin
+  || stdenv.isAarch64 # broken for Ampere eMAG 8180 (c2.large.arm on Packet) #56245
+)
 , enablePolly ? false
 }:
 
 let
   inherit (stdenv.lib) optional optionals optionalString;
-
-  src = fetch "llvm" "1hb5if7vmgkb52dpj9lyvn986mnk2jbpryng2r1rc5vy25wxw759";
-  polly_src = fetch "polly" "07l3y20j8124x24yqiq0qmz9rhkfh3c48q6vnpgldj2scr3vgyb2";
 
   # Used when creating a version-suffixed symlink of libLLVM.dylib
   shortVersion = with stdenv.lib;
@@ -32,12 +30,15 @@ let
 in stdenv.mkDerivation (rec {
   name = "llvm-${version}";
 
+  src = fetch "llvm" "1rvm5gqp5v8hfn17kqws3zhk94w4kxndal12bqa0y57p09nply24";
+  polly_src = fetch "polly" "1lfjdz3ilj5xmjxvicd8f5ykybks67ry2pdb777352r3mzlgg8g8";
+
   unpackPhase = ''
-    unpackFile ${src}
+    unpackFile $src
     mv llvm-${version}* llvm
     sourceRoot=$PWD/llvm
   '' + optionalString enablePolly ''
-    unpackFile ${polly_src}
+    unpackFile $polly_src
     mv polly-* $sourceRoot/tools/polly
   '';
 
@@ -71,6 +72,8 @@ in stdenv.mkDerivation (rec {
     substituteInPlace unittests/Support/CMakeLists.txt \
       --replace "add_subdirectory(DynamicLibrary)" ""
     rm unittests/Support/DynamicLibrary/DynamicLibraryTest.cpp
+    # valgrind unhappy with musl or glibc, but fails w/musl only
+    rm test/CodeGen/AArch64/wineh4.mir
   '' + ''
     patchShebangs test/BugPoint/compile-custom.ll.py
   '';
@@ -138,8 +141,6 @@ in stdenv.mkDerivation (rec {
   checkTarget = "check-all";
 
   enableParallelBuilding = true;
-
-  passthru.src = src;
 
   meta = {
     description = "Collection of modular and reusable compiler and toolchain technologies";

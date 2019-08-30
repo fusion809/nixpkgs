@@ -60,6 +60,8 @@ let
 
     TempDir ${cfg.tempDir}
 
+    SetEnv PATH /var/lib/cups/path/lib/cups/filter:/var/lib/cups/path/bin
+
     # User and group used to run external programs, including
     # those that actually send the job to the printer.  Note that
     # Udev sets the group of printer devices to `lp', so we want
@@ -74,9 +76,7 @@ let
     ${concatMapStrings (addr: ''
       Listen ${addr}
     '') cfg.listenAddresses}
-    Listen /var/run/cups/cups.sock
-
-    SetEnv PATH /var/lib/cups/path/lib/cups/filter:/var/lib/cups/path/bin
+    Listen /run/cups/cups.sock
 
     DefaultShared ${if cfg.defaultShared then "Yes" else "No"}
 
@@ -127,7 +127,7 @@ in
 
       startWhenNeeded = mkOption {
         type = types.bool;
-        default = false;
+        default = true;
         description = ''
           If set, CUPS is socket-activated; that is,
           instead of having it permanently running as a daemon,
@@ -296,11 +296,16 @@ in
     # gets loaded, and then cups cannot access the printers.
     boot.blacklistedKernelModules = [ "usblp" ];
 
+    # Some programs like print-manager rely on this value to get
+    # printer test pages.
+    environment.sessionVariables.CUPS_DATADIR = "${bindir}/share/cups";
+
     systemd.packages = [ cups.out ];
 
     systemd.sockets.cups = mkIf cfg.startWhenNeeded {
       wantedBy = [ "sockets.target" ];
-      listenStreams = map (x: replaceStrings ["localhost"] ["127.0.0.1"] (removePrefix "*:" x)) cfg.listenAddresses;
+      listenStreams = [ "/run/cups/cups.sock" ]
+        ++ map (x: replaceStrings ["localhost"] ["127.0.0.1"] (removePrefix "*:" x)) cfg.listenAddresses;
     };
 
     systemd.services.cups =
@@ -362,10 +367,10 @@ in
       { description = "CUPS Remote Printer Discovery";
 
         wantedBy = [ "multi-user.target" ];
-        wants = [ "cups.service" "avahi-daemon.service" ];
-        bindsTo = [ "cups.service" "avahi-daemon.service" ];
-        partOf = [ "cups.service" "avahi-daemon.service" ];
-        after = [ "cups.service" "avahi-daemon.service" ];
+        wants = [ "avahi-daemon.service" ] ++ optional (!cfg.startWhenNeeded) "cups.service";
+        bindsTo = [ "avahi-daemon.service" ] ++ optional (!cfg.startWhenNeeded) "cups.service";
+        partOf = [ "avahi-daemon.service" ] ++ optional (!cfg.startWhenNeeded) "cups.service";
+        after = [ "avahi-daemon.service" ] ++ optional (!cfg.startWhenNeeded) "cups.service";
 
         path = [ cups ];
 
@@ -421,4 +426,7 @@ in
     security.pam.services.cups = {};
 
   };
+
+  meta.maintainers = with lib.maintainers; [ matthewbauer ];
+
 }

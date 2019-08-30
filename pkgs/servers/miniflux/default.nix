@@ -2,16 +2,16 @@
 
 buildGoModule rec {
   pname = "miniflux";
-  version = "2.0.15";
+  version = "2.0.17";
 
   src = fetchFromGitHub {
     owner = pname;
     repo = pname;
     rev = version;
-    sha256 = "1k53dkmd41x5h81arb2fs5s9yb6sy6113nbbzls6dc179slfg9zj";
+    sha256 = "0bvlsa3ymhdl35bkv2v8lzkbjanyg7y474kbpbabmhwh5lvzgxlm";
   };
 
-  modSha256 = "1i3xzl6kkpl4v1229rhg61j1952qxzbhav7fb2hv85903rkz51x1";
+  modSha256 = "0060px0av7l9x4xgmkci9d8yl4lgxzqrikqagnz0f17a944p9xdr";
 
   doCheck = true;
 

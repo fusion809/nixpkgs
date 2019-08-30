@@ -73,6 +73,9 @@ let
       # Link extensions env
       rmdir $out/lib/password-store/extensions
       ln -s ${extensionsEnv}/lib/password-store/extensions $out/lib/password-store/.
+      for f in ${extensionsEnv}/share/man/man1/*.1.gz; do
+          ln -s $f $out/share/man/man1/
+      done
 
       # Fix program name in --help
       substituteInPlace $out/bin/pass \
@@ -117,7 +120,7 @@ let
       description = "Stores, retrieves, generates, and synchronizes passwords securely";
       homepage    = https://www.passwordstore.org/;
       license     = licenses.gpl2Plus;
-      maintainers = with maintainers; [ lovek323 the-kenny fpletz tadfisher ];
+      maintainers = with maintainers; [ lovek323 the-kenny fpletz tadfisher globin ];
       platforms   = platforms.unix;
 
       longDescription = ''

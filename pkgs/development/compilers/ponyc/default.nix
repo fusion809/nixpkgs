@@ -2,14 +2,14 @@
   cc ? stdenv.cc, lto ? !stdenv.isDarwin }:
 
 stdenv.mkDerivation ( rec {
-  name = "ponyc-${version}";
-  version = "0.27.0";
+  pname = "ponyc";
+  version = "0.30.0";
 
   src = fetchFromGitHub {
     owner = "ponylang";
-    repo = "ponyc";
+    repo = pname;
     rev = version;
-    sha256 = "11vdfvv9xirfi92y7zza9pqimfx33w74vw7rg5n7l60qqc8y2cla";
+    sha256 = "1gs9x4rw4mfv499j3k1brm8gbz7pjl8dyr7v68pa2f563cbzwaq9";
   };
 
   buildInputs = [ llvm makeWrapper which ];
@@ -24,6 +24,10 @@ stdenv.mkDerivation ( rec {
         --replace '"/bin/' '"${coreutils}/bin/'
     substituteInPlace packages/process/_test.pony \
         --replace '=/bin' "${coreutils}/bin"
+
+    # Disabling the stdlib tests
+    substituteInPlace Makefile-ponyc \
+        --replace 'test-ci: all check-version test-core test-stdlib-debug test-stdlib' 'test-ci: all check-version test-core'
 
     # Remove impure system refs
     substituteInPlace src/libponyc/pkg/package.c \

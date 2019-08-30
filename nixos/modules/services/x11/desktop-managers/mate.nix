@@ -42,7 +42,7 @@ in
 
   };
 
-  config = mkIf (xcfg.enable && cfg.enable) {
+  config = mkIf cfg.enable {
 
     services.xserver.desktopManager.session = singleton {
       name = "mate";
@@ -94,16 +94,18 @@ in
       ];
 
     programs.dconf.enable = true;
+    # Shell integration for VTE terminals
+    programs.bash.vteIntegration = mkDefault true;
+    programs.zsh.vteIntegration = mkDefault true;
+
     services.gnome3.at-spi2-core.enable = true;
     services.gnome3.gnome-keyring.enable = true;
     services.gnome3.gnome-settings-daemon.enable = true;
     services.gnome3.gnome-settings-daemon.package = pkgs.mate.mate-settings-daemon;
-    services.gnome3.gvfs.enable = true;
+    services.gvfs.enable = true;
     services.upower.enable = config.powerManagement.enable;
 
     security.pam.services."mate-screensaver".unixAuth = true;
-
-    environment.variables.GIO_EXTRA_MODULES = [ "${pkgs.gnome3.gvfs}/lib/gio/modules" ];
 
     environment.pathsToLink = [ "/share" ];
   };

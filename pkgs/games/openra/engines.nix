@@ -1,4 +1,4 @@
-{ buildOpenRAEngine, fetchFromGitHub, abbrevCommit, extraPostFetch }:
+{ buildOpenRAEngine, fetchFromGitHub, extraPostFetch }:
 
 let
   buildUpstreamOpenRAEngine = { version, rev, sha256 }: name: (buildOpenRAEngine {
@@ -21,6 +21,7 @@ let
   });
 
 in {
+<<<<<<< HEAD
   release = buildUpstreamOpenRAEngine rec {
     version = "20190314";
     rev = "release-${version}";
@@ -37,5 +38,23 @@ in {
     version = "26382.git.ce29dca";
     rev = commit;
     sha256 = "150dhdwgwkwxxamf8z6jbjgwdgd1msny2irkvnspn7kxmynavak1";
+=======
+  release = name: (buildUpstreamOpenRAEngine rec {
+    version = "20190314";
+    rev = "${name}-${version}";
+    sha256 = "15pvn5cx3g0nzbrgpsfz8dngad5wkzp5dz25ydzn8bmxafiijvcr";
+  } name);
+
+  playtest = name: (buildUpstreamOpenRAEngine rec {
+    version = "20190302";
+    rev = "${name}-${version}";
+    sha256 = "1vqvfk2p2lpk3m0d3rpvj34i8cmk3mfc7w4cn4llqd9zp4kk9pya";
+  } name);
+
+  bleed = buildUpstreamOpenRAEngine {
+    version = "8ee1102";
+    rev = "8ee11028d72cde7556b31d45f556b40be65b4b70";
+    sha256 = "0f1fpf37ms8d7fhlh3rjzsxsk9w23iyi3phs2i7g561292d5rk3l";
+>>>>>>> upstream/master
   };
 }
