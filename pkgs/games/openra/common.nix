@@ -11,7 +11,7 @@
 with stdenv.lib;
 
 let
-  path = makeBinPath ([ mono python ] ++ optional (zenity != null) zenity);
+  path = makeBinPath ([ msbuild mono python ] ++ optional (zenity != null) zenity);
   rpath = makeLibraryPath [ lua freetype openal SDL2 ];
   mkdirp = makeSetupHook { } ./mkdirp.sh;
 
@@ -63,6 +63,7 @@ in {
       curl
       unzip
       dos2unix
+      msbuild
       pkgconfig
       makeWrapper
       mkdirp
