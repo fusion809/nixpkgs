@@ -7,7 +7,7 @@ let
 
 in {
   ca = buildOpenRAMod {
-    version = "96";
+    version = "96.git.fc3cf0b";
     title = "Combined Arms";
     description = "A game that combines units from the official OpenRA Red Alert and Tiberian Dawn mods";
     homepage = https://github.com/Inq8/CAmod;
@@ -17,12 +17,12 @@ in {
       rev = "fc3cf0baf2b827650eaae9e1d2335a3eed24bac9";
       sha256 = "15w91xs253gyrlzsgid6ixxjazx0fbzick6vlkiay0znb58n883m";
     };
-    engine = let commit = "b8a7dd5"; in {
-      version = abbrevCommit commit;
+    engine = {
+      version = "b8a7dd5";
       src = fetchFromGitHub {
         owner = "Inq8";
         repo = "CAengine" ;
-        rev = commit;
+        rev = "b8a7dd52ff893ed8225726d4ed4e14ecad748404";
         sha256 = "0dyk861qagibx8ldshz7d2nrki9q550f6f0wy8pvayvf1gv1dbxj";
         name = "engine";
         inherit extraPostFetch;
@@ -31,24 +31,24 @@ in {
   };
 
   d2 = unsafeBuildOpenRAMod rec {
-    version = "166";
+    version = "134.git.69a4aa7";
     title = "Dune II";
     description = "A modernization of the original ${title} game";
     homepage = https://github.com/OpenRA/d2;
     src = fetchFromGitHub {
       owner = "OpenRA";
       repo = "d2";
-      rev = "0a74333011044263084f9e714035200fbb676fd7";
-      sha256 = "1i9m9ikdvs0bcxm011kpsdim9m05may304hyakgwsh42banrqm2n";
+      rev = "69a4aa708e2c26376469c0048fac13592aa452ca";
+      sha256 = "1mfch4s6c05slyqvxllklbxpqq8dqcbx3515n3gyylyq43gq481r";
     };
     engine = rec {
-      version = "babab49";
+      version = "release-20181215";
       mods = [ "cnc" "d2k" "ra" ];
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
-        rev = "${version}";
-        sha256 = "0ydbpxfd45d3cxjk4sh3z3lxaajpdddzkxrnvx8294w2wr5l1iqm";
+        rev = version;
+        sha256 = "0p0izykjnz7pz02g2khp7msqa00jhjsrzk9y0g29dirmdv75qa4r";
         name = "engine";
         inherit extraPostFetch;
       };
@@ -59,96 +59,101 @@ in {
     '';
   };
 
-  dr = unsafeBuildOpenRAMod rec {
-    version = "327";
+  dr = buildOpenRAMod rec {
+    version = "324.git.ffcd6ba";
     title = "Dark Reign";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/drogoganor/DarkReign;
     src = fetchFromGitHub {
       owner = "drogoganor";
       repo = "DarkReign";
-      rev = "3b8ab19489e625df964f9495f569f5040e54456e";
-      sha256 = "0vpladmbi9fl89dy17a3ilj8v9r5hqrhdaxhp1nqww5svbx0vbd6";
+      rev = "ffcd6ba72979e5f77508136ed7b0efc13e4b100e";
+      sha256 = "07g4qw909649s3i1yhw75613mpwfka05jana5mpp5smhnf0pkack";
     };
-    engine = let commit = "f91d3f2603bbf51afaa89357e4defcdc36138102"; in {
-      version = abbrevCommit commit;
+    engine = {
+      version = "DarkReign";
       src = fetchFromGitHub {
         owner = "drogoganor";
         repo = "OpenRA" ;
-        rev = commit;
-        name = "engine";
+        rev = "f91d3f2603bbf51afaa89357e4defcdc36138102";
         sha256 = "05g900ri6q0zrkrk8rmjaz576vjggmi2y6jm0xz3cwli54prn11w";
+        name = "engine";
         inherit extraPostFetch;
       };
     };
   };
 
   gen = buildOpenRAMod {
-    version = "1160";
+    version = "1157.git.4f5e11d";
     title = "Generals Alpha";
     description = "Re-imagination of the original Command & Conquer: Generals game";
     homepage = https://github.com/MustaphaTR/Generals-Alpha;
     src = fetchFromGitHub {
       owner = "MustaphaTR";
       repo = "Generals-Alpha";
-      rev = "e44824192eeb4c6527585550ca0b89d2d7045bf5";
-      sha256 = "0x2wlnzria1zbaim9npz8sh3yd2r83i95v8c0n0xih0y8qr0g4lh";
+      rev = "4f5e11d916e4a03d8cf1c97eef484ce2d77d7df2";
+      sha256 = "1wnl4qrlhynnlahgdlxwhgsdba5wgdg9yrv9f8hkgi69j60szypd";
     };
     engine = rec {
-      version = "gen-20190202";
+      version = "gen-20190128_3";
       src = fetchFromGitHub {
         owner = "MustaphaTR";
         repo = "OpenRA" ;
         rev = version;
-        sha256 = "16fvsv0b0mz96rf3hr1srysxs6xnh5bybwk543al5g0zd87wisdr";
+        sha256 = "1x6byz37s8qcpqj902zvkvbv95rv2mv2kj35c12gbpyc92xkqkq0";
         name = "generals-alpha-engine";
         inherit extraPostFetch;
       };
     };
   };
 
-  kknd = buildOpenRAMod rec {
-    version = "148";
+  kknd = let version = "145.git.5530bab"; in name: (buildOpenRAMod rec {
+    inherit version;
     title = "Krush, Kill 'n' Destroy";
     description = "Re-imagination of the original ${title} game";
     homepage = https://kknd-game.com/;
     src = fetchFromGitHub {
       owner = "IceReaper";
       repo = "KKnD";
-      rev = "5fc5d83ac2ccdb640a1d773e7eaa998f2fff5069";
-      sha256 = "0fcvf07hjw8n2f9hzqyx76aywbjy87kysq468rwz30p7357ldjrk";
+      rev = "5530babcb05170e0959e4cf2b079161e9fedde4f";
+      sha256 = "07jczrarmgm6zdk0myzwgq200x19yvpjyxrnhdac08mjgyz75zk1";
     };
-    engine = let commit = "06e1a35d48c9af32ae43da7693519bd32ddf758a"; in {
-      version = abbrevCommit commit;
+    engine = {
+      version = "4e8eab4ca00d1910203c8a103dfd2c002714daa8";
       src = fetchFromGitHub {
-        owner = "OpenRA";
+        owner = "IceReaper";
         repo = "OpenRA" ;
-        rev = commit;
-        sha256 = "0i1bhwlyrd22znkifi60zvqz09g5z1xpqnk7rm45iq5lj1fyhsg3";
+        rev = "4e8eab4ca00d1910203c8a103dfd2c002714daa8";
+        sha256 = "1yyqparf93x8yzy1f46gsymgkj5jls25v2yc7ighr3f7mi3igdvq";
         name = "engine";
         inherit extraPostFetch;
       };
     };
-  };
+  } name).overrideAttrs (origAttrs: {
+    postPatch = ''
+      ${origAttrs.postPatch}
+      sed -i 's/{DEV_VERSION}/${version}/' mods/*/mod.yaml
+    '';
+  });
 
   mw = buildOpenRAMod rec {
-    version = "274";
+    version = "257.git.c9be8f2";
     title = "Medieval Warfare";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/CombinE88/Medieval-Warfare;
     src = fetchFromGitHub {
       owner = "CombinE88";
       repo = "Medieval-Warfare";
-      rev = "8c9f6d6cb7bf7bc3dbb110e855289d8d665ea6da";
-      sha256 = "0xylpyaidys3bkvq2fdgj2fhrmly4hga3j3nd0shm6rbvqqhbhil";
+      rev = "c9be8f2a6f1dd710b1aedd9d5b00b4cf5020e2fe";
+      sha256 = "09fp7k95jd6hjqdasbspbd43z5670wkyzbbgqkll9dfsrv0sky0v";
     };
-    engine = let commit = "dc57a75f11cc7673bf08433775d4a4e9052d16d7"; in {
-      version = abbrevCommit commit;
+    engine = {
+      version = "MedievalWarfareEngine";
       src = fetchFromGitHub {
         owner = "CombinE88";
         repo = "OpenRA" ;
-        rev = commit;
-        sha256 = "1qwy18ccih79lrj7vbid3v96lrg1ix8279wpi46jdgdmhgppkms9";
+        rev = "52109c0910f479753704c46fb19e8afaab353c83";
+        sha256 = "0ga3855j6bc7h81q03cw6laiaiz12915zg8aqah1idvxbzicfy7l";
         name = "engine";
         inherit extraPostFetch;
       };
@@ -156,23 +161,23 @@ in {
   };
 
   ra2 = buildOpenRAMod rec {
-    version = "906";
+    version = "903.git.2f7c700";
     title = "Red Alert 2";
     description = "Re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/OpenRA/ra2;
     src = fetchFromGitHub {
       owner = "OpenRA";
       repo = "ra2";
-      rev = "b9668d9c9b1c64767feaff7fd916ba902e2e1e13";
-      sha256 = "1hf928z7i01ny6fqy5lmqgh27l7y0spazz1dp2sbaswsg29w8big";
+      rev = "2f7c700d6d63c0625e7158ef3098221fa6741569";
+      sha256 = "11vnzwczn47wjfrq6y7z9q234p27ihdrcl5p87i6h2xnrpwi8b6m";
     };
     engine = rec {
-      version = "release-20190314";
+      version = "release-20180923";
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
-        rev = "${version}";
-        sha256 = "15pvn5cx3g0nzbrgpsfz8dngad5wkzp5dz25ydzn8bmxafiijvcr";
+        rev = version;
+        sha256 = "1pgi3zaq9fwwdq6yh19bwxscslqgabjxkvl9bcn1a5agy4bfbqk5";
         name = "engine";
         inherit extraPostFetch;
       };
@@ -184,7 +189,7 @@ in {
   };
 
   raclassic = buildOpenRAMod {
-    version = "183";
+    version = "183.git.c76c13e";
     title = "Red Alert Classic";
     description = "A modernization of the original Command & Conquer: Red Alert game";
     homepage = https://github.com/OpenRA/raclassic;
@@ -199,7 +204,7 @@ in {
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
-        rev = "${version}";
+        rev = version;
         sha256 = "15pvn5cx3g0nzbrgpsfz8dngad5wkzp5dz25ydzn8bmxafiijvcr";
         name = "engine";
         inherit extraPostFetch;
@@ -208,24 +213,24 @@ in {
   };
 
   rv = unsafeBuildOpenRAMod {
-    version = "2018";
+    version = "1330.git.9230e6f";
     title = "Romanov's Vengeance";
     description = "Re-imagination of the original Command & Conquer: Red Alert 2 game";
     homepage = https://github.com/MustaphaTR/Romanovs-Vengeance;
     src = fetchFromGitHub {
       owner = "MustaphaTR";
       repo = "Romanovs-Vengeance";
-      rev = "dd5f2365fe2b27db3ea1bb55f30dbd7b36834389";
-      sha256 = "19hc3f2sdjhi448dnimzrjkkx9p98cq9kb9rnkh2h1zr3h2d1l1w";
+      rev = "9230e6f1dd9758467832aee4eda115e18f0e635f";
+      sha256 = "0bwbmmlhp1kh8rgk2nx1ca9vqssj849amndacf318d61gksc1w9n";
     };
-    engine = let commit = "6c35e8e"; in {
-      version = abbrevCommit commit;
+    engine = {
+      version = "f3873ae";
       mods = [ "as" ];
       src = fetchFromGitHub {
-        owner = "GraionDilach";
-        repo = "OpenRA" ;
-        rev = commit;
-        sha256 = "0538gip7yv7a610ckd3dk9yc1i2javajkz52crnqp7dhn96ym5gm";
+        owner = "AttacqueSuperior";
+        repo = "Engine";
+        rev = "f3873ae242803051285994d77eb26f4b951594b5";
+        sha256 = "02rv29wja0p5d083pd087daz7x7pp5b9ym7sci2fhg3mrnaqgwkp";
         name = "engine";
         inherit extraPostFetch;
       };
@@ -237,23 +242,23 @@ in {
   };
 
   sp = unsafeBuildOpenRAMod {
-    version = "247";
+    version = "221.git.ac000cc";
     title = "Shattered Paradise";
     description = "Re-imagination of the original Command & Conquer: Tiberian Sun game";
     homepage = https://github.com/ABrandau/OpenRAModSDK;
     src = fetchFromGitHub {
       owner = "ABrandau";
       repo = "OpenRAModSDK";
-      rev = "2e9222f16d0055c8321ca43f46d65125f924c4a0";
-      sha256 = "1jvgpbf56hd02ikhklv49br4d1jiv5hphc5kl79qnjlaacnj222x";
+      rev = "ac000cc15377cdf6d3c2b72c737d692aa0ed8bcd";
+      sha256 = "16mzs5wcxj9nlpcyx2c87idsqpbm40lx0rznsccclnlb3hiwqas9";
     };
-    engine = let commit = "SP-22-04-19"; in {
-      version = abbrevCommit commit;
+    engine = {
+      version = "SP-22-04-19";
       mods = [ "as" "ts" ];
       src = fetchFromGitHub {
         owner = "ABrandau";
         repo = "OpenRA" ;
-        rev = commit;
+        rev = "bb0930008a57c07f3002421023f6b446e3e3af69";
         sha256 = "1jvgpbf56hd02ikhklv49br4d1jiv5hphc5kl79qnjlaacnj222x";
         name = "engine";
         inherit extraPostFetch;
@@ -262,23 +267,23 @@ in {
   };
 
   ss = buildOpenRAMod rec {
-    version = "241";
+    version = "77.git.23e1f3e";
     title = "Sole Survivor";
     description = "A re-imagination of the original Command & Conquer: ${title} game";
     homepage = https://github.com/MustaphaTR/sole-survivor;
     src = fetchFromGitHub {
       owner = "MustaphaTR";
       repo = "sole-survivor";
-      rev = "24d44af6e1900e6b2c99f489fdf106b8e0a99cf0";
-      sha256 = "1hsk9wpa1vfqssazrsj4px684z66xwhwl8fw6rf92221fbr4mnjk";
+      rev = "23e1f3e5d8b98c936797b6680d95d56a69a9e2ab";
+      sha256 = "104clmxphchs7r8y7hpmw103bychayz80bqj98bp89i64nv9d89x";
     };
-    engine = let commit = "81674e2"; in {
-      version = abbrevCommit commit;
+    engine = {
+      version = "6de92de";
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
-        rev = commit;
-        sha256 = "04fc3vss6czqvb6wr6lmd80fii653glyg9bk12cfm6xiwbjl7lvs";
+        rev = "6de92de8d982094a766eab97a92225c240d85493";
+        sha256 = "0ps9x379plrrj1hnj4fpr26lc46mzgxknv5imxi0bmrh5y4781ql";
         name = "engine";
         inherit extraPostFetch;
       };
@@ -286,7 +291,7 @@ in {
   };
 
   ura = buildOpenRAMod {
-    version = "431";
+    version = "431.git.128dc53";
     title = "Red Alert Unplugged";
     description = "Re-imagination of the original Command & Conquer: Red Alert game";
     homepage = http://redalertunplugged.com/;
@@ -310,23 +315,23 @@ in {
   };
 
   yr = unsafeBuildOpenRAMod rec {
-    version = "244";
+    version = "199.git.5b8b952";
     homepage = https://github.com/cookgreen/yr;
     title = "Yuri's Revenge";
     description = "Re-imagination of the original Command & Conquer: ${title} game";
     src = fetchFromGitHub {
       owner = "cookgreen";
       repo = "yr";
-      rev = "6aef65e8e682936b00daa88e2cc71e7d00f4afc5";
-      sha256 = "";
+      rev = "5b8b952dbe21f194a6d00485f20e215ce8362712";
+      sha256 = "0hxzrqnz5d7qj1jjr20imiyih62x1cnmndf75nnil4c4sj82f9a6";
     };
     engine = rec {
       version = "release-20190314";
       src = fetchFromGitHub {
         owner = "OpenRA";
         repo = "OpenRA" ;
-        rev = "${version}";
-        sha256 = "";
+        rev = version;
+        sha256 = "15pvn5cx3g0nzbrgpsfz8dngad5wkzp5dz25ydzn8bmxafiijvcr";
         name = "engine";
         inherit extraPostFetch;
       };

@@ -67,17 +67,13 @@ in stdenv.mkDerivation (recursiveUpdate packageAttrs rec {
 
     make -C ${engineSourceName} install-engine install-common-mod-files DATA_INSTALL_DIR=$out/lib/${pname}
 
-    cp -r ${engineSourceName}/mods/{${concatStringsSep "," ([ "common" "modcontent" ] ++ engine.mods)}} mods/${mod.name} \
+    cp -r ${engineSourceName}/mods/{${concatStringsSep "," ([ "common" "modcontent" ] ++ engine.mods)}} mods/* \
       $out/lib/${pname}/mods/
-    if [[ ${mod.name} == "kknd" ]]; then
-      cp -r mods/{kknd1,kknd2} $out/lib/${pname}/mods
-    fi
 
     substitute ${./mod-launch-game.sh} $out/lib/${pname}/launch-game.sh \
       --subst-var out \
       --subst-var-by name ${escapeShellArg mod.name} \
       --subst-var-by title ${escapeShellArg mod.title} \
-      --subst-var-by description ${escapeShellArg mod.description} \
       --subst-var-by assetsError ${escapeShellArg mod.assetsError}
     chmod +x $out/lib/${pname}/launch-game.sh
 
@@ -85,7 +81,8 @@ in stdenv.mkDerivation (recursiveUpdate packageAttrs rec {
 
     substitute ${./openra-mod.desktop} $(mkdirp $out/share/applications)/${pname}.desktop \
       --subst-var-by name ${escapeShellArg mod.name} \
-      --subst-var-by title ${escapeShellArg mod.title}
+      --subst-var-by title ${escapeShellArg mod.title} \
+      --subst-var-by description ${escapeShellArg mod.description}
 
     cp README.md $(mkdirp $out/share/doc/packages/${pname})/README.md
 
@@ -94,12 +91,10 @@ in stdenv.mkDerivation (recursiveUpdate packageAttrs rec {
     }
     cp "$mod_icon" $(mkdirp $out/share/pixmaps)/${pname}.png
 
-    if ! ( [[ ${mod.name} == "d2" ]] || [[ ${mod.name} == "ss" ]] || [[ ${mod.name} == "yr" ]] ); then
-      for size in 16 32 48 64 128 256; do
-        size=''${size}x''${size}
-        cp packaging/linux/mod_''${size}.png $(mkdirp $out/share/icons/hicolor/''${size}/apps)/${pname}.png
-      done
-    fi
+    for size in 16 32 48 64 128 256; do
+      size=''${size}x''${size}
+      cp packaging/linux/mod_''${size}.png $(mkdirp $out/share/icons/hicolor/''${size}/apps)/${pname}.png
+    done
 
     runHook postInstall
   '';

@@ -3,15 +3,14 @@
 */
 { stdenv, makeSetupHook, curl, unzip, dos2unix, pkgconfig, makeWrapper
 , lua, mono, dotnetPackages, python
-, libGL, openal, SDL2
-, freetype
+, libGL, freetype, openal, SDL2
 , zenity
 }:
 
 with stdenv.lib;
 
 let
-  path = makeBinPath ([ msbuild mono python ] ++ optional (zenity != null) zenity);
+  path = makeBinPath ([ mono python ] ++ optional (zenity != null) zenity);
   rpath = makeLibraryPath [ lua freetype openal SDL2 ];
   mkdirp = makeSetupHook { } ./mkdirp.sh;
 
@@ -63,7 +62,6 @@ in {
       curl
       unzip
       dos2unix
-      msbuild
       pkgconfig
       makeWrapper
       mkdirp
@@ -78,7 +76,7 @@ in {
     dontStrip = true;
 
     meta = {
-      maintainers = with maintainers; [ msteen rardiol ];
+      maintainers = with maintainers; [ fusion809 msteen rardiol ];
       license = licenses.gpl3;
       platforms = platforms.linux;
     };
