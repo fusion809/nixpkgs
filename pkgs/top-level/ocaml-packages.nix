@@ -61,6 +61,8 @@ let
 
     batteries = callPackage ../development/ocaml-modules/batteries { };
 
+    bigarray-compat = callPackage ../development/ocaml-modules/bigarray-compat { };
+
     bigstringaf = callPackage ../development/ocaml-modules/bigstringaf { };
 
     bistro = callPackage ../development/ocaml-modules/bistro { };
@@ -186,6 +188,8 @@ let
       lwt = ocaml_lwt;
     };
 
+    cstruct-sexp = callPackage ../development/ocaml-modules/cstruct/sexp.nix {};
+
     cstruct-unix = callPackage ../development/ocaml-modules/cstruct/unix.nix {};
 
     csv =
@@ -214,6 +218,8 @@ let
     dolmen =  callPackage ../development/ocaml-modules/dolmen { };
 
     dolog = callPackage ../development/ocaml-modules/dolog { };
+
+    domain-name = callPackage ../development/ocaml-modules/domain-name { };
 
     dtoa = callPackage ../development/ocaml-modules/dtoa { };
 
@@ -270,6 +276,8 @@ let
     functory = callPackage ../development/ocaml-modules/functory { };
 
     gen = callPackage ../development/ocaml-modules/gen { };
+
+    gmap = callPackage ../development/ocaml-modules/gmap { };
 
     herelib = callPackage ../development/ocaml-modules/herelib { };
 

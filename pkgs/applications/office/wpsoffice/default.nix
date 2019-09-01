@@ -8,11 +8,12 @@ let
 
   version = "10.1.0.6757";
 in stdenv.mkDerivation rec{
-  name = "wpsoffice-${version}";
+  pname = "wpsoffice";
+  inherit version;
 
   src = fetchurl {
-    name = "${name}.tar.xz";
-    url = "http://kdl.cc.ksosoft.com/wps-community/download/6757/wps-office_${version}_${bits}.tar.xz";
+    name = "${pname}-${version}.tar.xz";
+    url = "http://kdl.cc.ksosoft.com/wps-community/download/a21/wps-office_${version}~a21_${bits}.tar.xz";
     sha256 = if bits == "x86_64" then
       "0zk2shi3ciyjnmwvixkmj2qnivkg9a86mnvn83sj9idhlgjx7002" else
       "1dk400ap5qwdhjvn8lnk602f5akayr391fkljxdkrpn5xac01m97";

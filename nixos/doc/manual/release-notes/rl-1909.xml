@@ -338,10 +338,17 @@
        For nginx, the dependencies are still automatically managed when <option>services.nginx.virtualhosts.&lt;name&gt;.enableACME</option> is enabled just like before. What changed is that nginx now directly depends on the specific certificates that it needs,
        instead of depending on the catch-all <literal>acme-certificates.target</literal>. This target unit was also removed from the codebase.
        This will mean nginx will no longer depend on certificates it isn't explicitly managing and fixes a bug with certificate renewal
-       ordering racing with nginx restarting which could lead to nginx getting in a broken state as described at 
+       ordering racing with nginx restarting which could lead to nginx getting in a broken state as described at
         <link xlink:href="https://github.com/NixOS/nixpkgs/issues/60180">NixOS/nixpkgs#60180</link>.
      </para>
    </listitem>
+   <listitem>
+     <para>
+       The old deprecated <literal>emacs</literal> package sets have been dropped.
+       What used to be called <literal>emacsPackagesNg</literal> is now simply called <literal>emacsPackages</literal>.
+     </para>
+   </listitem>
+
   </itemizedlist>
  </section>
 
@@ -540,8 +547,8 @@
       </para>
      </listitem>
     </itemizedlist>
-
-     This also configures the kernel to pass coredumps to <literal>systemd-coredump</literal>.
+     This also configures the kernel to pass coredumps to <literal>systemd-coredump</literal>,
+     and restricts the SysRq key combinations to the sync command only.
      These sysctl snippets can be found in <literal>/etc/sysctl.d/50-*.conf</literal>,
      and overridden via <link linkend="opt-boot.kernel.sysctl">boot.kernel.sysctl</link>
      (which will place the parameters in <literal>/etc/sysctl.d/60-nixos.conf</literal>).
@@ -557,27 +564,42 @@
       <option>boot.kernel.sysctl."kernel.core_pattern"</option> to <literal>"core"</literal>.
     </para>
    </listitem>
-  <listitem>
-   <para>
-    <literal>systemd.packages</literal> option now also supports generators and
-    shutdown scripts. Old <literal>systemd.generator-packages</literal> option has
-    been removed.
-   </para>
-  </listitem>
-  <listitem>
-   <para>
-    The <literal>rmilter</literal> package was removed with associated module and options due deprecation by upstream developer.
-    Use <literal>rspamd</literal> in proxy mode instead.
-   </para>
-  </listitem>
-  <listitem>
-   <para>
-     systemd cgroup accounting via the
-     <link linkend="opt-systemd.enableCgroupAccounting">systemd.enableCgroupAccounting</link>
-     option is now enabled by default. It now also enables the more recent Block IO and IP accounting
-     features.
-   </para>
-  </listitem>
+   <listitem>
+    <para>
+     <literal>systemd.packages</literal> option now also supports generators and
+     shutdown scripts. Old <literal>systemd.generator-packages</literal> option has
+     been removed.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     The <literal>rmilter</literal> package was removed with associated module and options due deprecation by upstream developer.
+     Use <literal>rspamd</literal> in proxy mode instead.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+      systemd cgroup accounting via the
+      <link linkend="opt-systemd.enableCgroupAccounting">systemd.enableCgroupAccounting</link>
+      option is now enabled by default. It now also enables the more recent Block IO and IP accounting
+      features.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     We no longer enable custom font rendering settings with <option>fonts.fontconfig.penultimate.enable</option> by default.
+     The defaults from fontconfig are sufficient.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+      The <literal>crashplan</literal> package and the
+      <literal>crashplan</literal> service have been removed from nixpkgs due to
+      crashplan shutting down the service, while the <literal>crashplansb</literal>
+      package and <literal>crashplan-small-business</literal> service have been
+      removed from nixpkgs due to lack of maintainer.
+    </para>
+   </listitem>
   </itemizedlist>
  </section>
 </section>

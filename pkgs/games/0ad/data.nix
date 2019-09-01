@@ -1,7 +1,7 @@
 { stdenv, fetchurl, zeroad-unwrapped }:
 
 stdenv.mkDerivation rec {
-  name = "0ad-data-${version}";
+  pname = "0ad-data";
   inherit (zeroad-unwrapped) version;
   commit = "6796749eed54351b45f7c7c545d43a135ccf063e";
 
