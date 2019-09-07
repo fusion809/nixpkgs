@@ -58,7 +58,9 @@
   ./hardware/network/intel-2200bg.nix
   ./hardware/nitrokey.nix
   ./hardware/opengl.nix
+  ./hardware/openrazer.nix
   ./hardware/pcmcia.nix
+  ./hardware/printers.nix
   ./hardware/raid/hpsa.nix
   ./hardware/steam-hardware.nix
   ./hardware/usb-wwan.nix
@@ -138,6 +140,7 @@
   ./programs/qt5ct.nix
   ./programs/screen.nix
   ./programs/sedutil.nix
+  ./programs/seahorse.nix
   ./programs/slock.nix
   ./programs/shadow.nix
   ./programs/shell.nix
@@ -148,6 +151,7 @@
   ./programs/sysdig.nix
   ./programs/systemtap.nix
   ./programs/sway.nix
+  ./programs/system-config-printer.nix
   ./programs/thefuck.nix
   ./programs/tmux.nix
   ./programs/tsm-client.nix
@@ -280,6 +284,7 @@
   ./services/databases/virtuoso.nix
   ./services/desktops/accountsservice.nix
   ./services/desktops/bamf.nix
+  ./services/desktops/blueman.nix
   ./services/desktops/deepin/deepin.nix
   ./services/desktops/dleyna-renderer.nix
   ./services/desktops/dleyna-server.nix
@@ -301,11 +306,11 @@
   ./services/desktops/gnome3/gnome-settings-daemon.nix
   ./services/desktops/gnome3/gnome-user-share.nix
   ./services/desktops/gnome3/rygel.nix
-  ./services/desktops/gnome3/seahorse.nix
   ./services/desktops/gnome3/sushi.nix
   ./services/desktops/gnome3/tracker.nix
   ./services/desktops/gnome3/tracker-miners.nix
   ./services/desktops/profile-sync-daemon.nix
+  ./services/desktops/system-config-printer.nix
   ./services/desktops/telepathy.nix
   ./services/desktops/tumbler.nix
   ./services/desktops/zeitgeist.nix
@@ -698,6 +703,7 @@
   ./services/networking/supybot.nix
   ./services/networking/syncthing.nix
   ./services/networking/syncthing-relay.nix
+  ./services/networking/syncplay.nix
   ./services/networking/tcpcrypt.nix
   ./services/networking/teamspeak3.nix
   ./services/networking/tedicross.nix
@@ -944,6 +950,7 @@
   ./virtualisation/openvswitch.nix
   ./virtualisation/parallels-guest.nix
   ./virtualisation/qemu-guest-agent.nix
+  ./virtualisation/railcar.nix
   ./virtualisation/rkt.nix
   ./virtualisation/virtualbox-guest.nix
   ./virtualisation/virtualbox-host.nix

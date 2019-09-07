@@ -105,7 +105,7 @@ in {
   config = mkIf cfg.enable {
     systemd.services.airsonic = {
       description = "Airsonic Media Server";
-      after = [ "local-fs.target" "network.target" ];
+      after = [ "network.target" ];
       wantedBy = [ "multi-user.target" ];
 
       preStart = ''
@@ -138,8 +138,8 @@ in {
 
     services.nginx = mkIf (cfg.virtualHost != null) {
       enable = true;
-      virtualHosts."${cfg.virtualHost}" = {
-        locations."${cfg.contextPath}".proxyPass = "http://${cfg.listenAddress}:${toString cfg.port}";
+      virtualHosts.${cfg.virtualHost} = {
+        locations.${cfg.contextPath}.proxyPass = "http://${cfg.listenAddress}:${toString cfg.port}";
       };
     };
 

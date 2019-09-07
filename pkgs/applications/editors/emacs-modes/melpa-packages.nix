@@ -34,13 +34,20 @@ env NIXPKGS_ALLOW_BROKEN=1 nix-instantiate --show-trace ../../../../ -A emacsPac
     super = lib.listToAttrs (map (melpaDerivation variant) (lib.importJSON archiveJson));
 
     overrides = rec {
-      shared = {
+      shared = rec {
         # Expects bash to be at /bin/bash
         ac-rtags = markBroken super.ac-rtags;
 
         airline-themes = super.airline-themes.override {
           inherit (self.melpaPackages) powerline;
         };
+
+        auto-complete-clang-async = super.auto-complete-clang-async.overrideAttrs(old: {
+          buildInputs = old.buildInputs ++ [ external.llvmPackages.llvm ];
+          CFLAGS = "-I${external.llvmPackages.clang}/include";
+          LDFLAGS = "-L${external.llvmPackages.clang}/lib";
+        });
+        emacsClangCompleteAsync = auto-complete-clang-async;
 
         # part of a larger package
         caml = dontConfigure super.caml;
@@ -189,13 +196,13 @@ env NIXPKGS_ALLOW_BROKEN=1 nix-instantiate --show-trace ../../../../ -A emacsPac
             (attrs.nativeBuildInputs or []) ++ [ external.git ];
         });
 
-      kubernetes = super.kubernetes.overrideAttrs (attrs: {
-        # searches for Git at build time
-        nativeBuildInputs =
-          (attrs.nativeBuildInputs or []) ++ [ external.git ];
-      });
+        kubernetes = super.kubernetes.overrideAttrs (attrs: {
+          # searches for Git at build time
+          nativeBuildInputs =
+            (attrs.nativeBuildInputs or []) ++ [ external.git ];
+        });
 
-      # upstream issue: missing file header
+        # upstream issue: missing file header
         mhc = super.mhc.override {
           inherit (self.melpaPackages) calfw;
         };
@@ -212,7 +219,6 @@ env NIXPKGS_ALLOW_BROKEN=1 nix-instantiate --show-trace ../../../../ -A emacsPac
 
         # Telega has a server portion for it's network protocol
         telega = super.telega.overrideAttrs(old: {
-
           buildInputs = old.buildInputs ++ [ pkgs.tdlib ];
 
           postBuild = ''
@@ -225,7 +231,6 @@ env NIXPKGS_ALLOW_BROKEN=1 nix-instantiate --show-trace ../../../../ -A emacsPac
             mkdir -p $out/bin
             install -m755 -Dt $out/bin ./source/server/telega-server
           '';
-
         });
 
         vdiff-magit = super.vdiff-magit.overrideAttrs (attrs: {
@@ -413,7 +418,7 @@ env NIXPKGS_ALLOW_BROKEN=1 nix-instantiate --show-trace ../../../../ -A emacsPac
             };
           });
 
-        in pkgs.stdenv.mkDerivation rec {
+        in pkgs.stdenv.mkDerivation {
           inherit (super.vterm) name version src;
 
           nativeBuildInputs = [ pkgs.cmake ];
@@ -446,6 +451,6 @@ env NIXPKGS_ALLOW_BROKEN=1 nix-instantiate --show-trace ../../../../ -A emacsPac
       };
     };
 
-  in super // overrides."${variant}");
+  in super // overrides.${variant});
 
 in generateMelpa { }

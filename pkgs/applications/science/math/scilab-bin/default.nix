@@ -20,7 +20,7 @@ let
     else
       badArch;
 in
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   inherit name;
 
   src = fetchurl {

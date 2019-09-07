@@ -14,8 +14,8 @@
 , icu
  }:
 
-stdenv.mkDerivation rec {
-  name = "dino-unstable-2019-08-27";
+stdenv.mkDerivation {
+  name = "dino-unstable-2019-03-07";
 
   src = fetchFromGitHub {
     owner = "dino";
@@ -62,7 +62,7 @@ stdenv.mkDerivation rec {
   enableParallelBuilding = true;
 
   meta = with stdenv.lib; {
-    description = "Modern Jabber/XMPP Client using GTK+/Vala";
+    description = "Modern Jabber/XMPP Client using GTK/Vala";
     homepage = https://github.com/dino/dino;
     license = licenses.gpl3;
     platforms = platforms.linux;
