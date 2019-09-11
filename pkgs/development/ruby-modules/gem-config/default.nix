@@ -198,6 +198,7 @@ in
 
   gpgme = attrs: {
     buildInputs = [ gpgme ];
+    buildFlags = [ "--use-system-libraries" ];
   };
 
   gio2 = attrs: {
@@ -242,7 +243,20 @@ in
     nativeBuildInputs = [ pkgconfig ];
     buildInputs = [ openssl ];
     hardeningDisable = [ "format" ];
-    NIX_CFLAGS_COMPILE = [ "-Wno-error=stringop-overflow" "-Wno-error=implicit-fallthrough" ];
+    NIX_CFLAGS_COMPILE = [
+      "-Wno-error=stringop-overflow"
+      "-Wno-error=implicit-fallthrough"
+      "-Wno-error=sizeof-pointer-memaccess"
+      "-Wno-error=cast-function-type"
+      "-Wno-error=class-memaccess"
+      "-Wno-error=ignored-qualifiers"
+      "-Wno-error=tautological-compare"
+    ];
+    dontBuild = false;
+    postPatch = ''
+      substituteInPlace Makefile \
+        --replace '-Wno-invalid-source-encoding' ""
+    '';
   };
 
   hitimes = attrs: {
@@ -488,7 +502,7 @@ in
   sassc = attrs: {
     nativeBuildInputs = [ rake ];
     dontBuild = false;
-    SASS_LIBSASS_PATH = "${libsass}";
+    SASS_LIBSASS_PATH = libsass;
     postPatch = ''
       substituteInPlace lib/sassc/native.rb \
         --replace 'gem_root = spec.gem_dir' 'gem_root = File.join(__dir__, "../../")'
@@ -520,19 +534,6 @@ in
       "--with-sqlite3-include=${sqlite.dev}/include"
       "--with-sqlite3-lib=${sqlite.out}/lib"
     ];
-  };
-
-  sup = attrs: {
-    dontBuild = false;
-    # prevent sup from trying to dynamically install `xapian-ruby`.
-    nativeBuildInputs = [ bundler rake ];
-    postPatch = ''
-      cp ${./mkrf_conf_xapian.rb} ext/mkrf_conf_xapian.rb
-
-      substituteInPlace lib/sup/crypto.rb \
-        --replace 'which gpg2' \
-                  '${which}/bin/which gpg'
-    '';
   };
 
   rb-readline = attrs: {

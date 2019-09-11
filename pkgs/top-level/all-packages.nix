@@ -608,7 +608,7 @@ in
 
   arandr = callPackage ../tools/X11/arandr { };
 
-  inherit (callPackages ../servers/nosql/arangodb { }) arangodb_3_2 arangodb_3_3 arangodb_3_4 arangodb_3_5;
+  inherit (callPackages ../servers/nosql/arangodb { }) arangodb_3_3 arangodb_3_4 arangodb_3_5;
   arangodb = arangodb_3_4;
 
   arcanist = callPackage ../development/tools/misc/arcanist {};
@@ -1066,22 +1066,14 @@ in
 
   bchunk = callPackage ../tools/cd-dvd/bchunk { };
 
-  inherit (callPackages ../misc/logging/beats/6.x.nix {
-    # XXX: this is failing with Go 1.12. Error is related to cgo, an
-    # update to this package might fix it.
-    buildGoPackage = buildGo111Package;
-  })
+  inherit (callPackages ../misc/logging/beats/6.x.nix { })
     filebeat6
     heartbeat6
     metricbeat6
     packetbeat6
     journalbeat6;
 
-  inherit (callPackages ../misc/logging/beats/7.x.nix {
-    # XXX: this is failing with Go 1.12. Error is related to cgo, an
-    # update to this package might fix it.
-    buildGoPackage = buildGo111Package;
-  })
+  inherit (callPackages ../misc/logging/beats/7.x.nix { })
     filebeat7
     heartbeat7
     metricbeat7
@@ -1702,7 +1694,11 @@ in
 
   gmic = callPackage ../tools/graphics/gmic { };
 
-  gmic_krita_qt = libsForQt5.callPackage ../tools/graphics/gmic_krita_qt { };
+  gmic-qt = libsForQt5.callPackage ../tools/graphics/gmic-qt { };
+
+  gmic-qt-krita = gmic-qt.override {
+    variant = "krita";
+  };
 
   goa = callPackage ../development/tools/goa { };
 
@@ -1997,11 +1993,7 @@ in
 
   mongodb-compass = callPackage ../tools/misc/mongodb-compass { };
 
-  mongodb-tools = callPackage ../tools/misc/mongodb-tools {
-    # XXX: this is failing with Go 1.12. Error is related to cgo, an
-    # update to this package might fix it.
-    buildGoPackage = buildGo111Package;
-  };
+  mongodb-tools = callPackage ../tools/misc/mongodb-tools { };
 
   moosefs = callPackage ../tools/filesystems/moosefs { };
 
@@ -2873,8 +2865,8 @@ in
   evemu = callPackage ../tools/system/evemu { };
 
   # The latest version used by elasticsearch, logstash, kibana and the the beats from elastic.
-  elk6Version = "6.7.2";
-  elk7Version = "7.0.1";
+  elk6Version = "6.8.3";
+  elk7Version = "7.3.1";
 
   elasticsearch6 = callPackage ../servers/search/elasticsearch/6.x.nix {
     utillinux = utillinuxMinimal;
@@ -2914,13 +2906,7 @@ in
           sha256 = "f15516df478d5a56180fbf80e68f206010e6d160fc39fa508b65e035fd75130b";
         };
       });
-      pyyaml = super.pyyaml.overridePythonAttrs (oldAttrs: rec {
-        version = "3.12";
-        src = oldAttrs.src.override {
-          inherit version;
-          sha256 = "1aqjl8dk9amd4zr99n8v2qxzgmr2hdvqfma4zh7a41rj6336c9sr";
-        };
-      });
+      pyyaml = super.pyyaml_3;
     };
   }).pkgs; toPythonApplication elasticsearch-curator;
 
@@ -3046,7 +3032,7 @@ in
     mozc = callPackage ../tools/inputmethods/fcitx-engines/fcitx-mozc {
       python = python2;
       inherit (python2Packages) gyp;
-      protobuf = pkgs.protobuf3_6.overrideDerivation (oldAttrs: { stdenv = clangStdenv; });
+      protobuf = pkgs.protobuf.overrideDerivation (oldAttrs: { stdenv = clangStdenv; });
     };
 
     table-extra = callPackage ../tools/inputmethods/fcitx-engines/fcitx-table-extra { };
@@ -3443,6 +3429,8 @@ in
 
   gnome-builder = callPackage ../applications/editors/gnome-builder { };
 
+  gnome-keysign = callPackage ../tools/security/gnome-keysign { };
+
   gnome-podcasts = callPackage ../applications/audio/gnome-podcasts { };
 
   gnome-photos = callPackage ../applications/graphics/gnome-photos {
@@ -3772,6 +3760,7 @@ in
   };
 
   hdf5 = callPackage ../tools/misc/hdf5 {
+    stdenv = gcc7Stdenv;
     gfortran = null;
     szip = null;
     mpi = null;
@@ -3836,8 +3825,6 @@ in
 
   highlight = callPackage ../tools/text/highlight ({
     lua = lua5;
-  } // lib.optionalAttrs stdenv.isDarwin {
-    inherit (llvmPackages_38) stdenv;
   });
 
   holochain-go = callPackage ../servers/holochain-go { };
@@ -3925,8 +3912,8 @@ in
   idevicerestore = callPackage ../tools/misc/idevicerestore { };
 
   inherit (callPackages ../tools/filesystems/irods rec {
-            stdenv = llvmPackages_38.libcxxStdenv;
-            libcxx = llvmPackages_38.libcxx;
+            stdenv = llvmPackages.libcxxStdenv;
+            libcxx = llvmPackages.libcxx;
             boost = boost160.override { inherit stdenv; };
             avro-cpp_llvm = avro-cpp.override { inherit stdenv boost; };
           })
@@ -4013,7 +4000,12 @@ in
   iperf3 = callPackage ../tools/networking/iperf/3.nix { };
   iperf = iperf3;
 
-  ipfs = callPackage ../applications/networking/ipfs { };
+  ipfs = callPackage ../applications/networking/ipfs {
+    # Version 0.4.22 fails to build with go 1.13 due to version validation:
+    #    go: github.com/go-critic/go-critic@v0.0.0-20181204210945-ee9bf5809ead: invalid pseudo-version: does not match version-control timestamp (2019-02-10T22:04:43Z)
+    # This is fixed in master, but release containing the fix does not exist yet.
+    buildGoModule = buildGo112Module;
+  };
   ipfs-migrator = callPackage ../applications/networking/ipfs-migrator { };
   ipfs-cluster = callPackage ../applications/networking/ipfs-cluster { };
 
@@ -4340,6 +4332,8 @@ in
   medfile = callPackage ../development/libraries/medfile { };
 
   memtester = callPackage ../tools/system/memtester { };
+
+  mhonarc = perlPackages.MHonArc;
 
   minergate = callPackage ../applications/misc/minergate { };
 
@@ -4800,11 +4794,7 @@ in
 
   miredo = callPackage ../tools/networking/miredo { };
 
-  mirrorbits = callPackage ../servers/mirrorbits {
-    # XXX: this is failing with Go 1.12. Error is related to cgo, an
-    # update to this package might fix it.
-    buildGoPackage = buildGo111Package;
-  };
+  mirrorbits = callPackage ../servers/mirrorbits { };
 
   mitmproxy = callPackage ../tools/networking/mitmproxy { };
 
@@ -4925,6 +4915,8 @@ in
   ndjbdns = callPackage ../tools/networking/ndjbdns { };
 
   ndppd = callPackage ../applications/networking/ndppd { };
+
+  nemiver = callPackage ../development/tools/nemiver { };
 
   neofetch = callPackage ../tools/misc/neofetch { };
 
@@ -7192,7 +7184,7 @@ in
 
   zbackup = callPackage ../tools/backup/zbackup {};
 
-  zbar = callPackage ../tools/graphics/zbar { };
+  zbar = libsForQt5.callPackage ../tools/graphics/zbar { };
 
   zdelta = callPackage ../tools/compression/zdelta { };
 
@@ -7436,7 +7428,6 @@ in
   clang_5  = llvmPackages_5.clang;
   clang_4  = llvmPackages_4.clang;
   clang_39 = llvmPackages_39.clang;
-  clang_38 = llvmPackages_38.clang;
   clang_35 = wrapCC llvmPackages_35.clang;
 
   clang-tools = callPackage ../development/tools/clang-tools {
@@ -7518,8 +7509,8 @@ in
   gerbil = callPackage ../development/compilers/gerbil { stdenv = gccStdenv; };
   gerbil-unstable = callPackage ../development/compilers/gerbil/unstable.nix { stdenv = gccStdenv; };
 
-  gccFun = callPackage ../development/compilers/gcc/7;
-  gcc = gcc7;
+  gccFun = callPackage ../development/compilers/gcc/8;
+  gcc = if stdenv.isDarwin then gcc7 else gcc8;
   gcc-unwrapped = gcc.cc;
 
   gccStdenv = if stdenv.cc.isGNU then stdenv else stdenv.override {
@@ -7754,6 +7745,14 @@ in
     profiledCompiler = false;
   });
 
+  gfortran8 = wrapCC (gcc8.cc.override {
+    name = "gfortran";
+    langFortran = true;
+    langCC = false;
+    langC = false;
+    profiledCompiler = false;
+  });
+
   gcj = gcj6;
   gcj6 = wrapCC (gcc6.cc.override {
     name = "gcj";
@@ -7900,10 +7899,6 @@ in
     callPackage ../development/compilers/go/1.4.nix {
       inherit (darwin.apple_sdk.frameworks) Security;
     };
-
-  go_1_11 = callPackage ../development/compilers/go/1.11.nix {
-    inherit (darwin.apple_sdk.frameworks) Security Foundation;
-  };
 
   go_1_12 = callPackage ../development/compilers/go/1.12.nix {
     inherit (darwin.apple_sdk.frameworks) Security Foundation;
@@ -8123,21 +8118,12 @@ in
   llvm_5  = llvmPackages_5.llvm;
   llvm_4  = llvmPackages_4.llvm;
   llvm_39 = llvmPackages_39.llvm;
-  llvm_38 = llvmPackages_38.llvm;
   llvm_35 = llvmPackages_35.llvm;
 
   llvmPackages = recurseIntoAttrs llvmPackages_7;
 
   llvmPackages_35 = callPackage ../development/compilers/llvm/3.5 ({
     isl = isl_0_14;
-  } // stdenv.lib.optionalAttrs (stdenv.cc.isGNU && stdenv.hostPlatform.isi686) {
-    stdenv = gcc6Stdenv;
-  });
-
-  llvmPackages_38 = callPackage ../development/compilers/llvm/3.8 ({
-    inherit (stdenvAdapters) overrideCC;
-    buildLlvmTools = buildPackages.llvmPackages_38.tools;
-    targetLlvmLibraries = targetPackages.llvmPackages_38.libraries;
   } // stdenv.lib.optionalAttrs (stdenv.cc.isGNU && stdenv.hostPlatform.isi686) {
     stdenv = gcc6Stdenv;
   });
@@ -8171,7 +8157,9 @@ in
     buildLlvmTools = buildPackages.llvmPackages_6.tools;
     targetLlvmLibraries = targetPackages.llvmPackages_6.libraries;
   } // stdenv.lib.optionalAttrs (stdenv.cc.isGNU && stdenv.hostPlatform.isi686) {
-    stdenv = gcc6Stdenv; # with gcc-7: undefined reference to `__divmoddi4'
+    # with gcc-7 on i686: undefined reference to `__divmoddi4'
+    # Failing tests with gcc8.
+    stdenv = overrideCC stdenv (if stdenv.hostPlatform.isi686 then gcc6 else gcc7);
   });
 
   llvmPackages_7 = callPackage ../development/compilers/llvm/7 ({
@@ -8946,14 +8934,12 @@ in
     inherit (darwin) libiconv libobjc libunwind;
     inherit (darwin.apple_sdk.frameworks) Foundation;
   })
-    ruby_2_3
     ruby_2_4
     ruby_2_5
     ruby_2_6;
 
   ruby = ruby_2_6;
 
-  rubyPackages_2_3 = recurseIntoAttrs ruby_2_3.gems;
   rubyPackages_2_4 = recurseIntoAttrs ruby_2_4.gems;
   rubyPackages_2_5 = recurseIntoAttrs ruby_2_5.gems;
   rubyPackages_2_6 = recurseIntoAttrs ruby_2_6.gems;
@@ -9084,6 +9070,8 @@ in
   };
 
   mspdebug = callPackage ../development/misc/msp430/mspdebug.nix { };
+
+  rappel = callPackage ../development/misc/rappel/default.nix { };
 
   pharo-vms = callPackage ../development/pharo/vm { };
   pharo = pharo-vms.multi-vm-wrapper;
@@ -9318,6 +9306,8 @@ in
   checkstyle = callPackage ../development/tools/analysis/checkstyle { };
 
   chromedriver = callPackage ../development/tools/selenium/chromedriver { gconf = gnome2.GConf; };
+
+  chromium-xorg-conf = callPackage ../os-specific/linux/chromium-xorg-conf { };
 
   chrpath = callPackage ../development/tools/misc/chrpath { };
 
@@ -10200,10 +10190,9 @@ in
 
   xpwn = callPackage ../development/mobile/xpwn {};
 
-  xxdiff = callPackage ../development/tools/misc/xxdiff {
-    bison = bison2;
-  };
-  xxdiff-tip = libsForQt5.callPackage ../development/tools/misc/xxdiff/tip.nix { };
+  xxdiff = libsForQt5.callPackage ../development/tools/misc/xxdiff { };
+
+  xxdiff-tip = xxdiff;
 
   yaml2json = callPackage ../development/tools/yaml2json { };
 
@@ -12132,6 +12121,8 @@ in
 
   libisoburn = callPackage ../development/libraries/libisoburn { };
 
+  libipt = callPackage ../development/libraries/libipt { };
+
   libiptcdata = callPackage ../development/libraries/libiptcdata { };
 
   libjpeg_original = callPackage ../development/libraries/libjpeg { };
@@ -13173,7 +13164,7 @@ in
   qt511 = recurseIntoAttrs (makeOverridable
     (import ../development/libraries/qt-5/5.11) {
       inherit newScope;
-      inherit stdenv fetchurl fetchFromGitHub makeSetupHook makeWrapper;
+      inherit stdenv fetchurl fetchFromGitHub fetchpatch makeSetupHook makeWrapper;
       bison = bison2; # error: too few arguments to function 'int yylex(...
       inherit cups;
       harfbuzz = harfbuzzFull;
@@ -13570,12 +13561,6 @@ in
     sdnotify-wrapper = callPackage ../os-specific/linux/sdnotify-wrapper { };
   };
 
-  skydive = callPackage ../tools/networking/skydive {
-    # XXX: this is failing with Go 1.12. Error is related to cgo, an
-    # update to this package might fix it.
-    buildGoPackage = buildGo111Package;
-  };
-
   slang = callPackage ../development/libraries/slang { };
 
   slibGuile = callPackage ../development/libraries/slib {
@@ -13753,6 +13738,8 @@ in
   };
 
   sundials = callPackage ../development/libraries/sundials { };
+
+  sundials_3 = callPackage ../development/libraries/sundials/3.x.nix { };
 
   sutils = callPackage ../tools/misc/sutils { };
 
@@ -14120,7 +14107,7 @@ in
   x265 = callPackage ../development/libraries/x265 { };
 
   inherit (callPackages ../development/libraries/xapian { })
-    xapian_1_2_22 xapian_1_4;
+    xapian_1_4;
   xapian = xapian_1_4;
 
   xapian-omega = callPackage ../development/libraries/xapian/tools/omega {
@@ -14350,18 +14337,11 @@ in
 
   ### DEVELOPMENT / GO MODULES
 
-  buildGo111Package = callPackage ../development/go-packages/generic {
-    go = buildPackages.go_1_11;
-  };
   buildGo112Package = callPackage ../development/go-packages/generic {
     go = buildPackages.go_1_12;
   };
 
   buildGoPackage = buildGo112Package;
-
-  buildGo111Module = callPackage ../development/go-modules/generic {
-    go = buildPackages.go_1_11;
-  };
 
   buildGo112Module = callPackage ../development/go-modules/generic {
     go = buildPackages.go_1_12;
@@ -14995,8 +14975,6 @@ in
 
   pgbouncer = callPackage ../servers/sql/pgbouncer { };
 
-  pgpool94 = pgpool.override { postgresql = postgresql_9_4; };
-
   pgpool = callPackage ../servers/sql/pgpool {
     pam = if stdenv.isLinux then pam else null;
     libmemcached = null; # Detection is broken upstream
@@ -15007,7 +14985,6 @@ in
   timescaledb-tune = callPackage ../development/tools/database/timescaledb-tune { };
 
   inherit (import ../servers/sql/postgresql pkgs)
-    postgresql_9_4
     postgresql_9_5
     postgresql_9_6
     postgresql_10
@@ -15749,8 +15726,6 @@ in
   linux_testing = callPackage ../os-specific/linux/kernel/linux-testing.nix {
     kernelPatches = [
       kernelPatches.bridge_stp_helper
-      kernelPatches.modinst_arg_list_too_long
-      kernelPatches.export_kernel_fpu_functions
     ];
   };
 
@@ -16275,7 +16250,7 @@ in
 
   semodule-utils = callPackage ../os-specific/linux/semodule-utils { };
 
-  powerdns = callPackage ../servers/dns/powerdns { libressl = libressl_2_8; };
+  powerdns = callPackage ../servers/dns/powerdns { };
 
   dnsdist = callPackage ../servers/dns/dnsdist { };
 
@@ -16525,6 +16500,8 @@ in
 
   wpa_supplicant_gui = libsForQt5.callPackage ../os-specific/linux/wpa_supplicant/gui.nix { };
 
+  xf86_input_cmt = callPackage ../os-specific/linux/xf86-input-cmt { };
+
   xf86_input_mtrack = callPackage ../os-specific/linux/xf86-input-mtrack { };
 
   xf86_input_multitouch = callPackage ../os-specific/linux/xf86-input-multitouch { };
@@ -16630,7 +16607,7 @@ in
 
   # solve collision for nix-env before https://github.com/NixOS/nix/pull/815
   dejavu_fontsEnv = buildEnv {
-    name = "${dejavu_fonts.name}";
+    name = dejavu_fonts.name;
     paths = [ dejavu_fonts.out ];
   };
 
@@ -16822,6 +16799,10 @@ in
   liberation_ttf = liberation_ttf_v2;
 
   liberation-sans-narrow = callPackage ../data/fonts/liberation-sans-narrow { };
+
+  libevdevc = callPackage ../os-specific/linux/libevdevc { };
+
+  libgestures = callPackage ../os-specific/linux/libgestures { };
 
   liberastika = callPackage ../data/fonts/liberastika { };
 
@@ -18408,8 +18389,6 @@ in
 
   getxbook = callPackage ../applications/misc/getxbook { };
 
-  ghq = gitAndTools.ghq;
-
   gimp = callPackage ../applications/graphics/gimp {
     gegl = gegl_0_4;
     lcms = lcms2;
@@ -18428,7 +18407,7 @@ in
 
   gitAndTools = recurseIntoAttrs (callPackage ../applications/version-management/git-and-tools {});
 
-  inherit (gitAndTools) git gitFull gitSVN git-cola svn2git git-radar git-secret git-secrets transcrypt git-crypt;
+  inherit (gitAndTools) git gitFull gitSVN git-cola svn2git git-radar git-secret git-secrets transcrypt git-crypt ghq;
 
   gitMinimal = git.override {
     withManual = false;
@@ -19639,12 +19618,6 @@ in
 
   speedread = callPackage ../applications/misc/speedread { };
 
-  sup = callPackage ../applications/networking/mailreaders/sup {
-    bundlerApp = bundlerApp.override{
-      ruby = ruby.override { cursesSupport = true; };
-    };
-  };
-
   synapse = callPackage ../applications/misc/synapse { };
 
   synapse-bt = callPackage ../applications/networking/p2p/synapse-bt {
@@ -20434,9 +20407,7 @@ in
 
   wavebox = callPackage ../applications/networking/instant-messengers/wavebox { };
 
-  sonic-pi = callPackage ../applications/audio/sonic-pi {
-    ruby = ruby_2_3;
-  };
+  sonic-pi = libsForQt5.callPackage ../applications/audio/sonic-pi { };
 
   st = callPackage ../applications/misc/st {
     conf = config.st.conf or null;
@@ -20816,6 +20787,8 @@ in
   tlp = callPackage ../tools/misc/tlp {
     inherit (linuxPackages) x86_energy_perf_policy;
   };
+
+  tippecanoe = callPackage ../applications/misc/tippecanoe { };
 
   tmatrix = callPackage ../applications/misc/tmatrix { };
 
@@ -22140,7 +22113,7 @@ in
   mrrescue = callPackage ../games/mrrescue { };
 
   mudlet = libsForQt5.callPackage ../games/mudlet {
-    inherit (lua51Packages) luafilesystem lrexlib-pcre luazip luasql-sqlite3;
+    lua = lua5_1;
   };
 
   n2048 = callPackage ../games/n2048 {};
@@ -22741,6 +22714,8 @@ in
     plasma-desktop plasma-integration plasma-nm plasma-pa plasma-vault plasma-workspace
     plasma-workspace-wallpapers polkit-kde-agent powerdevil sddm-kcm
     systemsettings user-manager xdg-desktop-portal-kde;
+
+  kwin-tiling = libsForQt5.callPackage ../desktops/plasma-5/kwin/scripts/tiling.nix { };
 
   ### SCIENCE
 
@@ -24346,7 +24321,7 @@ in
     terraform_plugins_test
     ;
 
-  terraform = terraform_0_11;
+  terraform = terraform_0_12;
   # deprecated
   terraform-full = terraform.full;
 
@@ -24836,5 +24811,7 @@ in
   verifpal = callPackage ../tools/security/verifpal {};
 
   nix-store-gcs-proxy = callPackage ../tools/nix/nix-store-gcs-proxy {};
+
+  wifi-password = callPackage ../os-specific/darwin/wifi-password {};
 
 }

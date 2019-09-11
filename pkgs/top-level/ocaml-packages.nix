@@ -57,7 +57,9 @@ let
 
     base64 = callPackage ../development/ocaml-modules/base64 { };
 
-    bap = callPackage ../development/ocaml-modules/bap { };
+    bap = callPackage ../development/ocaml-modules/bap {
+      llvm = pkgs.llvm_8;
+    };
 
     batteries = callPackage ../development/ocaml-modules/batteries { };
 
@@ -395,7 +397,7 @@ let
     linenoise = callPackage ../development/ocaml-modules/linenoise { };
 
     llvm = callPackage ../development/ocaml-modules/llvm {
-      llvm = pkgs.llvm_39;
+      llvm = pkgs.llvm_8;
     };
 
     logs = callPackage ../development/ocaml-modules/logs {
@@ -729,6 +731,8 @@ let
 
     rope = callPackage ../development/ocaml-modules/rope { };
 
+    rpclib = callPackage ../development/ocaml-modules/rpclib { };
+
     rresult = callPackage ../development/ocaml-modules/rresult { };
 
     safepass = callPackage ../development/ocaml-modules/safepass { };
@@ -821,7 +825,14 @@ let
 
     janePackage = callPackage ../development/ocaml-modules/janestreet/janePackage.nix {};
 
-    janeStreet = import ../development/ocaml-modules/janestreet {
+    janeStreet =
+    if lib.versionOlder "4.07" ocaml.version
+    then import ../development/ocaml-modules/janestreet/0.12.nix {
+      janePackage = callPackage ../development/ocaml-modules/janestreet/janePackage_0_12.nix {};
+      inherit ctypes num octavius ppxlib re;
+      inherit (pkgs) openssl;
+    }
+    else import ../development/ocaml-modules/janestreet {
       inherit janePackage ocamlbuild angstrom ctypes cryptokit;
       inherit magic-mime num ocaml-migrate-parsetree octavius ounit;
       inherit ppx_deriving re ppxlib;

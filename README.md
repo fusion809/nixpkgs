@@ -4,17 +4,17 @@ This repository contains the upstream Nixpkgs packages, along with some others c
 * The version of Vim is kept at the latest version, with updates within a day of the upstream release.
 
 * RuneScape's NXT Client ([`runescape-launcher`](pkgs/games/runescape-launcher)), based on NixOS/nixpkgs#31075. 
-=======
-```
-% git remote add channels https://github.com/NixOS/nixpkgs-channels.git
-```
 
-For stability and maximum binary package support, it is recommended to maintain
-custom changes on top of one of the channels, e.g. `nixos-19.03` for the latest
-release and `nixos-unstable` for the latest successful build of master:
+<p align="center">
+  <a href="https://nixos.org/nixos"><img src="https://nixos.org/logo/nixos-hires.png" width="500px" alt="NixOS logo" /></a>
+</p>
 
-```
-% git remote update channels
-% git rebase channels/nixos-19.03
-```
+<p align="center">
+  <a href="https://www.codetriage.com/nixos/nixpkgs"><img src="https://www.codetriage.com/nixos/nixpkgs/badges/users.svg" alt="Code Triagers badge" /></a>
+  <a href="https://opencollective.com/nixos"><img src="https://opencollective.com/nixos/tiers/supporter/badge.svg?label=Supporter&color=brightgreen" alt="Open Collective supporters" /></a>
+</p>
 
+[Nixpkgs](https://github.com/nixos/nixpkgs) is a collection of over
+40,000 software packages that can be installed with the
+[Nix](https://nixos.org/nix/) package manager. It also implements
+[NixOS](https://nixos.org/nixos/), a purely-functional Linux distribution.

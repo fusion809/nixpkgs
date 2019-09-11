@@ -114,6 +114,7 @@ mapAliases ({
   git-hub = gitAndTools.git-hub; # added 2016-04-29
   glib_networking = glib-networking; # added 2018-02-25
   gnome-mpv = celluloid; # added 2019-08-22
+  gmic_krita_qt = gmic-qt-krita; # added 2019-09-07
   gnome-themes-standard = gnome-themes-extra; # added 2018-03-14
   gnome_doc_utils = gnome-doc-utils; # added 2018-02-25
   gnome_themes_standard = gnome-themes-standard; # added 2018-02-25
@@ -265,7 +266,6 @@ mapAliases ({
   plexpy = tautulli; # plexpy got renamed to tautulli, added 2019-02-22
   pmtools = acpica-tools; # added 2018-11-01
   poppler_qt5 = libsForQt5.poppler;  # added 2015-12-19
-  postgresql94 = postgresql_9_4;
   postgresql95 = postgresql_9_5;
   postgresql96 = postgresql_9_6;
   postgresql100 = throw "deprecated 2018-10-21: use postgresql_10 instead";
@@ -303,8 +303,9 @@ mapAliases ({
   rssglx = rss-glx; #added 2015-03-25
   ruby_2_0_0 = throw "deprecated 2018-0213: use a newer version of ruby";
   ruby_2_1_0 = throw "deprecated 2018-0213: use a newer version of ruby";
-  ruby_2_2_9 = throw "deprecated 2018-0213: use ruby_2_2 instead";
-  ruby_2_3_6 = throw "deprecated 2018-0213: use ruby_2_3 instead";
+  ruby_2_2_9 = throw "deprecated 2018-0213: use a newer version of ruby";
+  ruby_2_3_6 = throw "deprecated 2018-0213: use a newer version of ruby";
+  ruby_2_3 = throw "deprecated 2019-09-06: use a newer version of ruby";
   ruby_2_4_3 = throw "deprecated 2018-0213: use ruby_2_4 instead";
   ruby_2_5_0 = throw "deprecated 2018-0213: use ruby_2_5 instead";
   rubygems = throw "deprecated 2016-03-02: rubygems is now bundled with ruby";
@@ -325,6 +326,7 @@ mapAliases ({
   shared_mime_info = shared-mime-info; # added 2018-02-25
   skrooge2 = skrooge; # added 2017-02-18
   skype = skypeforlinux; # added 2017-07-27
+  skydive = throw "skydive has been removed from nixpkgs (2019-09-10)";
   slic3r-prusa3d = prusa-slicer; # added 2019-05-21
   slurm-llnl = slurm; # renamed July 2017
   slurm-llnl-full = slurm-full; # renamed July 2017
@@ -341,6 +343,7 @@ mapAliases ({
   sshfsFuse = sshfs-fuse; # added 2016-09
   suil-qt5 = suil; # added 2018-05-01
   surf-webkit2 = surf; # added 2017-04-02
+  sup = throw "deprecated in 2019-09-10: abandoned by upstream";
   system_config_printer = system-config-printer;  # added 2016-01-03
   systool = sysfsutils; # added 2018-04-25
   tahoelafs = tahoe-lafs; # added 2018-03-26

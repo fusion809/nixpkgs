@@ -3249,6 +3249,12 @@
     githubId = 1047859;
     name = "Kaz Wesley";
   };
+  kcalvinalvin = {
+    email = "calvin@kcalvinalvin.info";
+    github = "kcalvinalvin";
+    githubId = 37185887;
+    name = "Calvin Kim";
+  };
   kentjames = {
     email = "jameschristopherkent@gmail.com";
     github = "kentjames";
@@ -4782,6 +4788,12 @@
     githubId = 11016164;
     name = "Fedor Pakhomov";
   };
+  pamplemousse = {
+    email = "xav.maso@gmail.com";
+    github = "Pamplemousse";
+    githubId = 2647236;
+    name = "Xavier Maso";
+  };
   panaeon = {
     email = "vitalii.voloshyn@gmail.com";
     github = "panaeon";
@@ -5828,6 +5840,10 @@
     github = "sikmir";
     githubId = 688044;
     name = "Nikolay Korotkiy";
+    keys = [{
+      longkeyid = "rsa2048/0xD1DE6D7F693663A5";
+      fingerprint = "ADF4 C13D 0E36 1240 BD01  9B51 D1DE 6D7F 6936 63A5";
+    }];
   };
   simonvandel = {
     email = "simon.vandel@gmail.com";

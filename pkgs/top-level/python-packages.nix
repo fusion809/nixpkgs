@@ -42,17 +42,14 @@ let
       }
       else ff;
 
-  buildPythonPackage = makeOverridablePythonPackage ( makeOverridable (callPackage ../development/interpreters/python/build-python-package.nix {
-    flit = self.flit;
-    # We want Python libraries to be named like e.g. "python3.6-${name}"
-    inherit namePrefix;
-    inherit toPythonModule;
+  buildPythonPackage = makeOverridablePythonPackage ( makeOverridable (callPackage ../development/interpreters/python/mk-python-derivation.nix {
+    inherit namePrefix;     # We want Python libraries to be named like e.g. "python3.6-${name}"
+    inherit toPythonModule; # Libraries provide modules
   }));
 
-  buildPythonApplication = makeOverridablePythonPackage ( makeOverridable (callPackage ../development/interpreters/python/build-python-package.nix {
-    flit = self.flit;
-    namePrefix = "";
-    toPythonModule = x: x; # Application does not provide modules.
+  buildPythonApplication = makeOverridablePythonPackage ( makeOverridable (callPackage ../development/interpreters/python/mk-python-derivation.nix {
+    namePrefix = "";        # Python applications should not have any prefix
+    toPythonModule = x: x;  # Application does not provide modules.
   }));
 
   # See build-setupcfg/default.nix for documentation.
@@ -110,6 +107,9 @@ in {
   inherit toPythonModule toPythonApplication;
   inherit buildSetupcfg;
 
+  inherit (callPackage ../development/interpreters/python/hooks { })
+    flitBuildHook pipBuildHook pipInstallHook pytestCheckHook pythonCatchConflictsHook pythonImportsCheckHook pythonRemoveBinBytecodeHook setuptoolsBuildHook setuptoolsCheckHook wheelUnpackHook;
+
   # helpers
 
   wrapPython = callPackage ../development/interpreters/python/wrap-python.nix {inherit python; inherit (pkgs) makeSetupHook makeWrapper; };
@@ -121,7 +121,7 @@ in {
 
   recursivePthLoader = callPackage ../development/python-modules/recursive-pth-loader { };
 
-  setuptools = toPythonModule (callPackage ../development/python-modules/setuptools { });
+  setuptools = callPackage ../development/python-modules/setuptools { };
 
   vowpalwabbit = callPackage ../development/python-modules/vowpalwabbit { };
 
@@ -475,9 +475,13 @@ in {
 
   clifford = callPackage ../development/python-modules/clifford { };
 
+  clickclick = callPackage ../development/python-modules/clickclick { };
+
   clustershell = callPackage ../development/python-modules/clustershell { };
 
   cnvkit = callPackage ../development/python-modules/cnvkit { };
+
+  connexion = callPackage ../development/python-modules/connexion { };
 
   cozy = callPackage ../development/python-modules/cozy { };
 
@@ -714,6 +718,8 @@ in {
   mail-parser = callPackage ../development/python-modules/mail-parser { };
 
   mailman = disabledIf (!isPy3k) (callPackage ../servers/mail/mailman/core.nix { });
+
+  mailman-web = disabledIf (!isPy3k) (callPackage ../servers/mail/mailman/web.nix { });
 
   mailmanclient = callPackage ../development/python-modules/mailmanclient { };
 
@@ -1305,6 +1311,8 @@ in {
 
   aiohttp-socks = callPackage ../development/python-modules/aiohttp-socks { };
 
+  aiohttp-swagger = callPackage ../development/python-modules/aiohttp-swagger { };
+
   aioprocessing = callPackage ../development/python-modules/aioprocessing { };
 
   aioresponses = callPackage ../development/python-modules/aioresponses { };
@@ -1399,8 +1407,6 @@ in {
   args = callPackage ../development/python-modules/args { };
 
   argcomplete = callPackage ../development/python-modules/argcomplete { };
-
-  area53 = callPackage ../development/python-modules/area53 { };
 
   arxiv2bib = callPackage ../development/python-modules/arxiv2bib { };
 
@@ -2252,8 +2258,6 @@ in {
     pythonPackages = self;
   });
 
-  EditorConfig = callPackage ../development/python-modules/editorconfig { };
-
   edward = callPackage ../development/python-modules/edward { };
 
   elasticsearch = callPackage ../development/python-modules/elasticsearch { };
@@ -2819,6 +2823,8 @@ in {
   statsd = callPackage ../development/python-modules/statsd { };
 
   starfish = callPackage ../development/python-modules/starfish { };
+
+  swagger-ui-bundle = callPackage ../development/python-modules/swagger-ui-bundle { };
 
   multi_key_dict = callPackage ../development/python-modules/multi_key_dict { };
 
@@ -3877,8 +3883,6 @@ in {
 
   monotonic = callPackage ../development/python-modules/monotonic { };
 
-  MySQL_python = callPackage ../development/python-modules/mysql_python { };
-
   mysql-connector = callPackage ../development/python-modules/mysql-connector { };
 
   namebench = callPackage ../development/python-modules/namebench { };
@@ -4236,8 +4240,6 @@ in {
   soundfile = callPackage ../development/python-modules/soundfile { };
 
   pysoundfile = self.soundfile;  # Alias added 23-06-2019
-
-  python3pika = callPackage ../development/python-modules/python3pika { };
 
   python-jenkins = callPackage ../development/python-modules/python-jenkins { };
 
@@ -4667,6 +4669,8 @@ in {
     inherit (pkgs) pkgconfig; # use normal pkgconfig, not the python package
   };
 
+  rfc6555 = callPackage ../development/python-modules/rfc6555 { };
+
   qdarkstyle = callPackage ../development/python-modules/qdarkstyle { };
 
   quamash = callPackage ../development/python-modules/quamash { };
@@ -4843,6 +4847,8 @@ in {
   scikit-bio = callPackage ../development/python-modules/scikit-bio { };
 
   scikit-build = callPackage ../development/python-modules/scikit-build { };
+
+  scikits-odes = callPackage ../development/python-modules/scikits-odes { };
 
   scikit-optimize = callPackage ../development/python-modules/scikit-optimize { };
 

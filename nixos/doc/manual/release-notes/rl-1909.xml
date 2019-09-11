@@ -206,6 +206,11 @@
    </listitem>
    <listitem>
     <para>
+     PostgreSQL 9.4 is scheduled EOL during the 19.09 life cycle and has been removed.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
      The options <option>services.prometheus.alertmanager.user</option> and
      <option>services.prometheus.alertmanager.group</option> have been removed
      because the alertmanager service is now using systemd's <link
@@ -444,8 +449,9 @@
    </listitem>
    <listitem>
      <para>
-       <option>services.xserver.desktopManager.xterm</option> is now disabled by default.
-       It was not useful except for debugging purposes and was confusingly set as default in some circumstances.
+       <option>services.xserver.desktopManager.xterm</option> is now disabled by default if <literal>stateVersion</literal> is 19.09 or higher.
+       Previously the xterm desktopManager was enabled when xserver was enabled, but it isn't useful for all people so it didn't make sense to
+       have any desktopManager enabled default.
      </para>
    </listitem>
    <listitem>

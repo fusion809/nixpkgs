@@ -15,8 +15,11 @@
 , withKexectools ? lib.any (lib.meta.platformMatch stdenv.hostPlatform) kexectools.meta.platforms, kexectools
 }:
 
-stdenv.mkDerivation {
-  version = "242";
+let
+  pythonLxmlEnv = buildPackages.python3Packages.python.withPackages ( ps: with ps; [ python3Packages.lxml ]);
+
+in stdenv.mkDerivation {
+  version = "243";
   pname = "systemd";
 
   # When updating, use https://github.com/systemd/systemd-stable tree, not the development one!
@@ -24,17 +27,9 @@ stdenv.mkDerivation {
   src = fetchFromGitHub {
     owner = "NixOS";
     repo = "systemd";
-    rev = "5fb35fbc783516e2014115c3488134a2afb8494c";
-    sha256 = "0pyjvzzh8nnxv4z58n82lz1mjnzv44sylcjgkvw8sp35vx1ryxfh";
+    rev = "7019836a26ebdc1ba20c03d06dbb3a613833bd0f";
+    sha256 = "0ywaq5jfy177k4q5hwr43v66sz62l1bqhgyxs2vk9m1d5kvrjwk6";
   };
-
-  patches = [
-    (fetchpatch {
-      name = "CVE-2019-15718.patch";
-      url = https://github.com/systemd/systemd/pull/13457/commits/35e528018f315798d3bffcb592b32a0d8f5162bd.patch;
-      sha256 = "0m0ypnnllx4r6a2qy1586as15i2qrzxwi1sqdp14rzdwajz1rvnv";
-    })
-  ];
 
   outputs = [ "out" "lib" "man" "dev" ];
 
@@ -108,6 +103,13 @@ stdenv.mkDerivation {
     "-Dsulogin-path=${utillinux}/bin/sulogin"
     "-Dmount-path=${utillinux}/bin/mount"
     "-Dumount-path=${utillinux}/bin/umount"
+    "-Dcreate-log-dirs=false"
+    # Upstream uses cgroupsv2 by default. To support docker and other
+    # container managers we still need v1.
+    "-Ddefault-hierarchy=hybrid"
+    # Upstream defaulted to disable manpages since they optimize for the much
+    # more frequent development builds
+    "-Dman=true"
   ];
 
   preConfigure = ''
@@ -229,6 +231,6 @@ stdenv.mkDerivation {
     license = licenses.lgpl21Plus;
     platforms = platforms.linux;
     priority = 10;
-    maintainers = [ maintainers.eelco ];
+    maintainers = with maintainers; [ eelco andir ];
   };
 }
