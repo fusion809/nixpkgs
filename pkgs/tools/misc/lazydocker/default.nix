@@ -1,24 +1,24 @@
-{ stdenv, buildGoModule, fetchFromGitHub }:
+{ stdenv, buildGoPackage, fetchFromGitHub }:
 
-buildGoModule rec {
+buildGoPackage rec {
   pname = "lazydocker";
-  version = "0.7.4";
+  version = "0.7.6";
 
   src = fetchFromGitHub {
     owner = "jesseduffield";
     repo = "lazydocker";
     rev = "v${version}";
-    sha256 = "03l6gs4p9p8g0ai6wqg9024rp0pd13m0b9y3sy1ww5afwxb82br6";
+    sha256 = "1sp5f9lkysqkyhd6gvrlpszrih78bj67yidkkd6azv9ianrndx0b";
   };
 
-  modSha256 = "1hzrin8dfsfnxpc37szc1449s235w0dr24albswz06fjnl4bbs5y";
+  goPackagePath = "github.com/jesseduffield/lazydocker";
 
   subPackages = [ "." ];
 
   meta = with stdenv.lib; {
     description = "A simple terminal UI for both docker and docker-compose";
-    homepage = https://github.com/jesseduffield/lazydocker;
+    homepage = "https://github.com/jesseduffield/lazydocker";
     license = licenses.mit;
-    maintainers = with maintainers; [ das-g ];
+    maintainers = with maintainers; [ das-g filalex77 ];
   };
 }

@@ -2,33 +2,30 @@
 , gpgme, libgpgerror, lvm2, btrfs-progs, pkgconfig, ostree, libselinux, libseccomp
 }:
 
-let
-  version = "1.11.0";
+buildGoPackage rec {
+  pname = "buildah";
+  version = "1.11.6";
 
   src = fetchFromGitHub {
-    rev    = "v${version}";
     owner  = "containers";
     repo   = "buildah";
-    sha256 = "114dmjqacz5hairl1s8qhndzr52lcvh99g565cq5ydscblnzpw1b";
+    rev    = "v${version}";
+    sha256 = "0slhq11nmqsp2rjfwldvcwlpj823ckfpipggkaxhcb66dv8ymm7n";
   };
-
-  goPackagePath = "github.com/containers/buildah";
-
-in buildGoPackage {
-  pname = "buildah";
-  inherit version;
-  inherit src;
 
   outputs = [ "bin" "man" "out" ];
 
-  inherit goPackagePath;
+  goPackagePath = "github.com/containers/buildah";
   excludedPackages = [ "tests" ];
 
-  # Optimizations break compilation of libseccomp c bindings
-  hardeningDisable = [ "fortify" ];
+  # Disable module-mode, because Go 1.13 automatically enables it if there is
+  # go.mod file. Remove after https://github.com/NixOS/nixpkgs/pull/73380
+  GO111MODULE = "off";
 
   nativeBuildInputs = [ pkgconfig ];
   buildInputs = [ gpgme libgpgerror lvm2 btrfs-progs ostree libselinux libseccomp ];
+
+  patches = [ ./disable-go-module-mode.patch ];
 
   buildPhase = ''
     pushd go/src/${goPackagePath}
@@ -40,10 +37,10 @@ in buildGoPackage {
     make -C docs install PREFIX="$man"
   '';
 
-  meta = {
+  meta = with stdenv.lib; {
     description = "A tool which facilitates building OCI images";
-    homepage = https://github.com/containers/buildah;
-    maintainers = with stdenv.lib.maintainers; [ Profpatsch vdemeester ];
-    license = stdenv.lib.licenses.asl20;
+    homepage = "https://github.com/containers/buildah";
+    license = licenses.asl20;
+    maintainers = with maintainers; [ Profpatsch vdemeester saschagrunert ];
   };
 }
