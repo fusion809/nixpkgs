@@ -4,7 +4,7 @@ with stdenv.lib;
 
 stdenv.mkDerivation rec {
   pname = "marvin";
-  version = "19.23.0";
+  version = "19.27.0";
 
   src = fetchurl {
     name = "marvin-${version}.deb";
