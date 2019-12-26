@@ -9,7 +9,7 @@ stdenv.mkDerivation rec {
   src = fetchurl {
     name = "marvin-${version}.deb";
     url = "http://dl.chemaxon.com/marvin/${version}/marvin_linux_${versions.majorMinor version}.deb";
-    sha256 = "1m28jki2qan6gdzs544y1v72ybp4vyj66ri5sy44jqi94xg1mb5f";
+    sha256 = "10pzprr43pklf4yl14m9q921ynalsil1dsfbl6lx8r1jmyjgl3w7";
   };
 
   nativeBuildInputs = [ dpkg makeWrapper ];

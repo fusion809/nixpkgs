@@ -429,12 +429,12 @@ let
   };
 
   phpstan = mkDerivation rec {
-    version = "0.12.0";
+    version = "0.12.3";
     pname = "phpstan";
 
     src = pkgs.fetchurl {
       url = "https://github.com/phpstan/phpstan/releases/download/${version}/phpstan.phar";
-      sha256 = "0029727360x0qf6acw4y9yczj59y477i0hx278pb64dvy63fzkmk";
+      sha256 = "08ya50qf75nq8ypyhb0vsqnj166kc27rc8iasxr3y7kssbfd95ai";
     };
 
     phases = [ "installPhase" ];
@@ -457,7 +457,7 @@ let
         actual line.
       '';
       license = licenses.mit;
-      homepage = https://github.com/phpstan/phpstan;
+      homepage = "https://github.com/phpstan/phpstan";
       maintainers = with maintainers; [ etu ];
     };
   };
@@ -507,10 +507,10 @@ let
   };
 
   protobuf = buildPecl {
-    version = "3.11.1";
+    version = "3.11.2";
     pname = "protobuf";
 
-    sha256 = "1dv2hln2rifjlljry4b7qqx3gx68fm0a6nf66sh4ls2p9if1jzp2";
+    sha256 = "0bhdykdyk58ywqj940zb7jyvrlgdr6hdb4s8kn79fz3p0i79l9hz";
 
     buildInputs = with pkgs; [ (if isPhp73 then pcre2 else pcre) ];
 
@@ -520,7 +520,6 @@ let
       '';
       license = licenses.bsd3;
       homepage = "https://developers.google.com/protocol-buffers/";
-      broken = isPhp74; # Build error
     };
   };
 
