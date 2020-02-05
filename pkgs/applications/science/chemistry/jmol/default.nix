@@ -10,14 +10,15 @@ let
   desktopItem = makeDesktopItem {
     name = "jmol";
     exec = "jmol";
-    desktopName = "JMol";
+    desktopName = "Jmol";
+    icon = "jmol";
     genericName = "Molecular Modeler";
     mimeType = "chemical/x-pdb;chemical/x-mdl-molfile;chemical/x-mol2;chemical/seq-aa-fasta;chemical/seq-na-fasta;chemical/x-xyz;chemical/x-mdl-sdf;";
     categories = "Graphics;Education;Science;Chemistry;";
   };
 in
 stdenv.mkDerivation rec {
-  version = "14.30.1";
+  version = "14.30.2";
   pname = "jmol";
 
   src = let
@@ -39,6 +40,7 @@ stdenv.mkDerivation rec {
     cp *.jar jmol.sh "$out/share/jmol"
     cp -r ${desktopItem}/share/applications $out/share
     cp jmol $out/bin
+    ls ${unzip}
   '';
 
   enableParallelBuilding = true;
