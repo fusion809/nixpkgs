@@ -19,7 +19,7 @@ let
 
   sha256 = {
     "i686-linux" = "09mgvff27iljj9z7h0xxmr6152hcxh7qqxl3i7wdc55ra1rsjq1n";
-    "x86_64-linux" = "1bb7icdjzprrsxllx2q478m1p3qf5sbs3rs3bavvb3hzyyf4bifn";
+    "x86_64-linux" = "0c067qp3aa5kqya3y8pzc9cvyzsafizhgjp9dsibnfl08lvz9hbs";
     "x86_64-darwin" = "1mf9nyjnxgmzai7rfd1rkwk0wvil0ripg3mh8icg4mld2jjz8rsy";
   }.${system};
 
@@ -27,7 +27,7 @@ let
 in
   stdenv.mkDerivation rec {
     name = "vscode-${version}";
-    version = "1.42.0";
+    version = "1.42.1";
 
     src = fetchurl {
       name = "VSCode_${version}_${plat}.${archive_fmt}";

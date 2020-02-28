@@ -23,7 +23,7 @@ in
   callPackage ./generic.nix rec {
     inherit sourceRoot;
 
-    version = "1.41.0";
+    version = "1.42.1";
     pname = "vscodium";
 
     executableName = "codium";

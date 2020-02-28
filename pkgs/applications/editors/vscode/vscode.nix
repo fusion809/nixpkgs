@@ -17,7 +17,7 @@ let
 in
   callPackage ./generic.nix rec {
 
-    version = "1.41.0";
+    version = "1.42.1";
     pname = "vscode";
 
     executableName = "code" + lib.optionalString isInsiders "-insiders";
