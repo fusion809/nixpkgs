@@ -94,9 +94,9 @@ let
   # separate derivation to make it possible to re-run the tests without
   # rebuilding sagelib (which takes ~30 minutes).
   # Running the tests should take something in the order of 1h.
-  sage-tests = callPackage ./sage-tests.nix {
-    inherit sage-with-env;
-  };
+  #sage-tests = callPackage ./sage-tests.nix {
+  #  inherit sage-with-env;
+  #};
 
   sage-src = callPackage ./sage-src.nix {};
 
@@ -167,6 +167,6 @@ let
 in
 # A wrapper around sage that makes sure sage finds its docs (if they were build).
 callPackage ./sage.nix {
-  inherit sage-tests sage-with-env sagedoc jupyter-kernel-definition;
+  inherit sage-with-env sagedoc jupyter-kernel-definition;
   inherit withDoc;
 }
