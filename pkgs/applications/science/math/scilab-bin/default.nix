@@ -3,12 +3,8 @@
 let
   name = "scilab-bin-${ver}";
 
-  ver = "6.0.2";
-<<<<<<< HEAD
-
+  ver = "6.1.0";
   majorVer = builtins.elemAt (lib.splitString "." ver) 0;
-=======
->>>>>>> upstream/master
 
   badArch = throw "${name} requires i686-linux or x86_64-linux";
 
