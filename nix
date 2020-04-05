@@ -1,1 +1,0 @@
-/tmp/nixos-rebuild.sqVncL/nix
