@@ -8408,8 +8408,14 @@ in
     inherit (darwin.apple_sdk.frameworks) CoreServices ApplicationServices;
   };
 
-  julia_1 = julia_10;
-  julia = julia_1;
+  julia_14 = callPackage ../development/compilers/julia/1.4.nix {
+    gmp = gmp6;
+    openblas = openblasCompat;
+    inherit (darwin.apple_sdk.frameworks) CoreServices ApplicationServices;
+  };
+
+  julia_1 = julia_14;
+  julia = julia_14;
 
   jwasm =  callPackage ../development/compilers/jwasm { };
 
