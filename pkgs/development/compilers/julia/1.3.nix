@@ -1,12 +1,4 @@
-{ majorVersion
-, minorVersion
-, maintenanceVersion
-, src_sha256
-# source deps
-, libuvVersion
-, libuvSha256
-}:
-{ stdenv, fetchurl, fetchzip
+{ stdenv, fetchurl, fetchzip, fetchFromGitHub
 # build tools
 , gfortran, m4, makeWrapper, patchelf, perl, which, python2
 , cmake
@@ -30,72 +22,29 @@ let
   arpack = arpack_.override { inherit openblas; };
 in
 
-let
-  dsfmtVersion = "2.2.3";
-  dsfmt = fetchurl {
-    url = "http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/SFMT/dSFMT-src-${dsfmtVersion}.tar.gz";
-    sha256 = "03kaqbjbi6viz0n33dk5jlf6ayxqlsq4804n7kwkndiga9s4hd42";
-  };
-
-  libuv = fetchurl {
-    url = "https://api.github.com/repos/JuliaLang/libuv/tarball/${libuvVersion}";
-    sha256 = libuvSha256;
-  };
-
-  rmathVersion = "0.1";
-  rmath-julia = fetchurl {
-    url = "https://api.github.com/repos/JuliaLang/Rmath-julia/tarball/v${rmathVersion}";
-    sha256 = "1qyps217175qhid46l8f5i1v8i82slgp23ia63x2hzxwfmx8617p";
-  };
-
-  virtualenvVersion = "15.0.0";
-  virtualenv = fetchurl {
-    url = "mirror://pypi/v/virtualenv/virtualenv-${virtualenvVersion}.tar.gz";
-    sha256 = "06fw4liazpx5vf3am45q2pdiwrv0id7ckv7n6zmpml29x6vkzmkh";
-  };
-
-  libwhichVersion = "81e9723c0273d78493dc8c8ed570f68d9ce7e89e";
-  libwhich = fetchurl {
-    url = "https://api.github.com/repos/vtjnash/libwhich/tarball/${libwhichVersion}";
-    sha256 = "1p7zg31kpmpbmh1znrk1xrbd074agx13b9q4dcw8n2zrwwdlbz3b";
-  };
-
-  llvmVersion = "6.0.0";
-  llvm = fetchurl {
-    url = "http://releases.llvm.org/6.0.0/llvm-${llvmVersion}.src.tar.xz";
-    sha256 = "0224xvfg6h40y5lrbnb9qaq3grmdc5rg00xq03s1wxjfbf8krx8z";
-  };
-
-  suitesparseVersion = "4.4.5";
-  suitesparse = fetchurl {
-    url = "http://faculty.cse.tamu.edu/davis/SuiteSparse/SuiteSparse-${suitesparseVersion}.tar.gz";
-    sha256 = "1jcbxb8jx5wlcixzf6n5dca2rcfx6mlcms1k2rl5gp67ay3bix43";
-  };
+let 
+  majorVersion = "1";
+  minorVersion = "3";
+  maintenanceVersion = "1";
+  src_sha256 = "0q9a7yc3b235psrwl5ghyxgwly25lf8n818l8h6bkf2ymdbsv5p6";
   version = "${majorVersion}.${minorVersion}.${maintenanceVersion}";
-in
+in 
 
 stdenv.mkDerivation rec {
   pname = "julia";
   inherit version;
 
-  src = fetchzip {
-    url = "https://github.com/JuliaLang/${pname}/releases/download/v${version}/${pname}-${version}.tar.gz";
-    sha256 = src_sha256;
-  };
+   src = fetchzip {
+     url = "https://github.com/JuliaLang/julia/releases/download/v${majorVersion}.${minorVersion}.${maintenanceVersion}/julia-${majorVersion}.${minorVersion}.${maintenanceVersion}-full.tar.gz";
+     sha256 = src_sha256;
+   };
+
   prePatch = ''
     export PATH=$PATH:${cmake}/bin
-    mkdir deps/srccache
-    cp "${dsfmt}" "./deps/srccache/dsfmt-${dsfmtVersion}.tar.gz"
-    cp "${rmath-julia}" "./deps/srccache/Rmath-julia-${rmathVersion}.tar.gz"
-    cp "${libuv}" "./deps/srccache/libuv-${libuvVersion}.tar.gz"
-    cp "${virtualenv}" "./deps/srccache/virtualenv-${virtualenvVersion}.tar.gz"
-    cp "${libwhich}" "./deps/srccache/libwhich-${libwhichVersion}.tar.gz"
-    cp "${llvm}" "./deps/srccache/llvm-${llvmVersion}.src.tar.xz"
-    cp "${suitesparse}" "./deps/srccache/SuiteSparse-${suitesparseVersion}.tar.gz"
-  '';
+    '';
 
   patches = [
-    ./0001.1-use-system-utf8proc.patch
+    ./use-system-utf8proc-julia-1.3.patch
 
     # Julia recompiles a precompiled file if the mtime stored *in* the
     # .ji file differs from the mtime of the .ji file.  This
@@ -134,6 +83,8 @@ stdenv.mkDerivation rec {
       # Julia requires Pentium 4 (SSE2) or better
       cpuTarget = { x86_64 = "x86-64"; i686 = "pentium4"; }.${arch}
                   or (throw "unsupported architecture: ${arch}");
+      # Julia applies a lot of patches to its dependencies, so for now do not use the system LLVM
+      # https://github.com/JuliaLang/julia/tree/master/deps/patches
     in [
       "ARCH=${arch}"
       "MARCH=${march}"
@@ -157,9 +108,6 @@ stdenv.mkDerivation rec {
       "USE_SYSTEM_LIBGIT2=1"
       "USE_SYSTEM_LIBUNWIND=1"
 
-      #"USE_SYSTEM_LLVM=1"
-      "LLVM_VER=6.0.0"
-
       "USE_SYSTEM_MPFR=1"
       "USE_SYSTEM_OPENLIBM=1"
       "USE_SYSTEM_OPENSPECFUN=1"
@@ -170,6 +118,8 @@ stdenv.mkDerivation rec {
       "USE_SYSTEM_READLINE=1"
       "USE_SYSTEM_UTF8PROC=1"
       "USE_SYSTEM_ZLIB=1"
+
+      "USE_BINARYBUILDER=0"
     ];
 
   LD_LIBRARY_PATH = makeLibraryPath [
