@@ -11,13 +11,17 @@ let
   archive_fmt = if system == "x86_64-darwin" then "zip" else "tar.gz";
 
   sha256 = {
-    x86_64-linux = "1ziw2b851kg17jaf713nwhsv5ikbvivq3h01xximhcglv9vzk93l";
-    x86_64-darwin = "0nndasa130551jf06mfrym593c02c3ypgg9f9rdg1fw5qbyjb8hm";
+    x86_64-linux = "1vaga9ykib8b1rp502wpkq5hhsj6a0f0a4akkd3bs6wc4m74ff4g";
+    x86_64-darwin = "1dql0pnkqrsdhyz00flksb7mx4ryk7rzgwn359sg55bf8yhyrbfn";
   }.${system};
 in
   callPackage ./generic.nix rec {
+    # The update script doesn't correctly change the hash for darwin, so please:
+    # nixpkgs-update: no auto update
 
-    version = "1.42.1";
+    # Please backport all compatible updates to the stable release.
+    # This is important for the extension ecosystem.
+    version = "1.43.2";
     pname = "vscode";
 
     executableName = "code" + lib.optionalString isInsiders "-insiders";
