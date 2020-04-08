@@ -19504,7 +19504,7 @@ in
 
   imagemagick_light = imagemagick.override {
     bzip2 = null;
-    zlib = null;
+    lib = null;
     libX11 = null;
     libXext = null;
     libXt = null;
