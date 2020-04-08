@@ -45,7 +45,7 @@ in
       comment = "Code Editing. Redefined.";
       genericName = "Text Editor";
       exec = executableName;
-      icon = "@out@/share/pixmaps/code.png";
+      icon = "code";
       startupNotify = "true";
       categories = "Utility;TextEditor;Development;IDE;";
       mimeType = "text/plain;inode/directory;";
@@ -57,7 +57,7 @@ in
         [Desktop Action new-empty-window]
         Name=New Empty Window
         Exec=${executableName} --new-window %F
-        Icon=@out@/share/pixmaps/code.png
+        Icon=code
       '';
     };
 
@@ -67,7 +67,7 @@ in
       comment = "Code Editing. Redefined.";
       genericName = "Text Editor";
       exec = executableName + " --open-url %U";
-      icon = "@out@/share/pixmaps/code.png";
+      icon = "code";
       startupNotify = "true";
       categories = "Utility;TextEditor;Development;IDE;";
       mimeType = "x-scheme-handler/vscode;";
