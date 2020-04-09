@@ -19,7 +19,7 @@ let
 
   sha256 = {
     "i686-linux" = "09mgvff27iljj9z7h0xxmr6152hcxh7qqxl3i7wdc55ra1rsjq1n";
-    "x86_64-linux" = "1vaga9ykib8b1rp502wpkq5hhsj6a0f0a4akkd3bs6wc4m74ff4g";
+    "x86_64-linux" = "0q1fk5a4ymndnyxzps8960y1rl657q95i2rydbqyjl37y79wmllx";
     "x86_64-darwin" = "1mf9nyjnxgmzai7rfd1rkwk0wvil0ripg3mh8icg4mld2jjz8rsy";
   }.${system};
 
