@@ -1,12 +1,12 @@
 { lib, fetchFromGitHub }:
 rec {
-  version = "8.2.1199";
+  version = "";
 
   src = fetchFromGitHub {
     owner = "vim";
     repo = "vim";
     rev = "v${version}";
-    sha256 = "0zdyzhrk8cz0nsmzzhy60fzwsir6a9zc0x9qlbmpgs4ffcl9bvp5";
+    sha256 = "error: unable to download 'https://github.com/vim/vim/archive/v.tar.gz': HTTP error 404";
   };
 
   enableParallelBuilding = true;
