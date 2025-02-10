@@ -32,13 +32,13 @@ lib.checkListOfEnum "${pname}: theme variants"
   stdenvNoCC.mkDerivation
   rec {
     inherit pname;
-    version = "2024-09-07";
+    version = "2025-02-10";
 
     src = fetchFromGitHub {
       owner = "vinceliuice";
       repo = pname;
       rev = version;
-      hash = "sha256-/cW/ymT9MjB07Sw7ifpr6x8oaaeI4PSyaOdLci7AncY=";
+      hash = "sha256-09ieq49ZoxgdR/821Xg+gBCDntwtVA9Hwtgwy3Wc4M0=";
     };
 
     nativeBuildInputs = [
@@ -68,7 +68,13 @@ lib.checkListOfEnum "${pname}: theme variants"
         ${lib.optionalString blackPanelIcons "--black"}
 
       jdupes --link-soft --recurse $out/share
-
+      rm $out/share/icons/WhiteSur/devices/scalable/device-notifier.svg
+      rm $out/share/icons/WhiteSur/actions/32/open-menu-symbolic.svg
+      rm $out/share/icons/WhiteSur/mimes/16/stock_new-template.svg
+      rm $out/share/icons/WhiteSur/mimes/16/text-x-preview.svg
+      rm $out/share/icons/WhiteSur/mimes/16/application-vnd_cups-pdf-banner.svg
+      rm $out/share/icons/WhiteSur/mimes/16/gnome-fs-regular.svg
+      rm $out/share/icons/WhiteSur/apps/scalable/lutris_dota-2.svg
       runHook postInstall
     '';
 
